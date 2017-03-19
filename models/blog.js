@@ -46,6 +46,22 @@ module.exports.getBlog = function (author, callback) {
         .sort({ _id: -1 }).exec(callback);
 };
 
+//实现分页
+module.exports.getBlogPage = function (author, callback) {
+    var query={};
+    if(author){
+        query.author=author;
+    }
+    blogModel.find(query)
+        .populate({ path: 'author', model: 'user' })
+        .sort({ _id: -1 })
+        .skip(1)
+        .limit(2)
+        .exec(callback);
+};
+
+
+
 module.exports.getBlogById = function (blogId, callback) {
     return blogModel
         .findOne({_id:blogId})
@@ -61,7 +77,7 @@ module.exports.incPv = function (blogId, callback) {
 };
 
 
-    // 通过文章 id 获取一篇原生文章（编辑文章）
+// 通过文章 id 获取一篇原生文章（编辑文章）
 module.exports.getRawPostById= function getRawPostById(postId, callback) {
     return blogModel
         .findOne({ _id: postId })

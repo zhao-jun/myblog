@@ -1,9 +1,10 @@
 import React from  'react';
+import PageList from '../../components/PageList/PageList';
 
 
 const Page = () => (
     <div>
-        <p>page</p>
+        <PageList />
     </div>
 );
 

@@ -1,0 +1,32 @@
+.publish {
+    padding: 20px;
+    .publishItem {
+        margin-bottom: 20px;
+    }
+    label {
+        float: left;
+        width: 30%;
+        text-align: right;
+    }
+    input,textarea {
+        width: 40%;
+        outline: none;
+    }
+    textarea {
+        resize: none;
+    }
+    select {
+        outline: none;
+    }
+    .publishBtn {
+        display: block;
+        width: 100px;
+        cursor: pointer;
+        border: none;
+        background-color: #38ffd3;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 6px;
+        margin: 0 auto;
+    }
+}

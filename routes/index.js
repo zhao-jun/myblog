@@ -3,8 +3,9 @@ module.exports = function (app) {
     //     res.redirect('/blog');
     // });
     
-    app.use('/blog', require('./blog'));
+    app.use('/publish', require('./publish'));
     app.use('/reg', require('./reg'));
-    app.use('/signin', require('./signin'));
-    app.use('/signout', require('./signout'));
+    app.use('/login', require('./login'));
+    app.use('/loginOut', require('./loginOut'));
+    app.use('/getUserInfo', require('./getUserInfo'));
 };

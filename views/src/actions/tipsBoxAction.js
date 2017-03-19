@@ -23,11 +23,12 @@ const tipsBox = (message, type) => {
 /*component里面执行的提示弹出框
  @messgage 提示文字
  */
-export const _alert = (message) => {
+export const _alert = (message,callback) => {
     return (dispatch, getState) => {
         dispatch(tipsBox(message, "showTips"));
         setTimeout(function() {
-            dispatch(tipsBox(message, "hideTips"))
+            dispatch(tipsBox(message, "hideTips"));
+            callback && callback();
         }, 1000)
     }
 };

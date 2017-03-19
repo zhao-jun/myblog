@@ -6,26 +6,13 @@ var blogModel = require('../models/blog');
 var commentModel = require('../models/comment');
 var checkLogin = require('../middlewares/check').checkLogin;
 
-// GET /blog 文章页标签
-//   eg: GET /blog?author=xxx
-router.get('/', function(req, res, next) {
-    var author = req.query.author;
-
-    blogModel.getBlog(author,function (err, blog) {
-/*            res.render('blog', {
-                posts: blog
-            });*/
-        res.json(blog);
-        })
-
-});
 
 // GET /blog/create 发表文章页
 router.get('/create', checkLogin, function(req, res, next) {
     res.render('create');
 });
 
-// POST /blog 发表一篇文章
+// POST /publish 发表一篇文章
 router.post('/', checkLogin, function(req, res, next) {
     var author = req.session.user._id;
     var title = req.fields.title;
@@ -54,14 +41,14 @@ router.post('/', checkLogin, function(req, res, next) {
     var blogEntity = new blogModel(blog);
     blogModel.create(blogEntity,function (error,blog) {
 
-        req.flash('success', '发表成功');
+        return res.json({ code: 1000, message: "发布成功" });
         // 发表成功后跳转到该文章页
-        res.redirect(`/blog/${blog._id}`);
+        // res.redirect(`/blog/${blog._id}`);
     });
 
 });
 
-// GET /blog/:postId 单独一篇的文章页
+// GET /publish/:publishId 单独一篇的文章页
 router.get('/:postId', function(req, res, next) {
     var blogId = req.params.postId;
 

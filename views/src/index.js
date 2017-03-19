@@ -6,8 +6,8 @@ import { browserHistory,hashHistory , Router, Route, IndexRoute } from 'react-ro
 
 import Index from './containers/Index/Index';
 import Home from './components/Home/Home';
-import Page from './components/Page/Page';
-import Post from './components/Post/Post';
+import Page from './containers/Page/Page';
+import Publish from './containers/Publish/Publish';
 import rootReducer from './reducers/index';
 
 import './styles/common.scss';
@@ -33,11 +33,11 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store = {store}>
-        <Router history = {hashHistory}>
+        <Router history = {browserHistory}>
             <Route path="/" component = {Index}>
                 <IndexRoute component = {Home} />
                 <Route path="/page" component = {Page} />
-                <Route path="/post" component = {Post} />
+                <Route path="/publish" component = {Publish} />
             </Route>
         </Router>
     </Provider>,

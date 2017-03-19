@@ -31,25 +31,26 @@ export class Register extends React.Component{
             "userName":this.userName.value,
             "password":this.password.value
         };
-        loginSubmit("regSubmit",data)
+        let formData = new FormData(this.register);
+        loginSubmit("regSubmit",formData)
     }
     render(){
         const {modBoxAction}=this.props;
         return (
-            <form className="register" onClick={(e)=>{e.stopPropagation()}}>
+            <form className="register" onClick={(e)=>{e.stopPropagation()}} ref={ref=>{this.register=ref}}>
                 <i className="close" onClick={()=>{modBoxAction("modBoxClose")}}>x</i>
                 <div className="title">欢迎注册</div>
                 <div className="item">
-                    <label htmlFor="userName" className="name">用户名：</label>
-                    <input type="text" name="userName" id="userName" className="input" ref={el=>{this.userName=el}} maxLength="10" placeholder="长度为2-10"/>
+                    <label htmlFor="userName" className="name">用户名</label>
+                    <input type="text" name="userName" id="userName" className="input" ref={ref=>{this.userName=ref}} maxLength="10" placeholder="长度为2-10"/>
                 </div>
                 <div className="item">
-                    <label htmlFor="password" className="name">密码：</label>
-                    <input type="password" name="password" id="password" className="input" ref={el=>{this.password=el}} maxLength="16"  placeholder="长度为6-16"/>
+                    <label htmlFor="password" className="name">密码</label>
+                    <input type="password" name="password" id="password" className="input" ref={ref=>{this.password=ref}} maxLength="16"  placeholder="长度为6-16"/>
                 </div>
                 <div className="item">
-                    <label htmlFor="repassword" className="name">确认密码：</label>
-                    <input type="password" name="repassword" id="repassword" className="input" maxLength="16" ref={el=>{this.repassword=el}}  placeholder="长度为6-16"/>
+                    <label htmlFor="repassword" className="name">确认密码</label>
+                    <input type="password" name="repassword" id="repassword" className="input" maxLength="16" ref={ref=>{this.repassword=ref}}  placeholder="长度为6-16"/>
                 </div>
                 <div className="btn" onClick={()=>{this.submitReg()}}>注册</div>
             </form>
