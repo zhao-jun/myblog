@@ -18,6 +18,9 @@ var blogSchema = new Schema({
     //阅读数
     pv: {
         type:Number
+    },
+    date:{
+        type:String
     }
 });
 
@@ -36,7 +39,7 @@ module.exports.create = function (newBlog,callback) {
 };
 
 //按创建时间降序获取所有用户文章或者某个特定用户的所有文章
-module.exports.getBlog = function (author, callback) {
+module.exports.getAll = function (author, callback) {
     var query={};
     if(author){
         query.author=author;
@@ -46,17 +49,16 @@ module.exports.getBlog = function (author, callback) {
         .sort({ _id: -1 }).exec(callback);
 };
 
-//实现分页
-module.exports.getBlogPage = function (author, callback) {
+//获取分页文章
+module.exports.getPage = function (p, callback) {
     var query={};
-    if(author){
-        query.author=author;
-    }
     blogModel.find(query)
-        .populate({ path: 'author', model: 'user' })
+        //防止密码发送
+        .populate({ path: 'author',model: 'user',select: 'name' })
         .sort({ _id: -1 })
-        .skip(1)
-        .limit(2)
+        //转换成数字
+        .skip(p*4-4)
+        .limit(4)
         .exec(callback);
 };
 

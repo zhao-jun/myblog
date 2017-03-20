@@ -1,0 +1,17 @@
+.pageItem {
+    border-bottom: 1px solid #007fff;
+    padding: 10px;
+    .title {
+        height: 30px;
+        line-height: 30px;
+    }
+    .describe {
+        height: 40px;
+        line-height: 40px;
+        width: 400px;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+}

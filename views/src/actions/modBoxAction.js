@@ -1,6 +1,6 @@
 import {LOGIN_SHOW,REG_SHOW,MODBOX_CLOSE,LOGIN_SUBMIT,REG_SUBMIT} from '../constants/actionTypes';
 export const requestAPI = "http://localhost:3000/";
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
 
 
@@ -219,6 +219,42 @@ export const publishSubmit = (data) => {
         })
         .catch(function(e) {
             console.log("请求失败");
+        });
+    }
+};
+
+
+/*文章区
+ */
+export const PageBox = (type, data) => {
+    switch (type) {
+        case "page":
+            return {
+                type: "page",
+                data
+            };
+    }
+};
+
+
+/*文章请求
+ @params 如果有代表文章页码切换
+ */
+export const getPageData = (params) => {
+    console.log(params);
+    return (dispatch) => {
+        fetch(requestAPI + "page"+ params, {
+            credentials: 'include'
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            return dispatch(PageBox("page", data))
+        })
+        .catch(function(e) {
+            console.error(e);
         });
     }
 };

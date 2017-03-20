@@ -7,11 +7,6 @@ var commentModel = require('../models/comment');
 var checkLogin = require('../middlewares/check').checkLogin;
 
 
-// GET /blog/create 发表文章页
-router.get('/create', checkLogin, function(req, res, next) {
-    res.render('create');
-});
-
 // POST /publish 发表一篇文章
 router.post('/', checkLogin, function(req, res, next) {
     var author = req.session.user._id;
@@ -35,7 +30,8 @@ router.post('/', checkLogin, function(req, res, next) {
         author: author,
         title: title,
         content: content,
-        pv: 0
+        pv: 0,
+        date:moment().format('LLL')
     };
 
     var blogEntity = new blogModel(blog);

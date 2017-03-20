@@ -1,0 +1,22 @@
+.pagination {
+    padding-top: 20px;
+    text-align: center;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    li {
+        display: inline-block;
+        padding: 6px 10px;
+    }
+    .link {
+        display: block;
+        text-decoration: none;
+        color: #000;
+        width: 20px;
+        cursor: pointer;
+    }
+    .active {
+        background-color: #3aa4ff;
+    }
+}

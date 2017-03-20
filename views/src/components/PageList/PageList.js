@@ -1,17 +1,14 @@
 import React from  'react';
+import PageItem from '../PageItem/PageItem';
+import './PageList.scss'
 
-
-const PageList = () => (
-    <ul>
-        <li > 
-            < div className = "title" >  </div>  < div className = "describe" > ... </div>
-
-                < div className = "info" > 作者： &nbsp;&nbsp;
-                    阅读量： &nbsp;&nbsp;
-                    发布时间：&nbsp;&nbsp;
-                    分类:
-                </div>
-        </li>
+const PageList = ({}) => (
+    <ul className="pageList">
+        <PageItem />
+        <PageItem />
+        <PageItem />
+        <PageItem />
+        <PageItem />
     </ul>
 );
 
