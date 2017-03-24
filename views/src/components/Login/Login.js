@@ -5,6 +5,10 @@ export class Login extends React.Component{
     constructor(props) {
         super(props);
     }
+    componentWillUpdate(){
+        this.userName.value="";
+        this.password.value="";
+    }
     submitLogin(){
         const {_alert,loginSubmit} = this.props;
         if(this.userName.value.length<2){
@@ -32,7 +36,10 @@ export class Login extends React.Component{
                     <label htmlFor="password" className="name">密码</label>
                     <input type="password" name="password" id="password" className="input" ref={ref=>{this.password=ref}} maxLength="16" placeholder="密码" />
                 </div>
-                <div className="btn" onClick={()=>{this.submitLogin()}}>登录</div>
+                <div className="submit">
+                    <div className="btn" onClick={()=>{this.submitLogin()}}>登录</div>
+                    <div className="ease"></div>
+                </div>
             </form>
         )
     }

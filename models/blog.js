@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 var Schema = mongoose.Schema;
 
+var commentModel = require('./comment');
+
 var blogSchema = new Schema({
     //作者
     author:{
@@ -17,6 +19,10 @@ var blogSchema = new Schema({
     },
     //阅读数
     pv: {
+        type:Number
+    },
+    //留言数
+    commentsCount:{
         type:Number
     },
     date:{
@@ -57,17 +63,17 @@ module.exports.getPage = function (p, callback) {
         .populate({ path: 'author',model: 'user',select: 'name' })
         .sort({ _id: -1 })
         //转换成数字
-        .skip(p*4-4)
-        .limit(4)
+        .skip(p*5-5)
+        .limit(5)
         .exec(callback);
 };
 
 
-
+//获取指定文章
 module.exports.getBlogById = function (blogId, callback) {
     return blogModel
         .findOne({_id:blogId})
-        .populate({ path: 'author', model: 'user' })
+        .populate({ path: 'author', model: 'user',select: 'name' })
         .exec(callback);
 };
 
@@ -75,6 +81,20 @@ module.exports.getBlogById = function (blogId, callback) {
 module.exports.incPv = function (blogId, callback) {
     return blogModel
         .update({ _id: blogId }, { $inc: { pv: 1 } })
+        .exec(callback);
+};
+
+// 通过文章 id 给 commentsCount 加 1
+module.exports.incCommentsCount = function (blogId, callback) {
+    return blogModel
+        .update({ _id: blogId }, { $inc: { commentsCount: 1 } })
+        .exec(callback);
+};
+
+// 通过文章 id 给 commentsCount 减 1
+module.exports.decCommentsCount = function (blogId, callback) {
+    return blogModel
+        .update({ _id: blogId }, { $inc: { commentsCount: -1 } })
         .exec(callback);
 };
 
@@ -94,5 +114,11 @@ module.exports.updatePostById=function updatePostById(postId, author, data) {
 
 // 通过用户 id 和文章 id 删除一篇文章
 module.exports.delPostById= function delPostById(postId, author) {
-    return blogModel.remove({ author: author, _id: postId }).exec();
+    return blogModel.remove({ author: author, _id: postId }).exec()
+        .then(function (res) {
+            // 文章删除后，再删除该文章下的所有留言
+            if (res.result.ok && res.result.n > 0) {
+                return commentModel.delCommentsByPostId(postId);
+            }
+        });
 };

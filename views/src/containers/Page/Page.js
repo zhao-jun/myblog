@@ -6,7 +6,8 @@ import Pagenation from '../../components/Pagination/Pagination';
 
 import './Page.scss';
 
-import {getPageData,_alert} from '../../actions/modBoxAction';
+
+import {getPageData,_alert,article} from '../../actions/modBoxAction';
 
 export class Page extends React.Component {
     constructor(props){
@@ -14,21 +15,21 @@ export class Page extends React.Component {
     }
     componentWillMount(){
         this.props.actions.getPageData(location.search);
-        console.log(this.props.PageBoxData);
+        console.log(this.props.pageBoxData);
     }
 
     render(){
-        const {PageBoxData,actions} = this.props;
+        const {pageBoxData,loginBoxData,actions} = this.props;
         return (
             <div className="page">
                 <ul className="pageList">
                     {
-                        PageBoxData.page.map((page,index)=>(
-                            <PageItem key={index} page={page} />
+                        pageBoxData.page.map((page,index)=>(
+                            <PageItem key={index} page={page} loginBoxData={loginBoxData} />
                         ))
                     }
                 </ul>
-                <Pagenation getPageData={actions.getPageData} _alert={actions._alert} PageBoxData={PageBoxData}   />
+                <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} />
             </div>
         )
     }
@@ -36,11 +37,12 @@ export class Page extends React.Component {
 
 
 const mapStateToProps = state => ({
-    PageBoxData:state.PageBoxData
+    loginBoxData:state.loginBoxData,
+    pageBoxData:state.pageBoxData
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({getPageData,_alert}, dispatch)
+    actions: bindActionCreators({getPageData,_alert,article}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);

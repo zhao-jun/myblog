@@ -1,17 +1,101 @@
 .pageItem {
-    border-bottom: 1px solid #007fff;
+    border-bottom: 1px solid #eee;
     padding: 10px;
+    display: flex;
+    .left {
+        padding-right: 8px;
+        border-right: 1px solid #f3f3f3;
+        span {
+            display: block;
+            text-align: center;
+        }
+        .comment,.pv {
+            display: block;
+            color: #999;
+            width: 30px;
+            height: 30px;
+        }
+        .comment {
+            color: #666;
+        }
+        .pv {
+            margin-top: 20px;
+        }
+    }
+    .right {
+        padding-left: 8px;
+    }
+    .user {
+        margin-top: 10px;
+        color: #999;
+        .photo{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .user-name {
+            vertical-align: middle;
+            padding-left: 1rem;
+        }
+        .date {
+            padding-left: 1rem;
+            vertical-align: middle;
+        }
+    }
     .title {
         height: 30px;
-        line-height: 30px;
+        font-size: 18px;
+        color: #333;
+    }
+    .link {
+        text-decoration: none;
+        color: #333;
     }
     .describe {
-        height: 40px;
-        line-height: 40px;
+        height: 20px;
+        line-height: 20px;
         width: 400px;
         overflow: hidden;
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;
+        color: #777;
     }
+
+    @media screen and (max-width:768px) {
+        .user {
+            .photo {
+                display: none;
+            }
+            .user-name {
+                padding-left: 0;
+                color: #07c;
+            }
+            .date {
+                padding-left: .5rem;
+                font-size: 12px;
+            }
+        }
+    }
+    @media screen and (max-width:600px) {
+        .title {
+            height: 20px;
+            font-size: 16px;
+            width: 260px;
+            overflow: hidden;
+            white-space: nowrap;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
+        .describe {
+            display: none;
+        }
+        .left .pv {
+            display: none;
+        }
+        .user {
+            margin-top: 0;
+        }
+    }
+
 }

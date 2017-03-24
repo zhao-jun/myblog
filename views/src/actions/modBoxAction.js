@@ -237,7 +237,7 @@ export const PageBox = (type, data) => {
 };
 
 
-/*文章请求
+/*文章列表请求
  @params 如果有代表文章页码切换
  */
 export const getPageData = (params) => {
@@ -250,11 +250,98 @@ export const getPageData = (params) => {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
             return dispatch(PageBox("page", data))
         })
         .catch(function(e) {
             console.error(e);
         });
+    }
+};
+
+
+/*文章区
+ */
+export const articleBox = (type, data) => {
+    switch (type) {
+        case "article":
+            return {
+                type: "article",
+                data
+            };
+    }
+};
+/*文章详情Article
+ @params /a/:id 文章id
+ */
+export const article = function (params) {
+    return (dispatch)=>{
+        fetch(requestAPI + params,{
+            credentials: 'include'
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            return dispatch(articleBox("article", data))
+        })
+        .catch(function(e) {
+            console.error(e);
+        });
+    }
+};
+
+/*增加留言
+ @data FormData
+ */
+export const commentSubmit = function (data) {
+    return (dispatch)=>{
+        fetch(requestAPI + location.pathname.slice(1) +'/comment',{
+            method: "POST",
+            credentials: 'include',
+            body:data
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if(data.code===1000) {
+                _alertStore(dispatch, data.message);
+                dispatch(article(location.pathname.slice(1)));
+            }
+            if(data.code===1009) {
+                _alertStore(dispatch, data.message);
+            }
+        })
+        .catch(function(e) {
+            console.error(e);
+        });
+    }
+};
+
+/*删除留言
+ @param commentId
+ */
+export const commentDelete = function (param) {
+    return (dispatch)=>{
+        fetch(requestAPI + location.pathname.slice(1) +'/comment/'+param,{
+            method: "DELETE",
+            credentials: 'include'
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if(data.code===1000) {
+                    _alertStore(dispatch, data.message);
+                    dispatch(article(location.pathname.slice(1)));
+                }
+                if(data.code===1009) {
+                    _alertStore(dispatch, data.message);
+                }
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
     }
 };

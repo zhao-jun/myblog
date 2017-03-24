@@ -24,14 +24,22 @@ var commentModel = mongoose.model('comment',commentSchema);
 module.exports = commentModel;
 
 
-    // 创建一个留言
+// 创建一个留言
 module.exports.create= function create(comment,callback) {
         return comment.save(callback);
     };
-    // 通过用户 id 和留言 id 删除一个留言
+
+
+// 通过用户 id 和留言 id 删除一个留言
 module.exports.delCommentById=function delCommentById(commentId, author) {
         return commentModel.remove({ author: author, _id: commentId }).exec();
-    };
+};
+
+
+// 通过文章 id 删除该文章下所有留言
+module.exports.delCommentsByPostId = function delCommentsByPostId(postId) {
+    return commentModel.remove({ postId: postId }).exec();
+};
 
 // 通过文章 id 获取该文章下所有留言，按留言创建时间升序
 module.exports.getComments=function getComments(postId) {
@@ -44,5 +52,5 @@ module.exports.getComments=function getComments(postId) {
 
 // 通过文章 id 获取该文章下留言数
 module.exports.getCommentsCount=function getCommentsCount(postId) {
-        return Comment.count({ postId: postId }).exec();
-    };
+        return commentModel.count({ postId: postId }).exec();
+};

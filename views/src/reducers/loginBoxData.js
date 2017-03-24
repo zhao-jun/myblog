@@ -7,7 +7,7 @@ function saveLoginIn(state,name) {
 }
 
 function saveLoginOut(state) {
-    state = fromJS(state).set('isLogin',false).toJS();
+    state = fromJS(state).set('isLogin',false).remove('name').toJS();
     localStorage.setItem('saveState',JSON.stringify(state));
     return state;
 }

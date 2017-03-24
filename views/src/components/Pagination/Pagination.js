@@ -9,9 +9,9 @@ export class Pagination extends React.Component {
         super(props);
     }
     previousPage(search){
-        const {_alert,getPageData,PageBoxData} = this.props;
+        const {_alert,getPageData,pageBoxData} = this.props;
         //后端增加页码参数p
-        var p =PageBoxData.p;
+        var p =pageBoxData.p;
 /*        if(/p=\d+/.test(search)){
             //不改变原字符串
             var newSearch = search.replace(/p=\d+/g,function ($1) {
@@ -38,12 +38,12 @@ export class Pagination extends React.Component {
         }
     }
     nextPage(search){
-        const {_alert,getPageData,PageBoxData} = this.props;
+        const {_alert,getPageData,pageBoxData} = this.props;
 /*        if(/p=\d+/.test(search)){
             //不改变原字符串
             var newSearch = search.replace(/p=\d+/g,function ($1) {
                 var arr = [...$1];
-                if(arr[$1.length-1]<PageBoxData.limitNum){
+                if(arr[$1.length-1]<pageBoxData.limitNum){
                     var i = arr[$1.length-1]=arr[$1.length-1]-0+1;
                     getPageData("?p="+i);
                     browserHistory.push({pathname: 'page',query:{p:i}});
@@ -58,8 +58,8 @@ export class Pagination extends React.Component {
         }*/
 
         //后端增加页码参数p
-        let p =PageBoxData.p,
-            limitNum = PageBoxData.limitNum;
+        let p =pageBoxData.p,
+            limitNum = pageBoxData.limitNum;
         p = Math.min(limitNum+1,p+1);
         if(p<=limitNum){
             getPageData("?p="+p);
@@ -71,10 +71,10 @@ export class Pagination extends React.Component {
     }
 
     render(){
-        const {getPageData,PageBoxData} = this.props;
+        const {getPageData,pageBoxData} = this.props;
         let pageTmp=[],
-            limitNum = PageBoxData.limitNum,
-            p = PageBoxData.p;
+            limitNum = pageBoxData.limitNum,
+            p = pageBoxData.p;
         if(limitNum<=7 || p<4 ){
             for(let i=1;i<=Math.min(limitNum,7);i++){
                 pageTmp.push(<li key={i}><Link to={"/page?p="+i} className="link" onClick={()=>getPageData("?p="+i)} activeClassName="active">{i}</Link></li>)
@@ -86,11 +86,11 @@ export class Pagination extends React.Component {
         }
         return (
             <ul className="pagination">
-                {PageBoxData.p==1?null:
+                {pageBoxData.p==1?null:
                 <li className="prev" onClick={()=>this.previousPage(location.search)}>上一页</li>
                 }
                 {pageTmp}
-                {PageBoxData.p == PageBoxData.limitNum?null:
+                {pageBoxData.p == pageBoxData.limitNum?null:
                     <li className="next" onClick={()=>this.nextPage(location.search)}>下一页</li>
                 }
             </ul>

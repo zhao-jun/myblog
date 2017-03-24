@@ -9,6 +9,8 @@ var pkg = require('./package');
 var mongoose = require('mongoose');
 
 var db = mongoose.connect(config.mongodb);
+
+mongoose.Promise = global.Promise;
 db.connection.on('connected', function () {
     console.log('Mongoose connection success');
 });
@@ -28,14 +30,15 @@ app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", "Content-Type=application/json;charset=UTF-8");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("Content-Type", "application/json;charset=utf-8");
+    // res.header("Content-Type", "application/json;charset=utf-8");
     res.header('Access-Control-Allow-Credentials', true); //支持跨域传cookie
     next();
 });
 
 
 // 设置静态文件目录
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname + '/public')));
+
 // session 中间件
 app.use(session({
     name: config.session.key,// 设置 cookie 中保存 session id 的字段名称
@@ -54,10 +57,10 @@ app.use(session({
 app.use(flash());
 
 // 处理表单及文件上传的中间件
-app.use(require('express-formidable')({
+/*app.use(require('express-formidable')({
     uploadDir: path.join(__dirname, 'public/img'),// 上传文件目录
     keepExtensions: true// 保留后缀
-}));
+}));*/
 
 // 设置模板全局常量
 // app.locals.blog = {
@@ -75,6 +78,10 @@ app.use(require('express-formidable')({
 
 // 路由
 routes(app);
+
+app.get('*', function (request, response){
+    response.render(path.resolve(__dirname, 'public', 'index.html'));
+ });
 
 // 监听端口，启动程序
 app.listen(config.port, function () {

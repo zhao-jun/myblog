@@ -1,9 +1,13 @@
 import React from  'react';
 import './Home.scss';
 
+import Canvas from '../CanvasBg/CanvasBg';
+
+
 const Home = () => (
     <div>
-        <p>11123131211</p>
+        <p>Home</p>
+        <Canvas />
     </div>
 );
 

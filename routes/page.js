@@ -20,11 +20,10 @@ router.get('/', function(req, res, next) {
         num = count;
     });
     blogModel.getPage(p,function (err, blog) {
-        var limitNum = Math.ceil(num/4);
+        var limitNum = Math.ceil(num/5);
         res.json({page: blog,num:num,limitNum:limitNum,p:p});
     })
 
 });
-
 
 module.exports = router;

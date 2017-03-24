@@ -2,13 +2,15 @@ import { combineReducers } from 'redux';
 import modBoxData from './modBoxData';
 import tipsBoxData from './tipsBoxData';
 import loginBoxData from './loginBoxData';
-import PageBoxData from './pageBoxData';
+import pageBoxData from './pageBoxData';
+import articleBoxData from './articleBoxData';
 
 const rootReducer = combineReducers({
     modBoxData,
     tipsBoxData,
     loginBoxData,
-    PageBoxData
+    pageBoxData,
+    articleBoxData
 });
 
 export default rootReducer;

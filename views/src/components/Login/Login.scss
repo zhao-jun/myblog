@@ -4,7 +4,7 @@
     left:50%;
     top:50%;
     transform: translate(-50%,-50%);
-    background-color: #fff;
+    background-color: rgba(72,72,72,0.4);
     padding: 20px;
     border-radius: 2px;
     .close{
@@ -28,16 +28,44 @@
     label {
         line-height: 40px;
     }
+
+    .submit {
+        margin-top: 30px;
+        height: 40px;
+        line-height: 40px;
+        cursor:pointer;
+    }
     .btn {
+        float: left;
         text-align: center;
         background: #007fff;
         width: 100%;
-        height: 40px;
-        line-height: 40px;
-        margin-top: 30px;
         border:none;
         color: #fff;
         letter-spacing: 20px;
         text-indent: 20px;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        transition: all 1s;
+    }
+    .btn:hover{
+        background-color: rgba(0,0,0,0);
+        color: #007fff;
+    }
+    .ease {
+        width: 20px;
+        height: 40px;
+        background-color: #7795fb;
+        -webkit-transition: 1s ease;
+        -moz-transition: 1s ease;
+        -o-transition: 1s ease;
+        transition: 1s ease;
+    }
+    .submit:hover {
+        color: #007fff;
+    }
+    .submit:hover .ease{
+        width:100%;
+        background-color:white;
     }
 }

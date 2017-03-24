@@ -6,7 +6,9 @@ import { browserHistory,hashHistory , Router, Route, IndexRoute } from 'react-ro
 
 import Index from './containers/Index/Index';
 import Home from './components/Home/Home';
+import Blog from './components/Blog/Blog';
 import Page from './containers/Page/Page';
+import Article from './containers/Article/Article';
 import Publish from './containers/Publish/Publish';
 import rootReducer from './reducers/index';
 
@@ -36,8 +38,11 @@ ReactDOM.render(
         <Router history = {browserHistory}>
             <Route path="/" component = {Index}>
                 <IndexRoute component = {Home} />
+                <Route path="/blog" component = {Blog} />
                 <Route path="/page" component = {Page} />
+                <Route path="/a/:id" component = {Article} />
                 <Route path="/publish" component = {Publish} />
+                <Route path="/publish/:id/edit" component = {Publish} />
             </Route>
         </Router>
     </Provider>,

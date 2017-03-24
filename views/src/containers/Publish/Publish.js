@@ -30,19 +30,12 @@ export class Publish extends React.Component{
         return (
             <form className="publish" ref={el=>{this.form=el}} >
                 <div className="publishItem">
-                    <label htmlFor="title">文章标题：</label>
-                    <input type="text" id="title" className="title" ref={el=>{this.title=el}} name="title" placeholder="请输入文章标题" placeholder="最少5个字"/>
+                    <label htmlFor="title">文章标题</label>
+                    <input type="text" id="title" className="title" ref={el=>{this.title=el}} name="title" placeholder="请输入文章标题,最少5个字" />
                 </div>
                 <div className="publishItem">
-                    <label htmlFor="content">文章内容：</label>
-                    <textarea placeholder="请输入文章内容" ref={el=>{this.content=el}} rows="10" name="content" id="content"  placeholder="最少20个字"></textarea>
-                </div>
-                <div className="publishItem">
-                    <label className="name">文章分类：</label>
-                    <select name="category" ref={el=>{this.category=el}}>
-                        <option value="1">杂谈</option>
-                        <option value="2">还是杂谈</option>
-                    </select>
+                    <label htmlFor="content">文章内容</label>
+                    <textarea placeholder="请输入文章内容,最少20个字" ref={el=>{this.content=el}} rows="10" name="content" id="content"></textarea>
                 </div>
                 <input type="button" className="publishBtn" value="发布文章" onClick={()=>{this.handleSubmit()}} />
             </form>

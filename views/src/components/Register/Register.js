@@ -5,6 +5,11 @@ export class Register extends React.Component{
     constructor(props) {
         super(props);
     }
+    componentWillUpdate(){
+        this.userName.value="";
+        this.password.value="";
+        this.repassword.value="";
+    }
     submitReg(){
         const {_alert, loginSubmit} = this.props;
         if(this.userName.value.length<2){
@@ -27,12 +32,8 @@ export class Register extends React.Component{
             _alert("两次输入的密码不一致");
             return
         }
-        let data ={
-            "userName":this.userName.value,
-            "password":this.password.value
-        };
         let formData = new FormData(this.register);
-        loginSubmit("regSubmit",formData)
+        loginSubmit("regSubmit",formData);
     }
     render(){
         const {modBoxAction}=this.props;
@@ -52,7 +53,10 @@ export class Register extends React.Component{
                     <label htmlFor="repassword" className="name">确认密码</label>
                     <input type="password" name="repassword" id="repassword" className="input" maxLength="16" ref={ref=>{this.repassword=ref}}  placeholder="长度为6-16"/>
                 </div>
-                <div className="btn" onClick={()=>{this.submitReg()}}>注册</div>
+                <div className="submit">
+                    <div className="btn" onClick={()=>{this.submitReg()}}>注册</div>
+                    <div className="ease"></div>
+                </div>
             </form>
         )
     }
