@@ -18,7 +18,7 @@ const PageItem = ({page,loginBoxData}) => (
         </div>
         <div className="right">
             <div className="title"><Link className="link" to={"/a/"+page._id}>{page.title}</Link></div>
-            <div className="describe">{page.content}</div>
+            <div className="describe">{page.content.replace(/#|\s/g,'')}</div>
             <div className="user">
                 <img className="photo" src={avatar} />
                 <span className="user-name">{page.author.name}</span>

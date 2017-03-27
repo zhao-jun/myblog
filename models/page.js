@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var commentModel = require('./comment');
 
-var blogSchema = new Schema({
+var pageSchema = new Schema({
     //作者
     author:{
         type:Schema.Types.ObjectId
@@ -12,16 +12,8 @@ var blogSchema = new Schema({
     title:{
         type:String
     },
-    //副标题
-    subTitle:{
-        type:String
-    },
-    //分类
-    subTitle:{
-        type:String
-    },
     //内容
-    category: {
+    content: {
         type:String
     },
     //阅读数
@@ -38,15 +30,15 @@ var blogSchema = new Schema({
 });
 
 //作者，时间排序
-blogSchema.index({author:1,_id:-1});
+pageSchema.index({author:1,_id:-1});
 
 
-var blogModel = mongoose.model('blog',blogSchema);
+var pageModel = mongoose.model('page',pageSchema);
 
-module.exports = blogModel;
+module.exports = pageModel;
 
-module.exports.create = function (newBlog,callback) {
-    return newBlog.save(callback);
+module.exports.create = function (newPage,callback) {
+    return newPage.save(callback);
 };
 
 //按创建时间降序获取所有用户文章或者某个特定用户的所有文章
@@ -55,7 +47,7 @@ module.exports.getAll = function (author, callback) {
     if(author){
         query.author=author;
     }
-    return blogModel.find(query)
+    return pageModel.find(query)
         .populate({ path: 'author', model: 'user' })
         .sort({ _id: -1 }).exec(callback);
 };
@@ -63,8 +55,8 @@ module.exports.getAll = function (author, callback) {
 //获取分页文章
 module.exports.getPage = function (p, callback) {
     var query={};
-    return blogModel.find(query)
-    //防止密码发送
+    return pageModel.find(query)
+        //防止密码发送
         .populate({ path: 'author',model: 'user',select: 'name' })
         .sort({ _id: -1 })
         //转换成数字
@@ -75,38 +67,38 @@ module.exports.getPage = function (p, callback) {
 
 
 //获取指定文章
-module.exports.getBlogById = function (blogId, callback) {
-    return blogModel
-        .findOne({_id:blogId})
+module.exports.getPageById = function (pageId, callback) {
+    return pageModel
+        .findOne({_id:pageId})
         .populate({ path: 'author', model: 'user',select: 'name' })
         .exec(callback);
 };
 
 // 通过文章 id 给 pv 加 1
-module.exports.incPv = function (blogId, callback) {
-    return blogModel
-        .update({ _id: blogId }, { $inc: { pv: 1 } })
+module.exports.incPv = function (pageId, callback) {
+    return pageModel
+        .update({ _id: pageId }, { $inc: { pv: 1 } })
         .exec(callback);
 };
 
 // 通过文章 id 给 commentsCount 加 1
-module.exports.incCommentsCount = function (blogId, callback) {
-    return blogModel
-        .update({ _id: blogId }, { $inc: { commentsCount: 1 } })
+module.exports.incCommentsCount = function (pageId, callback) {
+    return pageModel
+        .update({ _id: pageId }, { $inc: { commentsCount: 1 } })
         .exec(callback);
 };
 
 // 通过文章 id 给 commentsCount 减 1
-module.exports.decCommentsCount = function (blogId, callback) {
-    return blogModel
-        .update({ _id: blogId }, { $inc: { commentsCount: -1 } })
+module.exports.decCommentsCount = function (pageId, callback) {
+    return pageModel
+        .update({ _id: pageId }, { $inc: { commentsCount: -1 } })
         .exec(callback);
 };
 
 
 // 通过文章 id 获取一篇原生文章（编辑文章）
 module.exports.getRawPostById= function getRawPostById(postId, callback) {
-    return blogModel
+    return pageModel
         .findOne({ _id: postId })
         .populate({ path: 'author', model: 'user' })
         .exec(callback);
@@ -114,12 +106,12 @@ module.exports.getRawPostById= function getRawPostById(postId, callback) {
 
 // 通过用户 id 和文章 id 更新一篇文章
 module.exports.updatePostById=function updatePostById(postId, author, data) {
-    return blogModel.update({ author: author, _id: postId }, { $set: data }).exec();
+    return pageModel.update({ author: author, _id: postId }, { $set: data }).exec();
 };
 
 // 通过用户 id 和文章 id 删除一篇文章
 module.exports.delPostById= function delPostById(postId, author) {
-    return blogModel.remove({ author: author, _id: postId }).exec()
+    return pageModel.remove({ author: author, _id: postId }).exec()
         .then(function (res) {
             // 文章删除后，再删除该文章下的所有留言
             if (res.result.ok && res.result.n > 0) {

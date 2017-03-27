@@ -26,7 +26,7 @@ export class Login extends React.Component{
         const {modBoxAction} = this.props;
         return(
             <form className="login" onClick={(e)=>{e.stopPropagation()}} ref={ref=>{this.login=ref}}>
-                <i className="close" onClick={()=>{modBoxAction("modBoxClose")}}>x</i>
+                <i className="close" onClick={()=>{modBoxAction("modBoxClose")}}>×</i>
                 <div className="title">欢迎登录</div>
                 <div className="item">
                     <label htmlFor="userName" className="name">用户名</label>

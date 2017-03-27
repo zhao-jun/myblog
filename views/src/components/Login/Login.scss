@@ -9,13 +9,15 @@
     border-radius: 2px;
     .close{
         float: right;
-        font-size: 20px;
+        font-size: 30px;
         line-height: 1;
         cursor: pointer;
     }
     .title {
         font-weight: bold;
         line-height: 40px;
+        font-size: 20px;
+        color: #fff;
     }
     .input {
         box-sizing: border-box;

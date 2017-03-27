@@ -20,17 +20,12 @@ db.connection.on('error', function (err) {
 
 var app = express();
 
-// 设置模板目录
-// app.set('views', path.join(__dirname, 'views'));
-// 设置模板引擎为 ejs
-// app.set('view engine', 'ejs');
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", "Content-Type=application/json;charset=UTF-8");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    // res.header("Content-Type", "application/json;charset=utf-8");
     res.header('Access-Control-Allow-Credentials', true); //支持跨域传cookie
     next();
 });
@@ -38,6 +33,11 @@ app.all('*', function(req, res, next) {
 
 // 设置静态文件目录
 app.use(express.static(path.join(__dirname + '/public')));
+
+/*// 设置模板目录
+app.set('views', path.join(__dirname, 'public'));
+// 设置模板引擎为 html
+app.set('view engine', 'html');*/
 
 // session 中间件
 app.use(session({
@@ -79,9 +79,9 @@ app.use(require('express-formidable')({
 // 路由
 routes(app);
 
-app.get('*', function (request, response){
-    response.render(path.resolve(__dirname, 'public', 'index.html'));
- });
+/*app.get('*', function (request, response){
+    response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+ });*/
 
 // 监听端口，启动程序
 app.listen(config.port, function () {

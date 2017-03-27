@@ -1,6 +1,7 @@
 import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Banner from '../../components/Banner/Banner';
 import PageItem from '../../components/PageItem/PageItem';
 import Pagenation from '../../components/Pagination/Pagination';
 
@@ -21,16 +22,19 @@ export class Page extends React.Component {
     render(){
         const {pageBoxData,loginBoxData,actions} = this.props;
         return (
-            <div className="page">
-                <ul className="pageList">
-                    {
-                        pageBoxData.page.map((page,index)=>(
-                            <PageItem key={index} page={page} loginBoxData={loginBoxData} />
-                        ))
-                    }
-                </ul>
-                <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} />
-            </div>
+            <div>
+                <Banner />
+                <div className="page">
+                    <ul className="pageList">
+                        {
+                            pageBoxData.page.map((page,index)=>(
+                                <PageItem key={index} page={page} loginBoxData={loginBoxData} />
+                            ))
+                        }
+                    </ul>
+                    <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} />
+                </div>
+                </div>
         )
     }
 }

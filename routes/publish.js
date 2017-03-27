@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 
-var blogModel = require('../models/blog');
-var commentModel = require('../models/comment');
+var pageModel = require('../models/page');
 var checkLogin = require('../middlewares/check').checkLogin;
 
 
@@ -26,7 +25,7 @@ router.post('/', checkLogin, function(req, res, next) {
         return res.redirect('back');
     }
 
-    var blog = {
+    var page = {
         author: author,
         title: title,
         content: content,
@@ -35,18 +34,18 @@ router.post('/', checkLogin, function(req, res, next) {
         date:moment().format('YYYY-MM-DD HH:mm')
     };
 
-    var blogEntity = new blogModel(blog);
-    blogModel.create(blogEntity,function (error,blog) {
+    var pageEntity = new pageModel(page);
+    pageModel.create(pageEntity,function (error,page) {
         return res.json({ code: 1000, message: "发布成功" });
     });
 });
 
-// GET /publish/:postId/edit 更新文章页
+/*// GET /publish/:postId/edit 更新文章页
 router.get('/:postId/edit', checkLogin, function(req, res, next) {
     var postId = req.params.postId;
     var author = req.session.user._id;
     console.log(postId);
-    blogModel.getRawPostById(postId)
+    pageModel.getRawPostById(postId)
         .then(function (post) {
             if (!post) {
                 throw new Error('该文章不存在');
@@ -59,34 +58,20 @@ router.get('/:postId/edit', checkLogin, function(req, res, next) {
             });
         })
         .catch(next);
-});
+});*/
 
-// POST /publish/:postId/edit 更新一篇文章
-router.post('/:postId/edit', checkLogin, function(req, res, next) {
-    var postId = req.params.postId;
-    var author = req.session.user._id;
-    var title = req.fields.title;
-    var content = req.fields.content;
 
-    blogModel.updatePostById(postId, author, { title: title, content: content })
-        .then(function () {
-            req.flash('success', '编辑文章成功');
-            // 编辑成功后跳转到上一页
-            res.redirect(`/blog/${postId}`);
-        })
-        .catch(next);
-});
 
 // GET /publish/:postId/remove 删除一篇文章
 router.get('/:postId/remove', checkLogin, function(req, res, next) {
     var postId = req.params.postId;
     var author = req.session.user._id;
 
-    blogModel.delPostById(postId, author)
+    pageModel.delPostById(postId, author)
         .then(function () {
             req.flash('success', '删除文章成功');
             // 删除成功后跳转到主页
-            res.redirect('/blog');
+            res.redirect('/page');
         })
         .catch(next);
 });

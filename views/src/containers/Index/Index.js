@@ -7,7 +7,6 @@ import {_alert } from '../../actions/modBoxAction';
 import {loginSubmit} from '../../actions/modBoxAction';
 
 import Header from '../../components/Header/Header';
-import Banner from '../../components/Banner/Banner';
 import ModalBox from '../../components/ModalBox/ModalBox';
 import TipsBox from '../../components/TipsBox/TipsBox';
 import Footer from '../../components/Footer/Footer';
@@ -18,7 +17,7 @@ const Index = (props) => (
     <div className="index">
         <div style={{"WebkitFilter":props.modBoxData.isShow?"blur(3px)":"none"}}>
             <Header modBoxAction={props.actions.modBoxAction} loginBoxData={props.loginBoxData} loginSubmit={props.actions.loginSubmit} getUserInfo={props.actions.getUserInfo} />
-            <Banner />
+            
             <section className="body">
                 {props.children}
             </section>

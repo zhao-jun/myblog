@@ -37,11 +37,11 @@ module.exports = UserModel;
 
 //注册用户
 module.exports.create = function (newUser,callback) {
-    newUser.save(callback);
+    return newUser.save(callback);
 };
 
 //登录查找用户
 module.exports.getUserByUsername = function (name, callback) {
     var query = {name: name};
-    UserModel.findOne(query,callback);
+    return UserModel.findOne(query,callback);
 };

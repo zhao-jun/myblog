@@ -1,13 +1,12 @@
 import React from  'react';
 import './Home.scss';
 
-import Canvas from '../CanvasBg/CanvasBg';
+import CanvasBg from '../CanvasBg/CanvasBg';
 
 
 const Home = () => (
     <div>
-        <p>Home</p>
-        <Canvas />
+        <CanvasBg />
     </div>
 );
 

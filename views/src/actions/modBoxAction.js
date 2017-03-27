@@ -1,5 +1,5 @@
 import {LOGIN_SHOW,REG_SHOW,MODBOX_CLOSE,LOGIN_SUBMIT,REG_SUBMIT} from '../constants/actionTypes';
-export const requestAPI = "http://localhost:3000/";
+export const requestAPI = "http://localhost:80/";
 import { browserHistory } from 'react-router';
 
 
@@ -213,6 +213,8 @@ export const publishSubmit = (data) => {
             if(data.code===1000){
                 _alertStore(dispatch,data.message);
                 browserHistory.push('/page');
+                //清空
+                dispatch(preview('clear'));
             }else{
                 _alertStore(dispatch,data.message)
             }
@@ -242,6 +244,7 @@ export const PageBox = (type, data) => {
  */
 export const getPageData = (params) => {
     console.log(params);
+    if(!params){params=''}
     return (dispatch) => {
         fetch(requestAPI + "page"+ params, {
             credentials: 'include'
@@ -345,3 +348,104 @@ export const commentDelete = function (param) {
             });
     }
 };
+
+/*发布文章预览
+ @param
+ */
+export const preview= (type, data) => {
+    switch (type) {
+        case "preview":
+            return {
+                type: "preview",
+                data
+            }
+        case "title":
+            return {
+                type: "title",
+                data
+            }
+        case "clear":
+            return {
+                type: "clear"
+            }
+    }
+};
+
+/*文章修改
+ @param
+ */
+export const edit= (type, data) => {
+    switch (type) {
+        case "editPreview":
+            return {
+                type: "editPreview",
+                data
+            }
+        case "editTitle":
+            return {
+                type: "editTitle",
+                data
+            }
+        case "edit":
+            return {
+                type: "edit",
+                data
+            }
+    }
+};
+
+/*更新作品请求
+ @data 更新作品的数据
+ */
+export const editSubmit = (data) => {
+    return (dispatch) => {
+        fetch(requestAPI+location.pathname.slice(1),{
+            method: "POST",
+            credentials: 'include',//可以带cookie
+            body:data
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                if(data.code===1000){
+                    _alertStore(dispatch,data.message);
+                    browserHistory.push(location.pathname.slice(0,-5));
+                }else{
+                    _alertStore(dispatch,data.message)
+                }
+            })
+            .catch(function(e) {
+                console.log("请求失败");
+            });
+    }
+};
+
+/*删除文章
+ @param commentId
+ */
+export const articleDelete = function () {
+    return (dispatch)=>{
+        fetch(requestAPI + location.pathname.slice(1),{
+            method: "DELETE",
+            credentials: 'include'
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if(data.code===1000) {
+                    _alertStore(dispatch, data.message);
+                    browserHistory.push('/page');
+                }
+                if(data.code===1009) {
+                    _alertStore(dispatch, data.message);
+                }
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
+    }
+};
+

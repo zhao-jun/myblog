@@ -1,11 +1,14 @@
 import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { Link } from 'react-router';
+
 
 import './Article.scss';
 import avatar from '../../styles/avatar.png';
+import Banner from '../../components/Banner/Banner';
 
-import {article,_alert,commentSubmit,commentDelete} from '../../actions/modBoxAction';
+import {article,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction} from '../../actions/modBoxAction';
 
 
 export class Article extends React.Component {
@@ -34,59 +37,60 @@ export class Article extends React.Component {
         const {articleBoxData,actions,loginBoxData} = this.props;
         let article = articleBoxData.article;
         return (
-            <div className="article">
-                <article>
-                    <div className="left">
-                        <img className="avatar" src={avatar} />
-                        <p className="author">{article.author.name}</p>
-                    </div>
-                    <div className="main">
-                        <h1>{article.title}</h1>
-                        <div className="edit">
-                            <span>删除</span>
-                            <span>编辑</span>
+            <div>
+                <Banner />
+                <div className="article">
+                    <article>
+                        <div className="left">
+                            <img className="avatar" src={avatar} />
+                            <p className="author">{article.author.name}</p>
                         </div>
-                        <p className="content">{article.content}</p>
-                        <div className="info">
-                            <span className='author-app'>{article.author.name}</span>
-                            <span>发布时间：{article.date}</span>
-                        </div>
+                        <div className="main">
+                            <h1>{article.title}</h1>
+                            <p className="content" dangerouslySetInnerHTML={{__html:article.contentMarked}}></p>
+                            <div className="info">
+                                <span className='author-app'>{article.author.name}</span>
+                                <span>发布时间：{article.date}</span>
+                                <span className="editArt" style={{display:article.author.name==loginBoxData.name?'inline':'none'}}><Link to={location.pathname+'/edit'} className="link" onClick={()=>actions.edit("edit",article)}>编辑</Link></span>
+                                <span className="delArt" style={{display:article.author.name==loginBoxData.name?'inline':'none'}} onClick={()=>actions.articleDelete()}>删除</span>
+                            </div>
 
-                    </div>
-                </article>
-                <div className="comment">
-                    <ul>
-                        {
-                            articleBoxData.comments.map((comment,index)=>(
-                                <div key={index} className="comment-item">
-                                    <div className="left">
-                                        <img className="avatar" src={avatar} />
-                                        <p className="author">{comment.author.name}</p>
-                                    </div>
-                                    <div className="main">
-                                        <p className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</p>
-                                        <p className="content">{comment.content}</p>
-                                        <p className="info">
-                                            <span className='author-app'>{comment.author.name}</span>
-                                            <span>{comment.date}</span>
-                                        </p>
-                                    </div>
-
-                                </div>
-                            ))
-                        }
-                    </ul>
-                    <form className="commentForm"  ref={ref=>{this.comment=ref}}>
-                        {
-                            loginBoxData.name?
-                            <img className="photo" src={avatar} alt={loginBoxData.name} />:
-                                <p>登录后留言</p>
-                        }
-                        <div className="input-text">
-                            <textarea className="content" name="content" ref={ref=>{this.content=ref}} placeholder="畅所欲言"></textarea>
-                            <div className="submit" onClick={()=>this.commentSubmit()}>留言</div>
                         </div>
-                    </form>
+                    </article>
+                    <div className="comment">
+                        <ul>
+                            {
+                                articleBoxData.comments.map((comment,index)=>(
+                                    <div key={index} className="comment-item">
+                                        <div className="left">
+                                            <img className="avatar" src={avatar} />
+                                            <p className="author">{comment.author.name}</p>
+                                        </div>
+                                        <div className="main">
+                                            <p className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</p>
+                                            <p className="content">{comment.content}</p>
+                                            <p className="info">
+                                                <span className='author-app'>{comment.author.name}</span>
+                                                <span>{comment.date}</span>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                ))
+                            }
+                        </ul>
+                        <form className="commentForm"  ref={ref=>{this.comment=ref}}>
+                            {
+                                loginBoxData.name?
+                                <img className="photo" src={avatar} alt={loginBoxData.name} />:
+                                    <p className="loginComment" onClick={()=>actions.modBoxAction('loginShow')}>登录后留言</p>
+                            }
+                            <div className="input-text">
+                                <textarea className="content" name="content" ref={ref=>{this.content=ref}} placeholder="畅所欲言"></textarea>
+                                <div className="submit" onClick={()=>this.commentSubmit()}>留言</div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
@@ -100,7 +104,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({article,_alert,commentSubmit,commentDelete}, dispatch)
+    actions: bindActionCreators({article,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

@@ -4,7 +4,7 @@ import './Banner.scss';
 
 const Banner = () => (
     <div className="banner">
-        <p>个人网站</p>
+        <p>BLOG</p>
     </div>
 );
 

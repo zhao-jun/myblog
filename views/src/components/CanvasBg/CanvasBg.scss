@@ -1,4 +1,7 @@
 .canvas {
+    //margin-top: 50px;
+    box-sizing: border-box;
     width: 100%;
+    height: calc(100vh - 100px);
     overflow: hidden;
 }

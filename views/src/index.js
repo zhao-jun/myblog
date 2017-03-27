@@ -9,7 +9,10 @@ import Home from './components/Home/Home';
 import Blog from './components/Blog/Blog';
 import Page from './containers/Page/Page';
 import Article from './containers/Article/Article';
+import Edit from './containers/Edit/Edit';
 import Publish from './containers/Publish/Publish';
+import Page404 from './components/Page404/Page404';
+
 import rootReducer from './reducers/index';
 
 import './styles/common.scss';
@@ -41,8 +44,10 @@ ReactDOM.render(
                 <Route path="/blog" component = {Blog} />
                 <Route path="/page" component = {Page} />
                 <Route path="/a/:id" component = {Article} />
+                <Route path="/a/:id/edit" component = {Edit} />
                 <Route path="/publish" component = {Publish} />
                 <Route path="/publish/:id/edit" component = {Publish} />
+                <Route path="*" component = {Page404} />
             </Route>
         </Router>
     </Provider>,

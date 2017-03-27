@@ -16,10 +16,10 @@ export class CanvasBg extends React.Component {
 
         //设置宽高
         this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight-300;
+        this.canvas.height = window.innerHeight;
 
         var canvasWidth = window.innerWidth,
-            canvasHeight = window.innerHeight-300;
+            canvasHeight = window.innerHeight;
         //参数
         var dots = {
             num:500, //粒子数
@@ -110,7 +110,7 @@ export class CanvasBg extends React.Component {
 
         this.canvas.addEventListener('mousemove',function(e){
             mousePosition.x = e.pageX;
-            mousePosition.y = e.pageY-200;
+            mousePosition.y = e.pageY;
         });
         this.canvas.addEventListener('mouseleave',function(e){
             mousePosition.x = -100;

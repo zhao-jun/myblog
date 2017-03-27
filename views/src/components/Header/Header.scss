@@ -42,6 +42,9 @@ header {
             background-color: rgba(0,119,204,.1);
         }
     }
+    .login-icon {
+        display: block;
+    }
     .register-icon + .login-icon {
         border-left: 1px solid rgba(54,100,232,.5);
     }

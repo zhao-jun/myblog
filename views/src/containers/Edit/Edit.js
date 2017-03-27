@@ -2,18 +2,18 @@ import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import './Publish.scss';
+import './edit.scss';
 
-import {_alert,publishSubmit,preview } from '../../actions/modBoxAction';
+import {_alert,editSubmit,edit } from '../../actions/modBoxAction';
 
-export class Publish extends React.Component{
+export class Edit extends React.Component{
     constructor(props) {
         super(props);
     }
 
 
     handleSubmit(){
-        const {_alert,publishSubmit} = this.props.actions;
+        const {_alert,editSubmit} = this.props.actions;
         let titleValue=this.title.value.trim(),
             contentValue=this.content.value.trim();
         if(titleValue.length<5){
@@ -30,38 +30,38 @@ export class Publish extends React.Component{
         }
 
         let formData=new FormData(this.form);
-        publishSubmit(formData);
+        editSubmit(formData);
     }
     render(){
-        const {previewData,actions} = this.props;
+        const {editData,actions} = this.props;
         return (
-            <form className="publish" ref={el=>{this.form=el}} >
+            <form className="edit" ref={el=>{this.form=el}} >
                 <div className="publishItem">
                     <label htmlFor="title">文章标题</label>
-                    <input type="text" id="title" className="title" ref={el=>{this.title=el}} onChange={(e)=>actions.preview("title",e.target.value)} name="title" placeholder="请输入文章标题,5-15字" value={previewData.title || ''} />
+                    <input type="text" id="title" className="title" ref={el=>{this.title=el}} onChange={(e)=>actions.edit("editTitle",e.target.value)} name="title" placeholder="请输入文章标题,5-15字" value={editData.title || ''} />
                 </div>
                 <div className="editor clearfix">
                     <div className="myEditor">
                         <label htmlFor="content">文章内容</label>
-                        <textarea placeholder="支持markdown,最少20个字" onChange={(e)=>actions.preview("preview",e.target.value)} ref={el=>{this.content=el}} rows="30" name="content" id="content" value={previewData.origin || ''}></textarea>
+                        <textarea placeholder="支持markdown,最少20个字" onChange={(e)=>actions.edit("editPreview",e.target.value)} ref={el=>{this.content=el}} rows="30" name="content" id="content" value={editData.origin || ''}></textarea>
                     </div>
                     <div className="editor-preview">
                         <div className="preview" htmlFor="preview">预览</div>
-                        <div className="preview-content" dangerouslySetInnerHTML={{__html:previewData.content}} ref={el=>{this.preview=el}}></div>
+                        <div className="preview-content" dangerouslySetInnerHTML={{__html:editData.content}} ref={el=>{this.preview=el}}></div>
                     </div>
                 </div>
-                <input type="button" className="publishBtn" value="发布文章" onClick={()=>{this.handleSubmit()}} />
+                <input type="button" className="publishBtn" value="更新文章" onClick={()=>{this.handleSubmit()}} />
             </form>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    previewData:state.previewData
+    editData:state.editData
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({_alert,publishSubmit,preview}, dispatch)
+    actions: bindActionCreators({_alert,editSubmit,edit}, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Publish);
+export default connect(mapStateToProps, mapDispatchToProps)(Edit);

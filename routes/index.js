@@ -1,9 +1,10 @@
-// var path = require('path');
+var path = require('path');
 module.exports = function (app) {
-    // app.get('/', function (req, res) {
-    //     res.redirect('/blog');
-    // });
-/*    app.get('/', function (request, response){
+/*    app.get('/', function (req, res) {
+        res.redirect('/blog');
+    });*/
+
+/*    app.get('*', function (request, response){
         response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
     });*/
 
@@ -14,4 +15,5 @@ module.exports = function (app) {
     app.use('/loginOut', require('./loginOut'));
     app.use('/getUserInfo', require('./getUserInfo'));
     app.use('/a',require('./article'));
+
 };

@@ -39,7 +39,7 @@ export class Register extends React.Component{
         const {modBoxAction}=this.props;
         return (
             <form className="register" onClick={(e)=>{e.stopPropagation()}} ref={ref=>{this.register=ref}}>
-                <i className="close" onClick={()=>{modBoxAction("modBoxClose")}}>x</i>
+                <i className="close" onClick={()=>{modBoxAction("modBoxClose")}}>×</i>
                 <div className="title">欢迎注册</div>
                 <div className="item">
                     <label htmlFor="userName" className="name">用户名</label>
