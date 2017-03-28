@@ -10,6 +10,8 @@ module.exports = function (app) {
 
     app.use('/page', require('./page'));
     app.use('/publish', require('./publish'));
+    app.use('/create', require('./create'));
+    app.use('/blog', require('./blog'));
     app.use('/reg', require('./reg'));
     app.use('/login', require('./login'));
     app.use('/loginOut', require('./loginOut'));

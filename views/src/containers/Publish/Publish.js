@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import './Publish.scss';
 
-import {_alert,publishSubmit,preview } from '../../actions/modBoxAction';
+import {_alert,publishSubmit,preview } from '../../actions/index';
 
 export class Publish extends React.Component{
     constructor(props) {

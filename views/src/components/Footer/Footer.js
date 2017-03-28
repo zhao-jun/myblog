@@ -2,9 +2,7 @@ import React from  'react';
 import './Footer.scss';
 
 const Footer = () => (
-    <footer>
-        <p>footer</p>
-    </footer>
+    <footer>Copyright © ZHAOJUN</footer>
 );
 
 export default Footer;

@@ -2,9 +2,9 @@ import React from  'react';
 import './Banner.scss';
 
 
-const Banner = () => (
+const Banner = ({title}) => (
     <div className="banner">
-        <p>BLOG</p>
+        <p>{title || 'BLOG'}</p>
     </div>
 );
 

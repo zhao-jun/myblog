@@ -8,7 +8,7 @@ import './Article.scss';
 import avatar from '../../styles/avatar.png';
 import Banner from '../../components/Banner/Banner';
 
-import {article,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction} from '../../actions/modBoxAction';
+import {article,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction} from '../../actions/index';
 
 
 export class Article extends React.Component {
@@ -51,8 +51,8 @@ export class Article extends React.Component {
                             <div className="info">
                                 <span className='author-app'>{article.author.name}</span>
                                 <span>发布时间：{article.date}</span>
-                                <span className="editArt" style={{display:article.author.name==loginBoxData.name?'inline':'none'}}><Link to={location.pathname+'/edit'} className="link" onClick={()=>actions.edit("edit",article)}>编辑</Link></span>
-                                <span className="delArt" style={{display:article.author.name==loginBoxData.name?'inline':'none'}} onClick={()=>actions.articleDelete()}>删除</span>
+                                <span className="editArt" style={{display:loginBoxData.name==article.author.name?'inline':'none'}}><Link to={location.pathname+'/edit'} className="link" onClick={()=>actions.edit("edit",article)}>编辑</Link></span>
+                                <span className="delArt" style={{display:loginBoxData.name==article.author.name?'inline':'none'}} onClick={()=>actions.articleDelete()}>删除</span>
                             </div>
 
                         </div>

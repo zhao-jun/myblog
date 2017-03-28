@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import './edit.scss';
 
-import {_alert,editSubmit,edit } from '../../actions/modBoxAction';
+import {_alert,editSubmit,edit } from '../../actions/index';
 
 export class Edit extends React.Component{
     constructor(props) {

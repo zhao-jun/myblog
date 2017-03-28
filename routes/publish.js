@@ -21,8 +21,7 @@ router.post('/', checkLogin, function(req, res, next) {
             throw new Error('请填写内容');
         }
     } catch (e) {
-        req.flash('error', e.message);
-        return res.redirect('back');
+        return res.json({ code: 1009, message: e.message });
     }
 
     var page = {

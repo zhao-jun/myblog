@@ -32,6 +32,13 @@ export class Header extends React.Component {
                                                                className='link'>文章</Link></li>
                                 <li className="nav-item"><Link to="/publish" activeClassName="active"
                                                                className='link'>发表文章</Link></li>
+                                {
+                                    loginBoxData.name == 'admin' ?
+                                        <li className="nav-item"><Link to="/create" activeClassName="active"
+                                                                       className='link'>发表Blog</Link></li>:
+                                        null
+                                }
+
                             </ul>
                         </div>
                     </nav>

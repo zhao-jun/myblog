@@ -6,6 +6,9 @@ import pageBoxData from './pageBoxData';
 import articleBoxData from './articleBoxData';
 import previewData from './previewData';
 import editData from './editData';
+import blogBoxData from './blogBoxData';
+import blogArticleBoxData from './blogArticleBoxData';
+
 
 const rootReducer = combineReducers({
     modBoxData,
@@ -14,7 +17,9 @@ const rootReducer = combineReducers({
     pageBoxData,
     articleBoxData,
     previewData,
-    editData
+    editData,
+    blogBoxData,
+    blogArticleBoxData
 });
 
 export default rootReducer;

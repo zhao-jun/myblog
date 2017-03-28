@@ -449,3 +449,125 @@ export const articleDelete = function () {
     }
 };
 
+
+
+/*发布博客
+ @data 
+ */
+export const createSubmit = (data) => {
+    return (dispatch) => {
+        fetch(requestAPI+"create",{
+            method: "POST",
+            credentials: 'include',//可以带cookie
+            body:data
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                if(data.code===1000){
+                    _alertStore(dispatch,data.message);
+                    browserHistory.push('/blog');
+                    //清空
+                    dispatch(preview('clear'));
+                }else{
+                    _alertStore(dispatch,data.message)
+                }
+            })
+            .catch(function(e) {
+                console.log("请求失败");
+            });
+    }
+};
+
+
+/*博客详情
+ @params /blog/:id 博客id
+ */
+export const blog = function (params) {
+    return (dispatch)=>{
+        fetch(requestAPI + params,{
+            credentials: 'include'
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                return dispatch(blogBox("blog", data))
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
+    }
+};
+
+
+/*博客区
+ */
+export const BlogBox = (type, data) => {
+    switch (type) {
+        case "blog":
+            return {
+                type: "blog",
+                data
+            };
+    }
+};
+
+
+/*博客列表请求
+ @params 如果有代表文章页码切换
+ */
+export const getBlogData = (params) => {
+    console.log(params);
+    if(!params){params=''}
+    return (dispatch) => {
+        fetch(requestAPI + "blog"+ params, {
+            credentials: 'include'
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            return dispatch(BlogBox("blog", data))
+        })
+        .catch(function(e) {
+            console.error(e);
+        });
+    }
+};
+
+
+/*文章区
+ */
+export const blogArticleBox = (type, data) => {
+    switch (type) {
+        case "blogArticle":
+            return {
+                type: "blogArticle",
+                data
+            };
+    }
+};
+/*博客详情Article
+ @params /blog/:id 文章id
+ */
+export const blogArticle = function (params) {
+    return (dispatch)=>{
+        fetch(requestAPI + params,{
+            credentials: 'include'
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                return dispatch(blogArticleBox("blogArticle", data))
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
+    }
+};

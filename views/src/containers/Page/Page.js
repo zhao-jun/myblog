@@ -8,7 +8,7 @@ import Pagenation from '../../components/Pagination/Pagination';
 import './Page.scss';
 
 
-import {getPageData,_alert,article} from '../../actions/modBoxAction';
+import {getPageData,_alert,article} from '../../actions/index';
 
 export class Page extends React.Component {
     constructor(props){

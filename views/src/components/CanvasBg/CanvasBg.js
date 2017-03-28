@@ -116,6 +116,14 @@ export class CanvasBg extends React.Component {
             mousePosition.x = -100;
             mousePosition.y = -100;
         });
+        this.canvas.addEventListener('touchmove',function(e){
+            mousePosition.x = e.changedTouches[0].pageX;
+            mousePosition.y = e.changedTouches[0].pageY;
+        });
+        this.canvas.addEventListener('touchend',function(e){
+            mousePosition.x = -100;
+            mousePosition.y = -100;
+        });
 
         createDots();
         requestAnimationFrame(animateDots);

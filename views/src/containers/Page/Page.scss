@@ -2,7 +2,8 @@
     max-width: 820px;
     margin:0 auto;
     padding: 20px;
-    min-height: calc(100vh - 350px);
+    box-sizing: border-box;
+    min-height: calc(100vh - 450px);
     -webkit-animation:appear 1s linear;
     -o-animation:appear 1s linear;
     animation:appear 1s linear;

@@ -13,15 +13,15 @@ var blogSchema = new Schema({
         type:String
     },
     //副标题
-    subTitle:{
+    subtitle:{
         type:String
     },
     //分类
-    subTitle:{
+    category:{
         type:String
     },
     //内容
-    category: {
+    content: {
         type:String
     },
     //阅读数
@@ -34,6 +34,10 @@ var blogSchema = new Schema({
     },
     date:{
         type:String
+    },
+    //跳转id
+    sign:{
+        type:Number
     }
 });
 
@@ -65,7 +69,7 @@ module.exports.getPage = function (p, callback) {
     var query={};
     return blogModel.find(query)
     //防止密码发送
-        .populate({ path: 'author',model: 'user',select: 'name' })
+    //     .populate({ path: 'author',model: 'user',select: 'name' })
         .sort({ _id: -1 })
         //转换成数字
         .skip(p*5-5)
@@ -78,7 +82,7 @@ module.exports.getPage = function (p, callback) {
 module.exports.getBlogById = function (blogId, callback) {
     return blogModel
         .findOne({_id:blogId})
-        .populate({ path: 'author', model: 'user',select: 'name' })
+        // .populate({ path: 'author', model: 'user',select: 'name' })
         .exec(callback);
 };
 

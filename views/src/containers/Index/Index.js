@@ -2,9 +2,9 @@ import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {modBoxAction,getUserInfo } from '../../actions/modBoxAction';
-import {_alert } from '../../actions/modBoxAction';
-import {loginSubmit} from '../../actions/modBoxAction';
+import {modBoxAction,getUserInfo } from '../../actions/index';
+import {_alert } from '../../actions/index';
+import {loginSubmit} from '../../actions/index';
 
 import Header from '../../components/Header/Header';
 import ModalBox from '../../components/ModalBox/ModalBox';
@@ -18,7 +18,7 @@ const Index = (props) => (
         <div style={{"WebkitFilter":props.modBoxData.isShow?"blur(3px)":"none"}}>
             <Header modBoxAction={props.actions.modBoxAction} loginBoxData={props.loginBoxData} loginSubmit={props.actions.loginSubmit} getUserInfo={props.actions.getUserInfo} />
             
-            <section className="body">
+            <section className="main">
                 {props.children}
             </section>
         </div>

@@ -1,15 +1,15 @@
-.publish {
+.create {
     margin-top: 50px;
     min-height: calc(100vh - 150px);
     padding: 20px;
     box-sizing: border-box;
-    .publishItem {
+    .createItem {
         box-sizing: border-box;
     }
-
+    
     label,.preview {
         display: inline-block;
-        width: 30%;
+        width: 80px;
         line-height: 40px;
         height: 40px;
         opacity: 1;
@@ -18,6 +18,10 @@
         box-sizing: border-box;
         display: block;
         outline: none;
+    }
+    .category {
+        width: 100px;
+        height: 30px;
     }
     input {
         height: 30px;
@@ -67,9 +71,9 @@
             word-break: break-all;
         }
     }
-
-
-    .publishBtn {
+    
+    
+    .createBtn {
         display: block;
         width: 100px;
         cursor: pointer;

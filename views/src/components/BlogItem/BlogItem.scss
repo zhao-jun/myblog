@@ -1,14 +1,16 @@
 .blogItem {
     box-sizing: border-box;
-    width: 90%;
+    //width: 90%;
     padding: 10px;
     border:1px solid #ccc;
     background-color: #fff;
-    margin:50px auto;
+    margin:50px 30px;
     h2 {
         font-size: 24px;
         line-height: 30px;
         font-weight: normal;
+    }
+    .link {
         color: #404040;
     }
     .summary {
@@ -17,5 +19,8 @@
     }
     .info {
         color: #666;
+        span {
+            margin-right: 20px;
+        }
     }
 }
