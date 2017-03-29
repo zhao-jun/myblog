@@ -13,9 +13,13 @@
     .link {
         color: #404040;
     }
+    .link:hover {
+        color: #07c;
+    }
     .summary {
         color: #a3a3a3;
         margin: 15px 0;
+        word-break: break-all;
     }
     .info {
         color: #666;
@@ -23,4 +27,5 @@
             margin-right: 20px;
         }
     }
+
 }

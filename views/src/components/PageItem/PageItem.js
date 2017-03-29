@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import avatar from '../../styles/avatar.png';
 
-const PageItem = ({page,loginBoxData}) => (
+const PageItem = ({page,loginBoxData,getPageData}) => (
     <li className="pageItem">
         <div className="left">
             <div className="comment">
@@ -21,7 +21,7 @@ const PageItem = ({page,loginBoxData}) => (
             <div className="describe">{page.content.replace(/#|\s/g,'')}</div>
             <div className="user">
                 <img className="photo" src={avatar} />
-                <span className="user-name">{page.author.name}</span>
+                <span className="user-name"><Link to={"/page?author="+page.name} className="nameLink link" onClick={()=>getPageData("?author="+page.name)}>{page.author.name}</Link></span>
                 <span className="date">{page.date}</span>
             </div>
             <div style={{display:loginBoxData.name == page.author.name?'none':'none'}}>删除</div>

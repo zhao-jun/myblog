@@ -6,25 +6,37 @@ var commentModel = require('../models/comment');
 var checkLogin = require('../middlewares/check').checkLogin;
 
 // GET /blog 文章页标签
-// GET /blog?author=xxx
+// GET /blog?category=xxx
 // GET /blog?p=xxx
 router.get('/', function(req, res, next) {
-    // var author = req.query.author;
+    var category = req.query.category;
     var p = req.query.p-0;
     p = p?p:1;
     var num;
-    //统计总数
+/*    //统计总数
     blogModel.count(function (err, count) {
         if (err) return console.log(err);
         num = count;
     });
 
-    blogModel.getPage(p,function (err, blog) {
+    blogModel.getPage(p,category,function (err, blog) {
         // if (err) return console.log(err);
         var limitNum = Math.ceil(num/5);
         res.json({blog: blog,num:num,limitNum:limitNum,p:p});
     });
-    return;
+    return;*/
+    Promise.all([
+        blogModel.countTotal(category)// 统计总数
+    ])
+        .then(function (result) {
+            var num = result[0];
+            // var category = result[1];
+            blogModel.getPage(p,category,function (err, blog) {
+                // if (err) return console.log(err);
+                var limitNum = Math.ceil(num/5);
+                res.json({blog: blog,num:num,limitNum:limitNum,p:p});
+            });
+        })
 });
 
 
@@ -48,14 +60,17 @@ router.get('/:postId', function(req, res, next) {
         })
 });
 
+//此处也可以合并
 // POST /blog/:postId/edit 更新一篇博客
 router.post('/:postId/edit', checkLogin, function(req, res, next) {
     var postId = req.params.postId;
     var author = req.session.user._id;
     var title = req.fields.title;
+    var subtitle = req.fields.subtitle;
+    var category = req.fields.category;
     var content = req.fields.content;
 
-    blogModel.updatePostById(postId, author, { title: title, content: content })
+    blogModel.updatePostById(postId, author, { title: title,subtitle:subtitle,category:category, content: content })
         .then(function () {
             return res.json({ code: 1000, message: "更新成功" });
         })
@@ -74,7 +89,9 @@ router.delete('/:postId/', checkLogin, function(req, res, next) {
         .catch(next);
 });
 
-// POST /a/:postId/comment 创建一条留言
+
+//留言部分可以提出来共用
+// POST /blog/:postId/comment 创建一条留言
 router.post('/:postId/comment', checkLogin, function(req, res, next) {
     var author = req.session.user._id;
     var postId = req.params.postId;

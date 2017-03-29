@@ -27,11 +27,11 @@ export class Blog extends React.Component {
                     <ul className="blog">
                         {
                             blogBoxData.blog.map((blog,index)=>(
-                                <BlogItem key={index} blog={blog} />
+                                <BlogItem key={index} blog={blog} getBlogData={actions.getBlogData} />
                             ))
                         }
                     </ul>
-                    <Tags />
+                    <Tags getBlogData={actions.getBlogData} />
                 </div>
             </div>
         )

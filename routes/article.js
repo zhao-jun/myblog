@@ -15,14 +15,14 @@ router.get('/:postId', function(req, res, next) {
         commentModel.getComments(pageId),// 获取该文章所有留言
         pageModel.incPv(pageId)// pv 加 1
     ])
-        .then(function (result) {
-            var page = result[0];
-            var comments = result[1];
-            if (!page) {
-                console.log('该文章不存在');
-            }
-            res.json({article: page, comments:comments});
-        })
+    .then(function (result) {
+        var page = result[0];
+        var comments = result[1];
+        if (!page) {
+            console.log('该文章不存在');
+        }
+        res.json({article: page, comments:comments});
+    })
 });
 
 // POST /a/:postId/edit 更新一篇文章

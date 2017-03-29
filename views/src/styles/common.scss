@@ -26,6 +26,10 @@ body {
 .link {
     text-decoration: none;
     cursor: pointer;
+    color:#333;
+}
+.link:hover {
+    text-decoration:underline ;
 }
 .markdown {
     h1,h2,h3,h4,h5,h6 {

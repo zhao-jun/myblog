@@ -1,4 +1,4 @@
-.create {
+.blogEdit {
     margin-top: 50px;
     min-height: 800px;
     padding: 20px;
@@ -6,7 +6,7 @@
     .createItem {
         box-sizing: border-box;
     }
-    
+
     label,.preview {
         display: inline-block;
         width: 80px;
@@ -71,8 +71,8 @@
             word-break: break-all;
         }
     }
-    
-    
+
+
     .createBtn {
         display: block;
         width: 100px;

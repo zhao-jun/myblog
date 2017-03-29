@@ -64,16 +64,29 @@ module.exports.getAll = function (author, callback) {
         .sort({ _id: -1 }).exec(callback);
 };
 
-//获取分页文章
-module.exports.getPage = function (p, callback) {
+/*//按创建时间降序获取分类文章
+module.exports.getAll = function (category, callback) {
     var query={};
+    if(category){
+        query.category=category;
+    }
+    return blogModel.find(query)
+            .sort({ _id: -1 }).exec(callback);
+};*/
+
+//获取分页文章
+module.exports.getPage = function (p,category, callback) {
+    var query={};
+    if(category){
+        query.category=category;
+    }
     return blogModel.find(query)
     //防止密码发送
     //     .populate({ path: 'author',model: 'user',select: 'name' })
         .sort({ _id: -1 })
         //转换成数字
-        .skip(p*5-5)
-        .limit(5)
+        .skip(p*10-10)
+        .limit(10)
         .exec(callback);
 };
 
@@ -108,13 +121,13 @@ module.exports.decCommentsCount = function (blogId, callback) {
 };
 
 
-// 通过文章 id 获取一篇原生文章（编辑文章）
+/*// 通过文章 id 获取一篇原生文章（编辑文章）
 module.exports.getRawPostById= function getRawPostById(postId, callback) {
     return blogModel
         .findOne({ _id: postId })
         .populate({ path: 'author', model: 'user' })
         .exec(callback);
-};
+};*/
 
 // 通过用户 id 和文章 id 更新一篇文章
 module.exports.updatePostById=function updatePostById(postId, author, data) {
@@ -130,4 +143,15 @@ module.exports.delPostById= function delPostById(postId, author) {
                 return commentModel.delCommentsByPostId(postId);
             }
         });
+};
+
+
+//统计总数
+module.exports.countTotal=function (category,callback) {
+    var query = {};
+    if(category){
+        query.category=category;
+    }
+    return blogModel.find(query)
+        .count().exec(callback);
 };

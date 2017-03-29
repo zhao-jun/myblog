@@ -9,6 +9,7 @@ var checkLogin = require('../middlewares/check').checkLogin;
 // POST /publish 发表一篇文章
 router.post('/', checkLogin, function(req, res, next) {
     var author = req.session.user._id;
+    var name = req.session.user.name;
     var title = req.fields.title;
     var content = req.fields.content;
 
@@ -26,6 +27,7 @@ router.post('/', checkLogin, function(req, res, next) {
 
     var page = {
         author: author,
+        name:name,
         title: title,
         content: content,
         pv: 0,

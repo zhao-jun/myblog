@@ -8,6 +8,9 @@ var pageSchema = new Schema({
     author:{
         type:Schema.Types.ObjectId
     },
+    name:{
+        type:String
+    },
     //标题
     title:{
         type:String
@@ -45,16 +48,20 @@ module.exports.create = function (newPage,callback) {
 module.exports.getAll = function (author, callback) {
     var query={};
     if(author){
-        query.author=author;
+        query.author = author;
     }
+
     return pageModel.find(query)
         .populate({ path: 'author', model: 'user' })
         .sort({ _id: -1 }).exec(callback);
 };
 
 //获取分页文章
-module.exports.getPage = function (p, callback) {
+module.exports.getPage = function (p,name, callback) {
     var query={};
+    if(name){
+        query.name = name;
+    }
     return pageModel.find(query)
         //防止密码发送
         .populate({ path: 'author',model: 'user',select: 'name' })
@@ -97,7 +104,7 @@ module.exports.decCommentsCount = function (pageId, callback) {
 
 
 // 通过文章 id 获取一篇原生文章（编辑文章）
-module.exports.getRawPostById= function getRawPostById(postId, callback) {
+module.exports.getRawPostById= function (postId, callback) {
     return pageModel
         .findOne({ _id: postId })
         .populate({ path: 'author', model: 'user' })
@@ -105,12 +112,12 @@ module.exports.getRawPostById= function getRawPostById(postId, callback) {
 };
 
 // 通过用户 id 和文章 id 更新一篇文章
-module.exports.updatePostById=function updatePostById(postId, author, data) {
+module.exports.updatePostById=function (postId, author, data) {
     return pageModel.update({ author: author, _id: postId }, { $set: data }).exec();
 };
 
 // 通过用户 id 和文章 id 删除一篇文章
-module.exports.delPostById= function delPostById(postId, author) {
+module.exports.delPostById= function (postId, author) {
     return pageModel.remove({ author: author, _id: postId }).exec()
         .then(function (res) {
             // 文章删除后，再删除该文章下的所有留言

@@ -67,11 +67,11 @@ export class Article extends React.Component {
                                             <p className="author">{comment.author.name}</p>
                                         </div>
                                         <div className="main">
-                                            <p className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</p>
                                             <p className="content">{comment.content}</p>
                                             <p className="info">
                                                 <span className='author-app'>{comment.author.name}</span>
                                                 <span>{comment.date}</span>
+                                                <span className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</span>
                                             </p>
                                         </div>
 

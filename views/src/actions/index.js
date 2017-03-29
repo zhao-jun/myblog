@@ -451,6 +451,12 @@ export const articleDelete = function () {
 
 
 
+
+
+
+
+
+
 /*发布博客
  @data 
  */
@@ -477,28 +483,6 @@ export const createSubmit = (data) => {
             })
             .catch(function(e) {
                 console.log("请求失败");
-            });
-    }
-};
-
-
-/*博客详情
- @params /blog/:id 博客id
- */
-export const blog = function (params) {
-    return (dispatch)=>{
-        fetch(requestAPI + params,{
-            credentials: 'include'
-        })
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                console.log(data);
-                return dispatch(blogBox("blog", data))
-            })
-            .catch(function(e) {
-                console.error(e);
             });
     }
 };
@@ -565,6 +549,181 @@ export const blogArticle = function (params) {
             .then(function(data) {
                 console.log(data);
                 return dispatch(blogArticleBox("blogArticle", data))
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
+    }
+};
+
+/*博客增加留言
+ @data FormData
+ */
+export const blogCommentSubmit = function (data) {
+    return (dispatch)=>{
+        fetch(requestAPI + location.pathname.slice(1) +'/comment',{
+            method: "POST",
+            credentials: 'include',
+            body:data
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if(data.code===1000) {
+                    _alertStore(dispatch, data.message);
+                    dispatch(blogArticle(location.pathname.slice(1)));
+                }
+                if(data.code===1009) {
+                    _alertStore(dispatch, data.message);
+                }
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
+    }
+};
+
+/*博客删除留言
+ @param commentId
+ */
+export const blogCommentDelete = function (param) {
+    return (dispatch)=>{
+        fetch(requestAPI + location.pathname.slice(1) +'/comment/'+param,{
+            method: "DELETE",
+            credentials: 'include'
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if(data.code===1000) {
+                    _alertStore(dispatch, data.message);
+                    dispatch(blogArticle(location.pathname.slice(1)));
+                }
+                if(data.code===1009) {
+                    _alertStore(dispatch, data.message);
+                }
+            })
+            .catch(function(e) {
+                console.error(e);
+            });
+    }
+};
+
+/*博客修改
+ @param
+ */
+export const blogEdit= (type, data) => {
+    switch (type) {
+        case "blogEditPreview":
+            return {
+                type: "blogEditPreview",
+                data
+            }
+        case "blogEditTitle":
+            return {
+                type: "blogEditTitle",
+                data
+            }
+        case "blogEditSubtitle":
+            return {
+                type: "blogSubtitle",
+                data
+            }
+        case "blogEditCategory":
+            return {
+                type: "blogEditCategory",
+                data
+            }
+        case "blogEdit":
+            return {
+                type: "blogEdit",
+                data
+            }
+    }
+};
+
+/*更新博客请求
+ @data 更新作品的数据
+ */
+export const blogEditSubmit = (data) => {
+    return (dispatch) => {
+        fetch(requestAPI+location.pathname.slice(1),{
+            method: "POST",
+            credentials: 'include',//可以带cookie
+            body:data
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                if(data.code===1000){
+                    _alertStore(dispatch,data.message);
+                    browserHistory.push(location.pathname.slice(0,-5));
+                }else{
+                    _alertStore(dispatch,data.message)
+                }
+            })
+            .catch(function(e) {
+                console.log("请求失败");
+            });
+    }
+};
+
+/*发布博客预览
+ @param
+ */
+export const blogPreview= (type, data) => {
+    switch (type) {
+        case "blogPreview":
+            return {
+                type: "blogPreview",
+                data
+            }
+        case "blogTitle":
+            return {
+                type: "blogTitle",
+                data
+            }
+        case "blogSubtitle":
+            return {
+                type: "blogSubtitle",
+                data
+            }
+        case "blogCategory":
+            return {
+                type: "blogCategory",
+                data
+            }
+        case "blogClear":
+            return {
+                type: "blogClear"
+            }
+    }
+};
+
+/*删除博客
+ @param commentId
+ */
+export const blogArticleDelete = function () {
+    return (dispatch)=>{
+        fetch(requestAPI + location.pathname.slice(1),{
+            method: "DELETE",
+            credentials: 'include'
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if(data.code===1000) {
+                    _alertStore(dispatch, data.message);
+                    browserHistory.push('/blog');
+                }
+                if(data.code===1009) {
+                    _alertStore(dispatch, data.message);
+                }
             })
             .catch(function(e) {
                 console.error(e);

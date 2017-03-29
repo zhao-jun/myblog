@@ -8,6 +8,9 @@ var routes = require('./routes');
 var pkg = require('./package');
 var mongoose = require('mongoose');
 
+//Warning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit
+require('events').EventEmitter.prototype._maxListeners = 100;
+
 var db = mongoose.connect(config.mongodb);
 
 mongoose.Promise = global.Promise;

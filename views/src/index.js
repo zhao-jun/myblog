@@ -8,6 +8,7 @@ import Index from './containers/Index/Index';
 import Home from './components/Home/Home';
 import Blog from './containers/Blog/Blog';
 import BlogArticle from './containers/BlogArticle/BlogArticle';
+import BlogEdit from './containers/BlogEdit/BlogEdit';
 import Page from './containers/Page/Page';
 import Article from './containers/Article/Article';
 import Edit from './containers/Edit/Edit';
@@ -45,6 +46,7 @@ ReactDOM.render(
                 <IndexRoute component = {Home} />
                 <Route path="/blog" component = {Blog} />
                 <Route path="/blog/:id" component = {BlogArticle} />
+                <Route path="/blog/:id/edit" component = {BlogEdit} />
                 <Route path="/page" component = {Page} />
                 <Route path="/a/:id" component = {Article} />
                 <Route path="/a/:id/edit" component = {Edit} />

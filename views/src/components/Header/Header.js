@@ -1,6 +1,5 @@
 import React from  'react';
 import { IndexLink,Link } from 'react-router';
-import classNames from 'classnames';
 
 import './Header.scss';
 import avatar from '../../styles/avatar.png';

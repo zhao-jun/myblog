@@ -9,17 +9,21 @@ var checkLogin = require('../middlewares/check').checkLogin;
 // GET /page?author=xxx
 // GET /page?p=xxx
 router.get('/', function(req, res, next) {
-    // var author = req.query.author;
+    var name = req.query.author;
     var p = req.query.p-0;
     p = p?p:1;
     var num;
     //统计总数
-    pageModel.count(function (err, count) {
+    if(name){
+        var query = {};
+        query.name=name;
+    }
+    pageModel.find(query).count(function (err, count) {
         if (err) return console.log(err);
         num = count;
     });
 
-    pageModel.getPage(p,function (err, page) {
+    pageModel.getPage(p,name,function (err, page) {
         // if (err) return console.log(err);
         var limitNum = Math.ceil(num/5);
         res.json({page: page,num:num,limitNum:limitNum,p:p});

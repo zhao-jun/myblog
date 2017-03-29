@@ -9,7 +9,7 @@ import avatar from '../../styles/avatar.png';
 import Banner from '../../components/Banner/Banner';
 import Tags from '../../components/Tags/Tags';
 
-import {blogArticle,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction} from '../../actions/index';
+import {blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction} from '../../actions/index';
 
 
 export class BlogArticle extends React.Component {
@@ -21,15 +21,15 @@ export class BlogArticle extends React.Component {
         console.log(this.props.blogArticleBoxData)
     }
 
-    commentSubmit() {
-        const{_alert,commentSubmit}  = this.props.actions;
+    blogCommentSubmit() {
+        const{_alert,blogCommentSubmit}  = this.props.actions;
         let contentValue = this.content.value.trim();
         if (contentValue.length == 0) {
             _alert("留言内容不能为空");
             return
         }
         let formData = new FormData(this.comment);
-        commentSubmit(formData);
+        blogCommentSubmit(formData);
         this.content.value='';
     }
 
@@ -47,8 +47,8 @@ export class BlogArticle extends React.Component {
                                 <p className="content markdown" dangerouslySetInnerHTML={{__html:article.contentMarked}}></p>
                                 <div className="info">
                                     <span>发布时间：{article.date}</span>
-                                    <span className="editArt" style={{display:loginBoxData.name=='admin'?'inline':'none'}}><Link to={location.pathname+'/edit'} className="link" onClick={()=>actions.edit("edit",article)}>编辑</Link></span>
-                                    <span className="delArt" style={{display:loginBoxData.name=='admin'?'inline':'none'}} onClick={()=>actions.articleDelete()}>删除</span>
+                                    <span className="editArt" style={{display:loginBoxData.name=='admin'?'inline':'none'}}><Link to={location.pathname+'/edit'} className="link" onClick={()=>actions.blogEdit("blogEdit",article)}>编辑</Link></span>
+                                    <span className="delArt" style={{display:loginBoxData.name=='admin'?'inline':'none'}} onClick={()=>actions.blogArticleDelete()}>删除</span>
                                 </div>
                             </div>
                         </article>
@@ -62,11 +62,11 @@ export class BlogArticle extends React.Component {
                                                 <p className="author">{comment.author.name}</p>
                                             </div>
                                             <div className="main">
-                                                <p className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</p>
                                                 <p className="commentMain">{comment.content}</p>
                                                 <p className="info">
                                                     <span className='author-app'>{comment.author.name}</span>
                                                     <span>{comment.date}</span>
+                                                    <span className="delete" onClick={()=>actions.blogCommentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@ export class BlogArticle extends React.Component {
                                 }
                                 <div className="input-text">
                                     <textarea className="content" name="content" ref={ref=>{this.content=ref}} placeholder="畅所欲言"></textarea>
-                                    <div className="submit" onClick={()=>this.commentSubmit()}>留言</div>
+                                    <div className="submit" onClick={()=>this.blogCommentSubmit()}>留言</div>
                                 </div>
                             </form>
                         </div>
@@ -100,7 +100,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({blogArticle,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction}, dispatch)
+    actions: bindActionCreators({blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogArticle);

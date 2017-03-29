@@ -30,8 +30,9 @@ export class Pagination extends React.Component {
         }*/
         p=Math.max(0,p-1);
         if(p>=1){
-            getPageData("?p="+p);
-            browserHistory.push({pathname: 'page',query:{p:p}});
+            getPageData(this.changePage(p));
+            // {pathname: 'page',query:{p:p}}
+            browserHistory.push("/page"+this.changePage(p));
         } else {
             p=1;
             _alert('已经是第一页了');
@@ -62,12 +63,24 @@ export class Pagination extends React.Component {
             limitNum = pageBoxData.limitNum;
         p = Math.min(limitNum+1,p+1);
         if(p<=limitNum){
-            getPageData("?p="+p);
-            browserHistory.push({pathname: 'page',query:{p:p}});
+            getPageData(this.changePage(p));
+            browserHistory.push("/page"+this.changePage(p));
         }else {
             p=limitNum;
             _alert('已经是最后一页了');
         }
+    }
+
+    changePage(i){
+        if(location.search){
+            return /p=\d+/.test(location.search) ?
+             location.search.replace(/p=\d+/,function (match) {
+                return ("p="+i);
+            }): (location.search + "&&p=" + i);
+        } else {
+            return ('?p='+i)
+        }
+
     }
 
     render(){
@@ -77,11 +90,11 @@ export class Pagination extends React.Component {
             p = pageBoxData.p;
         if(limitNum<=7 || p<4 ){
             for(let i=1;i<=Math.min(limitNum,7);i++){
-                pageTmp.push(<li key={i}><Link to={"/page?p="+i} className="link" onClick={()=>getPageData("?p="+i)} activeClassName="active">{i}</Link></li>)
+                pageTmp.push(<li key={i}><Link to={"/page" + this.changePage(i)} className="link" onClick={()=>getPageData(this.changePage(i))} activeClassName="active">{i}</Link></li>)
             }
         } else if(limitNum>7){
             for(let i=Math.min(p+3,limitNum)-6;i<=Math.min(p+3,limitNum);i++){
-                pageTmp.push(<li key={i}><Link to={"/page?p="+i} className="link" onClick={()=>getPageData("?p="+i)} activeClassName="active">{i}</Link></li>)
+                pageTmp.push(<li key={i}><Link to={"/page" + this.changePage(i)} className="link" onClick={()=>getPageData(this.changePage(i))} activeClassName="active">{i}</Link></li>)
             }
         }
         return (

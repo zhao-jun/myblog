@@ -74,6 +74,7 @@
     .comment-item{
         border-top: 2px solid #fff;
         display: flex;
+        word-break: break-all;
         .delete {
             float: right;
             cursor: pointer;

@@ -162,7 +162,7 @@ header {
             }
             .nav {
                 text-align: center;
-                background-color: #fff;
+                background-color: rgba(100, 100, 100, 0.2);
                 height: 0;
                 overflow: hidden;
                 -webkit-transition: .3s linear;
@@ -178,14 +178,14 @@ header {
                 box-sizing: border-box;
                 line-height: 30px;
                 height: 30px;
-                width: 70px;
+                width: 100px;
                 border-top:1px solid #ccc;
             }
 
             .link {
                 display: block;
                 text-decoration: none;
-                color: #333;
+                color: #fff;
                 font-size: 14px;
             }
         }

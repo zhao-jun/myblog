@@ -32,7 +32,7 @@ export class Page extends React.Component {
                             ))
                         }
                     </ul>
-                    <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} />
+                    <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} getPageData={actions.getPageData} />
                 </div>
                 </div>
         )
