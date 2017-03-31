@@ -12,11 +12,19 @@ export class Register extends React.Component{
     }
     submitReg(){
         const {_alert, loginSubmit} = this.props;
-        if(this.userName.value.length<2){
+        if(this.userName.value.length<2 && this.userName.value.length>10 ){
             _alert("用户名长度为2-10位数");
             return;
         }
-        if((/\s/ig).test(this.userName.value)){
+        if((/\s/g).test(this.userName.value)){
+            _alert("用户名不能有空格");
+            return
+        }
+        if(!/^[a-zA-Z\u4E00-\uFA29][a-zA-Z0-9_\u4E00-\uFA29]+$/g.test(this.userName.value)){
+            _alert("用户名英文或中文开头,只能用中文、英文、数字、下划线");
+            return
+        }
+        if((/\s/g).test(this.userName.value)){
             _alert("用户名不能有空格");
             return
         }
@@ -26,6 +34,10 @@ export class Register extends React.Component{
         }
         if((/\s/ig).test(this.password.value)){
             _alert("密码不能有空格");
+            return
+        }
+        if(!/^[0-9a-zA-Z]{6,16}$/g.test(this.password.value)){
+            _alert("密码为字母或数字");
             return
         }
         if(this.password.value!==this.repassword.value){

@@ -37,6 +37,8 @@ export class Header extends React.Component {
                                                                        className='link'>发表Blog</Link></li>:
                                         null
                                 }
+                                <li className="nav-item"><Link to="/chat" activeClassName="active"
+                                                               className='link'>聊天室</Link></li>
 
                             </ul>
                         </div>

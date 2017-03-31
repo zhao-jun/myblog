@@ -1,0 +1,38 @@
+.chat {
+    display: flex;
+    width: 800px;
+    margin:0 auto;
+    padding: 20px 0;
+
+    .chatList {
+        flex:0 0 200px;
+        background-color: #0dbdff;
+    }
+    .chatMain{
+        flex:1;
+        display: flex;
+        flex-direction: column;
+    }
+    .chatWindow {
+        box-sizing: border-box;
+        border:10px solid #ddd;
+        height: 400px;
+        //background-color: #c4ffe9;
+        overflow: auto;
+    }
+    .chatBtns {
+        height: 30px;
+    }
+    .chatText {
+        background-color: #fbffbc;
+        height: 150px;
+    }
+    .chatInput {
+        box-sizing: border-box;
+        width: 100%;
+        height: 120px;
+        padding: 20px;
+        outline:none;
+    }
+
+}

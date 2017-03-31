@@ -1,13 +1,25 @@
 .banner {
+    position: relative;
     width: 100%;
     height: 300px;
-    line-height: 300px;
+    //line-height: 300px;
     font-size: 50px;
-    colr: #fff;
+    //color: #fff;
     word-spacing:10px;
     text-align: center;
     background: url("banner.jpg") center center no-repeat;
     //filter: blur(3px);
     background-size: cover;
-    margin-top: 50px;
+/*    transition: all 1s linear;
+    transform-origin: 50%;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        color: #000;
+        width: 200px;
+        line-height: 50px;
+        transition: all .3s linear;
+        transform-origin: 50%;
+    }
 }

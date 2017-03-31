@@ -43,7 +43,7 @@ app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'html');*/
 
 // session 中间件
-app.use(session({
+sessionMiddleware =session({
     name: config.session.key,// 设置 cookie 中保存 session id 的字段名称
     secret: config.session.secret,// 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
     resave: true,// 强制更新 session
@@ -55,7 +55,9 @@ app.use(session({
         // url: config.mongodb,// mongodb 地址
         mongooseConnection: mongoose.connection
     })
-}));
+});
+
+app.use(sessionMiddleware);
 // flash 中间件，用来显示通知
 app.use(flash());
 
@@ -86,7 +88,79 @@ routes(app);
     response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
  });*/
 
+
+
+
+
 // 监听端口，启动程序
-app.listen(config.port, function () {
+var server = app.listen(config.port, function () {
     console.log(`${pkg.name} listening on port ${config.port}`);
+});
+
+//express连接修改
+// var server = require('http').createServer(app);
+// var io = require('socket.io').listen(server);
+
+var io = require('socket.io').listen(server);
+
+io.use(function(socket, next) {
+    sessionMiddleware(socket.request, socket.request.res, next);
+});
+
+// 在线用户
+var onlineUsers = [];
+// 在线用户人数
+var onlineCount = 0;
+
+
+//WebSocket连接监听
+io.on('connection',socket=>{
+    // console.log('a user connected');
+    //验证用户是否存在
+/*    if(!socket.request.session.user) {
+        socket.emit('redirect')
+    }*/
+    // 监听客户端的登陆
+    socket.on('login', function(obj){
+
+        // 如果没有这个用户，那么在线人数+1，将其添加进在线用户
+        if (onlineUsers.indexOf(obj.name) == -1) {
+            onlineUsers.push(obj.name);
+            onlineCount++;
+            //切换路由不重复显示登录
+            //客户端移除也可
+            // 向客户端发送登陆事件，同时发送在线用户、在线人数以及登陆用户
+            io.emit('login', {onlineUsers:onlineUsers, onlineCount:onlineCount, user:obj,name:'system',type:'in'});
+        }
+
+        return;
+        // console.log(obj.name+'加入了群聊');
+    });
+
+
+    // 监听客户端发送的信息
+    socket.on('message', function(obj){
+        io.emit('message', obj);
+        // console.log(obj.name+"说:"+ obj.message + obj.time);
+
+    });
+
+
+    // 监听客户端的断开连接
+    socket.on('disconnect', function() {
+        let username = socket.request.session.user.name;
+        // console.log(username);
+        // 如果有这个用户
+        if(onlineUsers.indexOf(username) != -1) {
+            var obj = {name:username};
+            console.log(obj);
+            // 删掉这个用户，在线人数-1
+            onlineUsers=onlineUsers.filter(item => item!= username);
+            onlineCount--;
+
+            // 向客户端发送登出事件，同时发送在线用户、在线人数以及登出用户
+            io.emit('logout', {onlineUsers:onlineUsers, onlineCount:onlineCount, user:obj,name:'system',type:'out'});
+            // console.log(obj.name+'退出了群聊');
+        }
+    })
 });

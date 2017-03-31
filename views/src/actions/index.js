@@ -40,7 +40,7 @@ export const modBoxAction = (type, data) => {
 /*提示
  @type 判断类型
  */
-const tipsBox = (message, type) => {
+export const tipsBox = (message, type) => {
     switch (type) {
         case "showTips":
             return {
@@ -728,5 +728,41 @@ export const blogArticleDelete = function () {
             .catch(function(e) {
                 console.error(e);
             });
+    }
+};
+
+
+/* ==============
+    聊天
+ =============== */
+
+
+/*聊天信息
+ @type
+ */
+export const chatBox = (type, data) => {
+    switch (type) {
+        case "sendMessage":
+            return {
+                type: "sendMessage",
+                data
+            }
+        case "chatClear":
+            return {
+                type: "chatClear"
+            }
+    }
+};
+
+/*聊天用户信息
+ @type
+ */
+export const chatList = (type, data) => {
+    switch (type) {
+        case "chatList":
+            return {
+                type: "chatList",
+                data
+            }
     }
 };
