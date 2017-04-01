@@ -1,13 +1,17 @@
 import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { browserHistory } from 'react-router'
+import { browserHistory,Link } from 'react-router'
 
-import ChatList from './../../components/ChatList/ChatList';
+import ChatUserList from '../../components/ChatUserList/ChatUserList';
 import ChatMessage from './../../components/ChatMessage/ChatMessage';
 import ChatInfo from './../../components/ChatInfo/ChatInfo';
 
 import {_alert,chatBox,chatList} from '../../actions/index';
+
+import userImg from './user.png';
+import chatImg from './chat.png';
+import avatar from '../../styles/avatar.png';
 
 import io from 'socket.io-client'
 let socket = io.connect('http://localhost:80');
@@ -20,6 +24,7 @@ export class Chat extends React.Component{
     }
 
     componentWillMount(){
+        // console.log(socket);
         const {loginBoxData,actions} = this.props;
         if(!loginBoxData.name) {
             browserHistory.push('/');
@@ -85,21 +90,44 @@ export class Chat extends React.Component{
 
     chatClear(){
         const {actions} = this.props;
-        actions.chatBox("chatClear");    
+        actions.chatBox("chatClear");
+    }
+
+    isShow(show){
+        this.userInfo.style.display=show;
     }
 
     render(){
         const {chatBoxData,loginBoxData,chatListData} = this.props;
         return(
             <section className="chat">
-                <ChatList chatListData={chatListData} />
+                <div className="chatList">
+                    <input className="tab-open" type="radio" id="tab-1" name="tab" aria-hidden="true" hidden="" defaultChecked={true} />
+                    <input className="tab-open" type="radio" id="tab-2" name="tab" aria-hidden="true" hidden="" />
+                    <label htmlFor="tab-1" className="tab-bullet tab-bullet-one" onClick={()=>this.isShow('none')}><img src={chatImg} /></label>
+                    <label htmlFor="tab-2" className="tab-bullet tab-bullet-two" onClick={()=>this.isShow('block')}><img src={userImg} /></label>
+                    <div className="tab-item tab-1">
+                        聊天窗口
+                    </div>
+                    <div className="tab-item tab-2">
+                        <ChatUserList chatListData={chatListData} />
+                    </div>
+                </div>
+
                 <div className="chatMain">
+                    <div className="userInfo"  ref={ref=>{this.userInfo=ref}}>
+                        <p className="userInfoTitle">详细信息</p>
+                        <img className="avatar" src={avatar} />
+                        <p></p>
+                        <button className="sendMsg">发送消息</button>
+                    </div>
+
                     <ul className="chatWindow" ref={ref=>{this.chatWindow=ref}}>
                         {
                             chatBoxData.map((data,index)=>(
                                 (data.name == 'system')?
-                                <ChatInfo key={index} data={data} />:<ChatMessage key={index} data={data} loginBoxData={loginBoxData} />
-                                ))
+                                    <ChatInfo key={index} data={data} />:<ChatMessage key={index} data={data} loginBoxData={loginBoxData} />
+                            ))
                         }
                     </ul>
                     <div className="chatBtns">

@@ -133,6 +133,7 @@ io.on('connection',socket=>{
             io.emit('login', {onlineUsers:onlineUsers, onlineCount:onlineCount, user:obj,name:'system',type:'in'});
         }
 
+        console.log(io.sockets.sockets);
         return;
         // console.log(obj.name+'加入了群聊');
     });
@@ -140,6 +141,7 @@ io.on('connection',socket=>{
 
     // 监听客户端发送的信息
     socket.on('message', function(obj){
+        console.log(io);
         io.emit('message', obj);
         // console.log(obj.name+"说:"+ obj.message + obj.time);
 

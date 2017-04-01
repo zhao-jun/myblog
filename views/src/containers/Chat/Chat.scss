@@ -6,13 +6,92 @@
 
     .chatList {
         flex:0 0 200px;
-        background-color: #0dbdff;
+        background-color: #ddd;
+        position: relative;
     }
+    .tab-bullet {
+        display: inline-block;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        cursor: pointer;
+        width: 50%;
+        position: relative;
+        img {
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-left: -16px;
+            margin-top: -16px;
+            width: 32px;
+            height: 32px;
+        }
+    }
+    #tab-1:checked ~ .tab-bullet-one {
+        background-color: #919eff;
+    }
+    #tab-2:checked ~ .tab-bullet-two {
+        background-color: #919eff;
+    }
+    .tab-open {
+        display: none;
+    }
+    #tab-1:checked ~ .tab-1 {
+        position: static;
+        opacity: 1;
+        -webkit-transition: opacity 0.6s ease-out;
+        transition: opacity 0.6s ease-out;
+    }
+    #tab-2:checked ~ .tab-2 {
+        position: static;
+        opacity: 1;
+        -webkit-transition: opacity 0.6s ease-out;
+        transition: opacity 0.6s ease-out;
+    }
+
+    .tab-item {
+        position: absolute;
+        opacity: 0;
+    }
+
+
     .chatMain{
         flex:1;
         display: flex;
         flex-direction: column;
+        position: relative;
     }
+    .userInfo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background-color: #f7f7f7;
+        display: none;
+    }
+    .userInfoTitle {
+        height: 80px;
+        line-height: 80px;
+        font-size: 18px;
+        margin:0 30px;
+        border-bottom: 1px solid #666;
+    }
+    .avatar {
+        padding: 10px;
+        width: 50px;
+        height: 50px;
+    }
+    .sendMsg {
+        width: 100px;
+        height: 40px;
+        border: none;
+        background-color: #42ac3e;
+        color: #fff;
+        font-weight: bold;
+        outline: none;
+    }
+
+
     .chatWindow {
         box-sizing: border-box;
         border:10px solid #ddd;
