@@ -29,10 +29,10 @@ export class Banner extends React.Component{
     }
 
     render(){
-        const {title} = this.props;
+        const {title,subtitle} = this.props;
         return(
             <div className="banner">
-                <p  ref={ref=>{this.title=ref}}>{title || 'BLOG'}</p>
+                <p  ref={ref=>{this.title=ref}}><span className="title">{title || ''}</span><span className="subtitle">{subtitle || ''}</span></p>
             </div>
         )
     }

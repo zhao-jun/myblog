@@ -11,7 +11,6 @@ export class Publish extends React.Component{
         super(props);
     }
 
-
     handleSubmit(){
         const {_alert,publishSubmit} = this.props.actions;
         let titleValue=this.title.value.trim(),

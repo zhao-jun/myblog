@@ -79,7 +79,7 @@ header {
                 background-color: rgba(120,120,120,.2);
             }
             .menu {
-                height: 60px;
+                height: 72px;
             }
         }
 
@@ -97,13 +97,14 @@ header {
         color: #fff;
         .menuItem {
             box-sizing: border-box;
-            line-height: 30px;
-            height: 30px;
+            line-height: 36px;
+            height: 36px;
             border-top: 1px solid #ccc;
         }
         .menuItem:hover {
-            color: #57bae8;
-            background-color: rgba(100,100,100,.2);
+            //color: #57bae8;
+            //background-color: rgba(100,100,100,.2);
+            background-color: #2695ee;
         }
 /*        &:after {
             content: "";
@@ -159,11 +160,11 @@ header {
                 width: 48px;
                 height: 48px;
             }
-            &:hover{
+/*            &:hover{
                 .nav {
-                    height: 120px;
+                    height: 180px;
                 }
-            }
+            }*/
             .nav {
                 text-align: center;
                 background-color: rgba(100, 100, 100, 0.2);
@@ -181,8 +182,8 @@ header {
             }
             .nav-item {
                 box-sizing: border-box;
-                line-height: 30px;
-                height: 30px;
+                line-height: 36px;
+                height: 36px;
                 width: 100px;
                 border-top:1px solid #ccc;
             }

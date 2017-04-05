@@ -22,7 +22,7 @@ export class Blog extends React.Component {
         const {blogBoxData,loginBoxData,actions} = this.props;
         return (
             <div>
-                <Banner />
+                <Banner title={'BLOG'} />
                 <div className="blogWrap">
                     <ul className="blog">
                         {

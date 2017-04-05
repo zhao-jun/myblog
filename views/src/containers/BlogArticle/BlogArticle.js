@@ -39,7 +39,7 @@ export class BlogArticle extends React.Component {
         let article = blogArticleBoxData.article;
         return (
             <div>
-                <Banner title={article.title} />
+                <Banner title={article.title} subtitle={article.subtitle}/>
                 <div className="blogWrap">
                     <div className="blogArticle">
                         <article>

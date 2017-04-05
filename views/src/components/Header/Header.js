@@ -11,18 +11,22 @@ export class Header extends React.Component {
     componentWillMount(){
         this.props.getUserInfo();
     }
+    isShow(){
+        this.nav.style.height = this.nav.style.height == '180px' ? '0': '180px';
+    }
+
+
     render() {
         const {modBoxAction, loginBoxData, loginSubmit} = this.props;
         let categoryClass = 'icon-category';
-        categoryClass+=' open';
         return (
             <header>
                 <div className="wrap clearfix">
                     <h1><IndexLink to="/" activeClassName="active" className='link'>blog</IndexLink></h1>
                     <nav>
                         <div className="nav-app">
-                            <i className={categoryClass}></i>
-                            <ul className="nav">
+                            <i className={categoryClass} onClick={()=>this.isShow()}></i>
+                            <ul className="nav"  ref={ref=>{this.nav=ref}} onClick={()=>this.isShow()}>
                                 <li className="nav-item"><IndexLink to="/" activeClassName="active"
                                                                     className='link'>首页</IndexLink></li>
                                 <li className="nav-item"><Link to="/blog" activeClassName="active"

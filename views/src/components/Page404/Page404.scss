@@ -1,0 +1,22 @@
+.page404 {
+    height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    .describe {
+        font-size: 26px;
+        color: #999;
+        line-height: 50px;
+    }
+    .link {
+        display: block;
+        background-color: #57bae8;
+        line-height: 50px;
+        width: 100px;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+}

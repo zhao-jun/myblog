@@ -20,7 +20,7 @@ import Page404 from './components/Page404/Page404';
 import rootReducer from './reducers/index';
 
 import './styles/common.scss';
-
+import 'highlight.js/styles/monokai-sublime.css';
 
 
 const thunkMiddleware = store => next => action =>

@@ -1,5 +1,5 @@
 import {LOGIN_SHOW,REG_SHOW,MODBOX_CLOSE,LOGIN_SUBMIT,REG_SUBMIT} from '../constants/actionTypes';
-export const requestAPI = "http://localhost:80/";
+export const requestAPI = "http://localhost:3000/";
 import { browserHistory } from 'react-router';
 
 
@@ -164,13 +164,12 @@ const loginOutSubmit = (dispatch) => {
     }).then(function(data) {
         console.log(data);
         dispatch(loginBox("loginOut"));
-        return _alertStore(dispatch, "退出成功", function() {
-            // hashHistory可做操作，暂时不写
-        })
+        _alertStore(dispatch, "退出成功");
+        browserHistory.push('/');
     }).catch(function(e) {
         console.error(e)
     })
-}
+};
 
 /*获取用户登录信息*/
 export const getUserInfo = () => {

@@ -18,7 +18,7 @@ const Index = (props) => (
         <div style={{"WebkitFilter":props.modBoxData.isShow?"blur(3px)":"none"}}>
             <Header modBoxAction={props.actions.modBoxAction} loginBoxData={props.loginBoxData} loginSubmit={props.actions.loginSubmit} getUserInfo={props.actions.getUserInfo} />
             
-            <section className="main">
+            <section className="mainContent">
                 {props.children}
             </section>
         </div>

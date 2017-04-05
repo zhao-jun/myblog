@@ -26,7 +26,7 @@ var app = express();
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Headers", "Content-Type=application/json;charset=UTF-8");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header('Access-Control-Allow-Credentials', true); //支持跨域传cookie
@@ -133,7 +133,7 @@ io.on('connection',socket=>{
             io.emit('login', {onlineUsers:onlineUsers, onlineCount:onlineCount, user:obj,name:'system',type:'in'});
         }
 
-        console.log(io.sockets.sockets);
+        // console.log(io.sockets.sockets);
         return;
         // console.log(obj.name+'加入了群聊');
     });

@@ -23,7 +23,8 @@ module.exports = (options = {}) => {
         },
         module: {
             rules: [
-                {test: /\.scss$/, include: path.resolve(__dirname, 'src'), use: ['style-loader', 'css-loader', 'sass-loader','postcss-loader']},
+                {test: /\.(css|scss)$/, use: ['style-loader', 'css-loader', 'sass-loader','postcss-loader']},
+                // , include: path.resolve(__dirname, 'src')  highlight的css不在其中
                 {test: /\.js[x]?$/, exclude: /node_modules/, use: 'babel-loader'},
                 // { test: /\.(png|jpg)$/, use: 'file-loader'},
                 {test: /\.(png|jpg)$/, use: [{loader: 'url-loader', options: {limit: 15000,name:'./[name].[ext]?[hash]'}}]}

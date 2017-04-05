@@ -23,7 +23,7 @@ export class Page extends React.Component {
         const {pageBoxData,loginBoxData,actions} = this.props;
         return (
             <div>
-                <Banner />
+                <Banner title={'随便写写'} />
                 <div className="page">
                     <ul className="pageList">
                         {
