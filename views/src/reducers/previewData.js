@@ -1,8 +1,7 @@
 import { fromJS } from 'immutable';
 import marked from 'marked';
-import hljs from 'highlight.js';
 
-marked.setOptions({
+/*marked.setOptions({
     renderer : new marked.Renderer(),
     gfm: true,
     tables: true,
@@ -15,7 +14,7 @@ marked.setOptions({
     highlight: function (code) {
         return hljs.highlightAuto(code).value;
     }
-});
+});*/
 
 const previewData=(state={},action)=>{
     switch(action.type){

@@ -1,5 +1,5 @@
 import {LOGIN_SHOW,REG_SHOW,MODBOX_CLOSE,LOGIN_SUBMIT,REG_SUBMIT} from '../constants/actionTypes';
-export const requestAPI = "http://localhost:3000/";
+export const requestAPI = "http://localhost:3000/api/";
 import { browserHistory } from 'react-router';
 
 

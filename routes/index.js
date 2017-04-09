@@ -8,14 +8,14 @@ module.exports = function (app) {
         response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
     });*/
 
-    app.use('/page', require('./page'));
-    app.use('/publish', require('./publish'));
-    app.use('/create', require('./create'));
-    app.use('/blog', require('./blog'));
-    app.use('/reg', require('./reg'));
-    app.use('/login', require('./login'));
-    app.use('/loginOut', require('./loginOut'));
-    app.use('/getUserInfo', require('./getUserInfo'));
-    app.use('/a',require('./article'));
+    app.use('/api/page', require('./page'));
+    app.use('/api/publish', require('./publish'));
+    app.use('/api/create', require('./create'));
+    app.use('/api/blog', require('./blog'));
+    app.use('/api/reg', require('./reg'));
+    app.use('/api/login', require('./login'));
+    app.use('/api/loginOut', require('./loginOut'));
+    app.use('/api/getUserInfo', require('./getUserInfo'));
+    app.use('/api/a',require('./article'));
 
 };

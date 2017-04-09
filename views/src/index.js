@@ -22,6 +22,24 @@ import rootReducer from './reducers/index';
 import './styles/common.scss';
 import 'highlight.js/styles/monokai-sublime.css';
 
+import marked from 'marked';
+import hljs from 'highlight.js';
+
+marked.setOptions({
+    renderer : new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pedantic: true,
+    sanitize: true,
+    smartLists: true,
+    smartypants: true,
+    langPrefix: 'hljs ',
+    highlight: function (code) {
+        return hljs.highlightAuto(code).value;
+    }
+});
+
 
 const thunkMiddleware = store => next => action =>
     typeof action === 'function' ?

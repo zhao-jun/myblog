@@ -9,12 +9,10 @@ import ChatInfo from './../../components/ChatInfo/ChatInfo';
 
 import {_alert,chatBox,chatList} from '../../actions/index';
 
-import userImg from './user.png';
-import chatImg from './chat.png';
-import avatar from '../../styles/avatar.png';
+import clearImg from './clear.png';
 
 import io from 'socket.io-client'
-let socket = io.connect('http://localhost:80');
+let socket = io.connect('http://localhost:3000');
 
 import './Chat.scss';
 
@@ -70,6 +68,8 @@ export class Chat extends React.Component{
         let scrollTop=this.chatWindow.scrollHeight-this.chatWindow.clientHeight;
         this.chatWindow.scrollTop=scrollTop > 0 ? scrollTop : 0;
     }
+    
+
     chatSend(){
         const {loginBoxData,actions} = this.props;
         if(!this.chatInput.value.trim()){
@@ -93,36 +93,43 @@ export class Chat extends React.Component{
         actions.chatBox("chatClear");
     }
 
-    isShow(show){
+/*    isShow(show){
         this.userInfo.style.display=show;
+    }*/
+    messageSync(){
+        if(window.innerWidth > 600) {
+            this.chatInput.style.height = 120 + 'px';
+            return;
+        }
+        //此步为了让删减的时候高度改变
+        this.chatInput.style.height = 30 + 'px';
+        this.chatInput.style.height = this.chatInput.scrollHeight + 'px';
+        this.resetScroll()
     }
+
 
     render(){
         const {chatBoxData,loginBoxData,chatListData} = this.props;
         return(
-            <section className="chat">
+            <div className='chatwrap'>
+                <div className="chat">
                 <div className="chatList">
                     <input className="tab-open" type="radio" id="tab-1" name="tab" aria-hidden="true" hidden="" defaultChecked={true} />
                     <input className="tab-open" type="radio" id="tab-2" name="tab" aria-hidden="true" hidden="" />
-                    <label htmlFor="tab-1" className="tab-bullet tab-bullet-one" onClick={()=>this.isShow('none')}><img src={chatImg} /></label>
-                    <label htmlFor="tab-2" className="tab-bullet tab-bullet-two" onClick={()=>this.isShow('block')}><img src={userImg} /></label>
+                    <label htmlFor="tab-1" className="tab-bullet tab-bullet-one"></label>
+                    <label htmlFor="tab-2" className="tab-bullet tab-bullet-two"></label>
                     <div className="tab-item tab-1">
-                        聊天窗口
+                        <div className="chatTalkList">聊天窗口</div>
                     </div>
                     <div className="tab-item tab-2">
                         <ChatUserList chatListData={chatListData} />
                     </div>
                 </div>
-
                 <div className="chatMain">
-                    <div className="userInfo"  ref={ref=>{this.userInfo=ref}}>
-                        <p className="userInfoTitle">详细信息</p>
-                        <img className="avatar" src={avatar} />
-                        <p></p>
-                        <button className="sendMsg">发送消息</button>
-                    </div>
+
 
                     <ul className="chatWindow" ref={ref=>{this.chatWindow=ref}}>
+                        <li className="userLength">当前{chatListData.onlineUsers.length}人</li>
                         {
                             chatBoxData.map((data,index)=>(
                                 (data.name == 'system')?
@@ -131,15 +138,17 @@ export class Chat extends React.Component{
                         }
                     </ul>
                     <div className="chatBtns">
-                        <button className="chatClear" onClick={()=>this.chatClear()}>清空</button>
+                        <img src={clearImg} className="chatClear" onClick={()=>this.chatClear()} />
                     </div>
                     <div className="chatText">
-                        <textarea className="chatInput" ref={ref=>{this.chatInput=ref}} placeholder="输入">
+                        <textarea className="chatInput" rows="1" ref={ref=>{this.chatInput=ref}} onChange={()=>this.messageSync()}>
                         </textarea>
                         <button className="chatSend" onClick={()=>this.chatSend()}>发送</button>
+                        <div className="chatSend-app" onClick={()=>{this.chatSend();this.messageSync()}}></div>
                     </div>
                 </div>
-            </section>
+            </div>
+            </div>
         )
     }
 }
@@ -155,3 +164,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+
+
+/*
+<div className="userInfo"  ref={ref=>{this.userInfo=ref}}>
+    <p className="userInfoTitle">详细信息</p>
+    <img className="avatar" src={avatar} />
+    <button className="sendMsg">发送消息</button>
+</div>*/

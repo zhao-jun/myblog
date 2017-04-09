@@ -26,7 +26,7 @@ var app = express();
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", "Content-Type=application/json;charset=UTF-8");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header('Access-Control-Allow-Credentials', true); //支持跨域传cookie
@@ -141,7 +141,7 @@ io.on('connection',socket=>{
 
     // 监听客户端发送的信息
     socket.on('message', function(obj){
-        console.log(io);
+        // console.log(io);
         io.emit('message', obj);
         // console.log(obj.name+"说:"+ obj.message + obj.time);
 
@@ -150,12 +150,15 @@ io.on('connection',socket=>{
 
     // 监听客户端的断开连接
     socket.on('disconnect', function() {
-        let username = socket.request.session.user.name;
+        let username;
+        if(socket.request.session.user){
+            username = socket.request.session.user.name;
+        }
         // console.log(username);
         // 如果有这个用户
         if(onlineUsers.indexOf(username) != -1) {
             var obj = {name:username};
-            console.log(obj);
+            // console.log(obj);
             // 删掉这个用户，在线人数-1
             onlineUsers=onlineUsers.filter(item => item!= username);
             onlineCount--;

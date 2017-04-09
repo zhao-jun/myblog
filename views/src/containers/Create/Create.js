@@ -42,7 +42,7 @@ export class Create extends React.Component{
                 <div className="editor clearfix">
                     <div className="myEditor">
                         <label htmlFor="content">文章内容</label>
-                        <textarea placeholder="支持markdown" onChange={(e)=>actions.blogPreview("blogPreview",e.target.value)} ref={el=>{this.content=el}} rows="30" name="content" id="content" value={blogPreviewData.origin || ''}></textarea>
+                        <textarea placeholder="支持markdown" onChange={(e)=>actions.blogPreview("blogPreview",e.target.value)} ref={el=>{this.content=el}} name="content" id="content" value={blogPreviewData.origin || ''}></textarea>
                     </div>
                     <div className="editor-preview">
                         <div className="preview" htmlFor="preview">预览</div>

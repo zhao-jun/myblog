@@ -5,4 +5,15 @@ footer {
     color: #fff;
     text-align: center;
     line-height:100px;
+    user-select:none;
 }
+
+/*
+@media screen and (max-width:600px) {
+    footer {
+        height: 50px;
+        line-height:50px;
+        background-color: #fff;
+        color:#333;
+    }
+}*/

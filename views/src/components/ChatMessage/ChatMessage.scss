@@ -27,7 +27,7 @@
         font-size: 16px;
         line-height: 22px;
         word-break: break-all;
-        background-color: #b2e281;
+        background-color: #fff;
         border-radius: 5px;
         padding:9px 13px;
         float: left;
@@ -37,11 +37,16 @@
         content:'';
         border-left:8px solid transparent;
         border-top: 10px solid transparent;
-        border-right:8px solid #b2e281;
+        border-right:8px solid #fff;
         border-bottom: 10px solid transparent;
         position: absolute;
         top:3px;
         left: -14px;
+    }
+    @media screen and (max-width: 600px) {
+        .chatWrap {
+            flex:1;
+        }
     }
 }
 
@@ -81,18 +86,24 @@
         line-height: 22px;
         word-break: break-all;
         float: right;
-        background-color: #b2e281;
+        background-color: #82c7e8;
         border-radius: 5px;
         position: relative;
     }
     .chatMsg:before {
         content:'';
-        border-left:8px solid #b2e281;
+        border-left:8px solid #82c7e8;
         border-top: 10px solid transparent;
         border-right:8px solid transparent;
         border-bottom: 10px solid transparent;
         position: absolute;
         top:3px;
         right: -14px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .chatWrap {
+            flex:1;
+        }
     }
 }

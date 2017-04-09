@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import marked from 'marked';
-import hljs from 'highlight.js';
+/*import hljs from 'highlight.js';
 
 marked.setOptions({
     renderer : new marked.Renderer(),
@@ -15,7 +15,7 @@ marked.setOptions({
     highlight: function (code) {
         return hljs.highlightAuto(code).value;
     }
-});
+});*/
 
 const blogArticleBoxData = (state = {article:{},comments:[]}, action) => {
     switch (action.type) {

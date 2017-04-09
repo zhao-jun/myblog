@@ -1,9 +1,13 @@
 .chatUserList {
     .chatItem{
-        height: 40px;
-        line-height: 40px;
+        height: 50px;
+        line-height: 50px;
+        &:hover {
+            background-color: rgba(106,182,221,0.8);
+        }
     }
     .chatAvatar {
+        padding: 0 10px;
         width: 30px;
         height: 30px;
         vertical-align: middle;

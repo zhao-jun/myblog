@@ -12,21 +12,25 @@ export class Header extends React.Component {
         this.props.getUserInfo();
     }
     isShow(){
-        this.nav.style.height = this.nav.style.height == '180px' ? '0': '180px';
+        this.nav.style.height = this.nav.style.height =='300px'? '0':'300px';
+        this.cover.style.display=this.cover.style.display=='block'?'none':'block';
+    }
+    isHide(){
+        this.cover.style.display='none';
+        this.nav.style.height='0';
     }
 
 
     render() {
         const {modBoxAction, loginBoxData, loginSubmit} = this.props;
-        let categoryClass = 'icon-category';
         return (
             <header>
                 <div className="wrap clearfix">
                     <h1><IndexLink to="/" activeClassName="active" className='link'>blog</IndexLink></h1>
                     <nav>
+                        <i className='icon-category' onClick={()=>this.isShow()}></i>
                         <div className="nav-app">
-                            <i className={categoryClass} onClick={()=>this.isShow()}></i>
-                            <ul className="nav"  ref={ref=>{this.nav=ref}} onClick={()=>this.isShow()}>
+                            <ul className="nav"  ref={ref=>{this.nav=ref}} onClick={()=>this.isHide()}>
                                 <li className="nav-item"><IndexLink to="/" activeClassName="active"
                                                                     className='link'>首页</IndexLink></li>
                                 <li className="nav-item"><Link to="/blog" activeClassName="active"
@@ -44,7 +48,14 @@ export class Header extends React.Component {
                                 <li className="nav-item"><Link to="/chat" activeClassName="active"
                                                                className='link'>聊天室</Link></li>
 
+                                {
+                                    !loginBoxData.isLogin ? null:
+                                        <li className="nav-item nav-item-only">
+                                            <span className="link" onClick={()=>loginSubmit('loginOut')}>退出</span>
+                                        </li>
+                                }
                             </ul>
+                            <div className="nav-cover"  ref={ref=>{this.cover=ref}} onClick={()=>this.isHide()}></div>
                         </div>
                     </nav>
 

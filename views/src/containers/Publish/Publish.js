@@ -42,7 +42,7 @@ export class Publish extends React.Component{
                 <div className="editor clearfix">
                     <div className="myEditor">
                         <label htmlFor="content">文章内容</label>
-                        <textarea placeholder="支持markdown,最少20个字" onChange={(e)=>actions.preview("preview",e.target.value)} ref={el=>{this.content=el}} rows="30" name="content" id="content" value={previewData.origin || ''}></textarea>
+                        <textarea placeholder="支持markdown,最少20个字" onChange={(e)=>actions.preview("preview",e.target.value)} ref={el=>{this.content=el}} name="content" id="content" value={previewData.origin || ''}></textarea>
                     </div>
                     <div className="editor-preview">
                         <div className="preview" htmlFor="preview">预览</div>

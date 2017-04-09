@@ -4,7 +4,6 @@ import avatar from '../../styles/avatar.png';
 
 const ChatUserList = ({chatListData}) => (
     <div className="chatUserList">
-        <p>在线用户列表</p>
         <ul>
             {
             chatListData.onlineUsers.map((data,index)=>(
