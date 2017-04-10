@@ -2,7 +2,7 @@ import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {modBoxAction,getUserInfo } from '../../actions/index';
+import {modBoxAction,getUserInfo,chatBox } from '../../actions/index';
 import {_alert } from '../../actions/index';
 import {loginSubmit} from '../../actions/index';
 
@@ -16,7 +16,7 @@ import './index.scss';
 const Index = (props) => (
     <div className="index">
         <div style={{"WebkitFilter":props.modBoxData.isShow?"blur(3px)":"none"}}>
-            <Header modBoxAction={props.actions.modBoxAction} loginBoxData={props.loginBoxData} loginSubmit={props.actions.loginSubmit} getUserInfo={props.actions.getUserInfo} />
+            <Header modBoxAction={props.actions.modBoxAction} loginBoxData={props.loginBoxData} loginSubmit={props.actions.loginSubmit} getUserInfo={props.actions.getUserInfo} chatBox={props.actions.chatBox} />
             
             <section className="mainContent">
                 {props.children}
@@ -35,7 +35,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({modBoxAction,_alert,loginSubmit,getUserInfo}, dispatch)
+    actions: bindActionCreators({modBoxAction,_alert,loginSubmit,getUserInfo,chatBox}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

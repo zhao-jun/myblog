@@ -25,7 +25,7 @@ module.exports = (options = {}) => {
                 // 'babel-polyfill',
                 path.resolve(__dirname, 'src/index.js')
                 ],
-            vendor: ['react',"react-dom","react-redux","react-router","redux","immutable","socket.io-client","highlight.js","marked"]
+            vendor: ['react',"react-dom","react-redux","react-router","redux","immutable","socket.io-client","highlight.js","marked","fetch-polyfill"]
         },
         output: {
             path: path.resolve(__dirname, 'build'),
@@ -83,7 +83,8 @@ module.exports = (options = {}) => {
                         }
                     ]
                 },
-                {test: /\.js[x]?$/, exclude: /node_modules/, use: 'babel-loader'},
+                {test: /\.js[x]?$/, use: 'babel-loader'},
+                // exclude: /node_modules/
                 // { test: /\.(png|jpg)$/, use: 'file-loader'},
                 {test: /\.(png|jpg)$/, exclude: /favicon\.png$/,use: [{loader: 'url-loader', options: {limit: 15000,name:'./[name].[ext]?[hash]'}}]}
                 //可以使/开头的文件相对于root目录解析

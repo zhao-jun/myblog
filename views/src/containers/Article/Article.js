@@ -17,7 +17,7 @@ export class Article extends React.Component {
     }
     componentWillMount(){
         this.props.actions.article(location.pathname.slice(1));
-        console.log(this.props.pageBoxData);
+        // console.log(this.props.loginBoxData.name);
     }
 
     commentSubmit() {
@@ -52,7 +52,7 @@ export class Article extends React.Component {
                                 <span className='author-app'>{article.author.name}</span>
                                 <span>发布时间：{article.date}</span>
                                 <span className="editArt" style={{display:loginBoxData.name==article.author.name?'inline':'none'}}><Link to={location.pathname+'/edit'} className="link" onClick={()=>actions.edit("edit",article)}>编辑</Link></span>
-                                <span className="delArt" style={{display:loginBoxData.name==article.author.name?'inline':'none'}} onClick={()=>actions.articleDelete()}>删除</span>
+                                <span className="delArt" style={{display:loginBoxData.name==article.author.name || loginBoxData.name == 'admin'?'inline':'none'}} onClick={()=>actions.articleDelete()}>删除</span>
                             </div>
 
                         </div>
@@ -71,7 +71,7 @@ export class Article extends React.Component {
                                             <p className="info">
                                                 <span className='author-app'>{comment.author.name}</span>
                                                 <span>{comment.date}</span>
-                                                <span className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</span>
+                                                <span className="delete" onClick={()=>actions.commentDelete(comment._id)} style={{display:(comment.author.name==loginBoxData.name || loginBoxData.name == "admin")?"block":"none"}}>删除</span>
                                             </p>
                                         </div>
 

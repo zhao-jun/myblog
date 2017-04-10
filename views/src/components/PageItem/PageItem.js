@@ -24,7 +24,7 @@ const PageItem = ({page,loginBoxData,getPageData}) => (
                 <span className="user-name"><Link to={"/page?author="+page.name} className="nameLink link" onClick={()=>getPageData("?author="+page.name)}>{page.author.name}</Link></span>
                 <span className="date">{page.date}</span>
             </div>
-            <div style={{display:loginBoxData.name == page.author.name?'none':'none'}}>删除</div>
+            <div style={{display:loginBoxData.name == page.author.name || loginBoxData.name == 'admin' ? 'none':'none'}}>删除</div>
         </div>
     </li>
 );

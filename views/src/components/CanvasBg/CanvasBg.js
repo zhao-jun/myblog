@@ -1,8 +1,7 @@
 import React from  'react';
 import "./CanvasBg.scss";
 
-import one from './1.png';
-import cursor from './cursor.png';
+import one from './2.png';
 
 export class CanvasBg extends React.Component {
     constructor(props){
@@ -18,7 +17,7 @@ export class CanvasBg extends React.Component {
         var that = this;
 
         var img=new Image();
-        img.src='./1.png';
+        img.src='./2.png';
 
         //设置宽高
         this.canvas.width = window.innerWidth;
@@ -153,10 +152,10 @@ export class CanvasBg extends React.Component {
 
 
         function animateDots(){
-            that.canvas.width = window.innerWidth;
+/!*            that.canvas.width = window.innerWidth;
             that.canvas.height = window.innerHeight - 150;
             canvasWidth = window.innerWidth;
-            canvasHeight = window.innerHeight - 150;
+            canvasHeight = window.innerHeight - 150;*!/
             //清空
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             moveDots();
@@ -188,6 +187,17 @@ export class CanvasBg extends React.Component {
         requestAnimationFrame(animateDots);
     }*/
     updateCanvas(){
+
+        window.requestAnimationFrame = ( function() {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function( callback ) {
+                    window.setTimeout( callback, 1000 / 60 );
+                };
+        })();
+
+
         var that = this;
         var image = {
             'back': { 'url':one, 'img':null }
@@ -224,13 +234,13 @@ export class CanvasBg extends React.Component {
             return { 'x': coords.pageX - ox, 'y': coords.pageY - oy };
         }
 
-        function fullAmount(can,stride) {
+        function fullAmount(ctx,can,stride) {
             var i, l;
-            var ctx = can.getContext('2d');
+            // var ctx = can.getContext('2d');
             var count, total;
             var pixels, pdata;
 
-            if (!stride || stride < 1) { stride = 1; }
+            // if (!stride || stride < 1) { stride = 1; }
 
             // 每个像素，都存在着四方面的信息，即 RGBA 值
             stride *= 4;
@@ -239,7 +249,7 @@ export class CanvasBg extends React.Component {
             pdata = pixels.data;
             l = pdata.length;
 
-            total = (l / stride)|0;
+            total = l / stride|0;
 
             for (i = count = 0; i < l; i += stride) {
                 if (pdata[i] != 0) {
@@ -387,10 +397,12 @@ export class CanvasBg extends React.Component {
             function animateDots(){
                 //切换路由判断
                 if(that.canvas){
-                    that.canvas.width = window.innerWidth;
-                    that.canvas.height = window.innerHeight - 150;
-                    canvasWidth = window.innerWidth;
-                    canvasHeight = window.innerHeight - 150;
+                    if(that.canvas.width != window.innerWidth || that.canvas.height != window.innerHeight - 150){
+                        that.canvas.width = window.innerWidth;
+                        that.canvas.height = window.innerHeight - 150;
+                        canvasWidth = window.innerWidth;
+                        canvasHeight = window.innerHeight - 150;
+                    }
                 }
 
                 //清空
@@ -431,13 +443,13 @@ export class CanvasBg extends React.Component {
             canvas.temp.width = canvas.temp.width;
 
             tempctx.drawImage(canvas.draw , 0, 0);
-            tempctx.save();
+            // tempctx.save();
             tempctx.globalCompositeOperation = 'source-atop';
             tempctx.drawImage(image.back.img, 0, 0,window.innerWidth,image.back.img.height/image.back.img.height*window.innerWidth);
-            tempctx.restore();
+            // tempctx.restore();
             mainctx.drawImage(canvas.temp, 0, 0);
-            num =fullAmount(canvas.temp,8) * 100|0;
-
+            // num =fullAmount(tempctx,canvas.temp,2000) * 100|0;
+            // requestAnimationFrame(recompositeRepeat);
 
         }
 
@@ -466,6 +478,7 @@ export class CanvasBg extends React.Component {
 
         function setupCanvases() {
             var ctx = that.canvas;
+            ctx.onOff = true;
 
             ctx.width = window.innerWidth;
             ctx.height = window.innerHeight - 150;
@@ -476,6 +489,7 @@ export class CanvasBg extends React.Component {
             canvas.temp.height = canvas.draw.height = ctx.height;
 
             requestAnimationFrame(recompositeCanvases);
+            // recompositeCanvases();
 
             function mousedown_handler(e) {
                 var local = getLocalCoords(ctx, getEventCoords(e));
@@ -484,10 +498,24 @@ export class CanvasBg extends React.Component {
                 scratchLine(canvas.draw, local.x, local.y, true);
                 // recompositeRepeat();
                 requestAnimationFrame(recompositeRepeat);
+
+
+
+
                 return false;
             }
 
             function mousemove_handler(e) {
+
+                e.preventDefault();
+                if(ctx.onOff){
+                    ctx.onOff = false;
+                    setTimeout(function () {
+                        num =fullAmount(tempctx,canvas.temp,64) * 100|0;
+                        ctx.onOff = true;
+                    },500)
+                }
+
                 if (!mouseDown) { return true; }
 
                 var local = getLocalCoords(ctx, getEventCoords(e));
@@ -499,10 +527,13 @@ export class CanvasBg extends React.Component {
             }
 
             function mouseup_handler(e) {
+                // num =fullAmount(tempctx,canvas.temp,64) * 100|0;
+
                 if (mouseDown) {
                     mouseDown = false;
                     return false;
                 }
+
                 return true;
             }
 

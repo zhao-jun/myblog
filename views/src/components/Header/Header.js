@@ -3,6 +3,7 @@ import { IndexLink,Link } from 'react-router';
 
 import './Header.scss';
 import avatar from '../../styles/avatar.png';
+import {socket} from '../../containers/Chat/Chat';
 
 export class Header extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export class Header extends React.Component {
 
 
     render() {
-        const {modBoxAction, loginBoxData, loginSubmit} = this.props;
+        const {modBoxAction, loginBoxData, loginSubmit,chatBox} = this.props;
         return (
             <header>
                 <div className="wrap clearfix">
@@ -76,7 +77,7 @@ export class Header extends React.Component {
                                     <span className="login-icon">功能待开通</span>
                                 </li>
                                 <li className="menuItem">
-                                    <span className="login-icon" onClick={()=>loginSubmit('loginOut')}>退出</span>
+                                    <span className="login-icon" onClick={()=>{loginSubmit('loginOut');chatBox('chatClear');socket.emit('changeUser')}}>退出</span>
                                 </li>
                             </ul>
                         </div>

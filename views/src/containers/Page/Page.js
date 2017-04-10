@@ -16,7 +16,7 @@ export class Page extends React.Component {
     }
     componentWillMount(){
         this.props.actions.getPageData(location.search);
-        console.log(this.props.pageBoxData);
+        // console.log(this.props.pageBoxData);
     }
 
     render(){

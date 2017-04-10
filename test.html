@@ -15,6 +15,19 @@
 </head>
 <body>
 
-<div contenteditable="true"></div>
+<!--<div contenteditable="true"></div>-->
+<ul>
+    <li>123213</li>
+</ul>
+<script>
+    var oLi = document.getElementsByTagName('li')[0],
+        oUl = document.getElementsByTagName('ul')[0];
+    oLi.addEventListener('click',function(e){
+        console.log('1');
+    });
+    oUl.addEventListener('click',function(e){
+        console.log('1');
+    });
+</script>
 </body>
 </html>

@@ -66,7 +66,7 @@ export class BlogArticle extends React.Component {
                                                 <p className="info">
                                                     <span className='author-app'>{comment.author.name}</span>
                                                     <span>{comment.date}</span>
-                                                    <span className="delete" onClick={()=>actions.blogCommentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name?"block":"none"}}>删除</span>
+                                                    <span className="delete" onClick={()=>actions.blogCommentDelete(comment._id)} style={{display:comment.author.name==loginBoxData.name ||loginBoxData.name == 'admin'?"block":"none"}}>删除</span>
                                                 </p>
                                             </div>
                                         </div>

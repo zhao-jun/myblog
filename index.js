@@ -25,13 +25,13 @@ var app = express();
 
 
 //设置跨域访问
-app.all('*', function(req, res, next) {
+/*app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", "Content-Type=application/json;charset=UTF-8");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header('Access-Control-Allow-Credentials', true); //支持跨域传cookie
     next();
-});
+});*/
 
 
 // 设置静态文件目录
@@ -87,7 +87,7 @@ routes(app);
 /*app.get('*', function (request, response){
     response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
  });*/
-
+app.disable('x-powered-by');
 
 
 
@@ -124,7 +124,7 @@ io.on('connection',socket=>{
     socket.on('login', function(obj){
 
         // 如果没有这个用户，那么在线人数+1，将其添加进在线用户
-        if (onlineUsers.indexOf(obj.name) == -1) {
+        if (obj.name && onlineUsers.indexOf(obj.name) == -1) {
             onlineUsers.push(obj.name);
             onlineCount++;
             //切换路由不重复显示登录
@@ -147,6 +147,26 @@ io.on('connection',socket=>{
 
     });
 
+    //切换用户
+    socket.on('changeUser',function () {
+        let username;
+        if(socket.request.session.user){
+            username = socket.request.session.user.name;
+        }
+        // console.log(username);
+        // 如果有这个用户
+        if(onlineUsers.indexOf(username) != -1) {
+            var obj = {name:username};
+            // console.log(obj);
+            // 删掉这个用户，在线人数-1
+            onlineUsers=onlineUsers.filter(item => item!= username);
+            onlineCount--;
+
+            // 向客户端发送登出事件，同时发送在线用户、在线人数以及登出用户
+            io.emit('logout', {onlineUsers:onlineUsers, onlineCount:onlineCount, user:obj,name:'system',type:'out'});
+            // console.log(obj.name+'退出了群聊');
+        }
+    });
 
     // 监听客户端的断开连接
     socket.on('disconnect', function() {

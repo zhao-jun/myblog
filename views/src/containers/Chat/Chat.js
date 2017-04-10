@@ -12,7 +12,7 @@ import {_alert,chatBox,chatList} from '../../actions/index';
 import clearImg from './clear.png';
 
 import io from 'socket.io-client'
-let socket = io.connect('http://localhost:3000');
+export let socket = io.connect('http://blog.zandooy.com');
 
 import './Chat.scss';
 

@@ -1,5 +1,5 @@
 import {LOGIN_SHOW,REG_SHOW,MODBOX_CLOSE,LOGIN_SUBMIT,REG_SUBMIT} from '../constants/actionTypes';
-export const requestAPI = "http://localhost:3000/api/";
+export const requestAPI = "http://www.zandooy.com/api/";
 import { browserHistory } from 'react-router';
 
 
