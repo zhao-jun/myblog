@@ -33,6 +33,22 @@
             padding: 10px;
             min-height: 200px;
             margin-bottom: 40px;
+            font-size: 16px;
+
+            pre {
+                font-family: monospace, monospace;
+                font-size: 1em;
+            }
+            p {
+                display: block;
+                margin:1em 0;
+            }
+            ul, menu, dir {
+                display: block;
+                list-style-type: disc;
+                margin:1em 0;
+                padding-left: 40px;
+            }
         }
 /*        code {
             word-wrap: break-word;

@@ -39,7 +39,7 @@ export class Header extends React.Component {
                                 <li className="nav-item"><Link to="/page" activeClassName="active"
                                                                className='link'>文章</Link></li>
                                 <li className="nav-item"><Link to="/publish" activeClassName="active"
-                                                               className='link'>发表文章</Link></li>
+                                                               className='link'>发表</Link></li>
                                 {
                                     loginBoxData.name == 'admin' ?
                                         <li className="nav-item"><Link to="/create" activeClassName="active"
@@ -47,7 +47,9 @@ export class Header extends React.Component {
                                         null
                                 }
                                 <li className="nav-item"><Link to="/chat" activeClassName="active"
-                                                               className='link'>聊天室</Link></li>
+                                                               className='link'>聊天</Link></li>
+                                <li className="nav-item"><Link to="/about" activeClassName="active"
+                                                               className='link'>关于</Link></li>
 
                                 {
                                     !loginBoxData.isLogin ? null:

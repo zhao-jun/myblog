@@ -3,14 +3,29 @@ import { Link } from 'react-router';
 
 import './Tags.scss';
 
-const Tags = ({getBlogData}) => (
-    <div className="tags">
-        <h3>Tags</h3>
-        <ul>
-            <li className='tag-item'><Link to="/blog" onClick={()=>getBlogData()} className="link">all</Link></li>
-            <li className='tag-item'><Link to="/blog?category=日志" onClick={()=>getBlogData('?category=日志')} className="link">日志</Link></li>
-        </ul>
-    </div>
-);
+export class Tags extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {getBlogData, blogBoxData} = this.props;
+        let tagList = [],sum = 0;
+        for (let i in blogBoxData.tags){
+            sum += blogBoxData.tags[i];
+            tagList.push(<li className='tag-item' key={i}><Link to={"/blog?category="+i} onClick={()=>getBlogData('?category='+i)} className="link">{i}</Link><span className="num">{blogBoxData.tags[i]}</span></li>)
+        }
+        return (
+            <div className="tags">
+                <h3>Tags</h3>
+                <ul>
+                    <li className='tag-item'><Link to="/blog" onClick={()=>getBlogData()} className="link">all</Link><span className="num">{sum}</span>
+                    </li>
+                    {tagList}
+                </ul>
+            </div>
+        )
+    }
+}
 
 export default Tags;

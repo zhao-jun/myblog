@@ -546,7 +546,7 @@ export const blogArticle = function (params) {
                 return response.json();
             })
             .then(function(data) {
-                console.log(data);
+                // console.log(data);
                 return dispatch(blogArticleBox("blogArticle", data))
             })
             .catch(function(e) {
@@ -766,5 +766,21 @@ export const chatList = (type, data) => {
     }
 };
 
-
+/* ==============
+ 动画
+ =============== */
+/*过场动画
+ @type
+ */
+export const loadingBar = (type, data) => {
+    switch (type) {
+        case "loadingBar":
+        {
+            return {
+                type: "loadingBar",
+                data
+            }
+        }
+    }
+};
 

@@ -1,0 +1,40 @@
+.about {
+    padding: 0 10px;
+    .aboutWrap {
+        max-width: 800px;
+        margin:20px auto;
+        border:1px solid #ccc;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .github,.mail {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        margin-right: 10px;
+        transition: all 1s ease;
+    }
+    .github {
+        background: url("./github.png") left center no-repeat;
+    }
+    .mail {
+        background: url("./mail.png") left center no-repeat;
+    }
+    a:hover {
+        transform: rotate(360deg);
+    }
+    .item {
+        height: 40px;
+    }
+    p {
+        display: block;
+        margin:1em 0;
+    }
+    ul {
+        display: block;
+        list-style-type: disc;
+        margin:1em 0;
+        padding-left: 40px;
+    }
+}

@@ -15,6 +15,7 @@ import Edit from './containers/Edit/Edit';
 import Publish from './containers/Publish/Publish';
 import Create from './containers/Create/Create'
 import Chat from './containers/Chat/Chat';
+import About from './components/About/About';
 import Page404 from './components/Page404/Page404';
 
 import rootReducer from './reducers/index';
@@ -73,6 +74,7 @@ ReactDOM.render(
                 <Route path="/publish/:id/edit" component = {Publish} />
                 <Route path="/create" component = {Create} />
                 <Route path="/chat" component = {Chat} />
+                <Route path="/about" component = {About} />
                 <Route path="*" component = {Page404} />
             </Route>
         </Router>

@@ -270,7 +270,7 @@ export class CanvasBg extends React.Component {
             canvas.temp.width = canvas.temp.width;
 
             //tempctx是画在遮盖图上面的，然后再在tempctx上利用globalCompositeOperation画出原图，因为canvas.draw暂时为空，所以看不到原图，只能看到遮盖图
-            //从底到上分别为遮盖图，canvas.temp/canvas.draw，原图，然后移动花在canvas.draw上
+            //从底到上分别为遮盖图，canvas.temp/canvas.draw，原图，然后移动画在canvas.draw上
 
             tempctx = canvas.temp.getContext('2d');
             mainctx = main.getContext('2d');
@@ -424,6 +424,8 @@ export class CanvasBg extends React.Component {
                 mousePosition.y = -100;
             });
             main.addEventListener('touchmove',function(e){
+                //防止前进后退
+                e.preventDefault();
                 mousePosition.x = e.changedTouches[0].offsetX;
                 mousePosition.y = e.changedTouches[0].offsetY;
             });
@@ -507,7 +509,8 @@ export class CanvasBg extends React.Component {
 
             function mousemove_handler(e) {
 
-                e.preventDefault();
+
+                //降低计算频率，避免卡顿
                 if(ctx.onOff){
                     ctx.onOff = false;
                     setTimeout(function () {

@@ -38,7 +38,7 @@ router.post('/', checkLogin, function(req, res, next) {
             content: content,
             pv: 0,
             commentsCount:0,
-            date:moment().format('YYYY-MM-DD HH:mm'),
+            date:moment().format('YYYY-MM-DD'),
             sign:num
         };
 

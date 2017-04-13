@@ -1,3 +1,15 @@
+.retBtnWrap{
+    max-width: 820px;
+    margin: 20px auto;
+    .retBtn {
+        padding: 10px 16px;
+        background-color: #57bae8;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+    }
+}
+
 .article {
     max-width: 820px;
     margin: 20px auto;
@@ -31,6 +43,24 @@
         flex: 1;
         padding-top: 10px;
         overflow: auto;
+        font-size: 16px;
+
+        pre {
+            font-family: monospace, monospace;
+            font-size: 1em;
+        }
+        p {
+            display: block;
+            margin:1em 0;
+        }
+        ul, menu, dir {
+            display: block;
+            list-style-type: disc;
+            margin:1em 0;
+            padding-left: 40px;
+        }
+
+
         h1 {
             text-align: center;
             line-height: 40px;

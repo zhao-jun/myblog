@@ -39,6 +39,7 @@ export class Article extends React.Component {
         return (
             <div>
                 <Banner />
+                <div className="retBtnWrap"><Link to="/Page" className="retBtn link">返回</Link></div>
                 <div className="article">
                     <article>
                         <div className="left">

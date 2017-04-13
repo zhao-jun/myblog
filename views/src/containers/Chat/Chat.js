@@ -64,6 +64,7 @@ export class Chat extends React.Component{
         this.resetScroll();
     }
 
+
     resetScroll(){
         let scrollTop=this.chatWindow.scrollHeight-this.chatWindow.clientHeight;
         this.chatWindow.scrollTop=scrollTop > 0 ? scrollTop : 0;
@@ -105,6 +106,7 @@ export class Chat extends React.Component{
         this.chatInput.style.height = 30 + 'px';
         this.chatInput.style.height = this.chatInput.scrollHeight + 'px';
         this.resetScroll()
+        
     }
 
 
@@ -141,9 +143,10 @@ export class Chat extends React.Component{
                         <img src={clearImg} className="chatClear" onClick={()=>this.chatClear()} />
                     </div>
                     <div className="chatText">
-                        <textarea className="chatInput" rows="1" ref={ref=>{this.chatInput=ref}} onChange={()=>this.messageSync()}>
+                        <textarea className="chatInput" rows="1" ref={ref=>{this.chatInput=ref}} onChange={()=>this.messageSync()} onKeyDown ={(e)=>{e.keyCode==13&&e.ctrlKey==1?this.chatSend():null}}>
                         </textarea>
                         <button className="chatSend" onClick={()=>this.chatSend()}>发送</button>
+                        <div className="chatTip">按下Ctrl+Enter发送</div>
                         <div className="chatSend-app" onClick={()=>{this.chatSend();this.messageSync()}}></div>
                     </div>
                 </div>

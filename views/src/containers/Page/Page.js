@@ -1,6 +1,7 @@
 import React from  'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { Link } from 'react-router';
 import Banner from '../../components/Banner/Banner';
 import PageItem from '../../components/PageItem/PageItem';
 import Pagenation from '../../components/Pagination/Pagination';
@@ -32,6 +33,7 @@ export class Page extends React.Component {
                             ))
                         }
                     </ul>
+                    <Link to="/publish" className="pubBtn link">发表</Link>
                     <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} getPageData={actions.getPageData} />
                 </div>
                 </div>

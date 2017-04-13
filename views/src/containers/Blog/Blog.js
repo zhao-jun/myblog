@@ -15,11 +15,10 @@ export class Blog extends React.Component {
     }
     componentWillMount(){
         this.props.actions.getBlogData(location.search);
-        console.log(this.props.blogBoxData);
     }
-
+    
     render(){
-        const {blogBoxData,loginBoxData,actions} = this.props;
+        const {blogBoxData,actions} = this.props;
         return (
             <div>
                 <Banner title={'BLOG'} />
@@ -31,7 +30,7 @@ export class Blog extends React.Component {
                             ))
                         }
                     </ul>
-                    <Tags getBlogData={actions.getBlogData} />
+                    <Tags getBlogData={actions.getBlogData} blogBoxData={blogBoxData} />
                 </div>
             </div>
         )
@@ -40,7 +39,6 @@ export class Blog extends React.Component {
 
 
 const mapStateToProps = state => ({
-    loginBoxData:state.loginBoxData,
     blogBoxData:state.blogBoxData
 });
 

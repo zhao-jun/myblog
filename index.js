@@ -25,13 +25,13 @@ var app = express();
 
 
 //设置跨域访问
-/*app.all('*', function(req, res, next) {
+app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", "Content-Type=application/json;charset=UTF-8");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header('Access-Control-Allow-Credentials', true); //支持跨域传cookie
     next();
-});*/
+});
 
 
 // 设置静态文件目录

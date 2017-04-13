@@ -9,7 +9,7 @@ import avatar from '../../styles/avatar.png';
 import Banner from '../../components/Banner/Banner';
 import Tags from '../../components/Tags/Tags';
 
-import {blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction} from '../../actions/index';
+import {blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction,getBlogData} from '../../actions/index';
 
 
 export class BlogArticle extends React.Component {
@@ -18,7 +18,10 @@ export class BlogArticle extends React.Component {
     }
     componentWillMount(){
         this.props.actions.blogArticle(location.pathname.slice(1));
-        console.log(this.props.blogArticleBoxData)
+        if(!this.props.blogBoxData.tags){
+            this.props.actions.getBlogData(location.search);
+        }
+        // console.log(this.props.blogArticleBoxData)
     }
 
     blogCommentSubmit() {
@@ -35,7 +38,7 @@ export class BlogArticle extends React.Component {
 
 
     render(){
-        const {blogArticleBoxData,actions,loginBoxData} = this.props;
+        const {blogArticleBoxData,actions,loginBoxData,blogBoxData} = this.props;
         let article = blogArticleBoxData.article;
         return (
             <div>
@@ -86,7 +89,7 @@ export class BlogArticle extends React.Component {
                             </form>
                         </div>
                     </div>
-                    <Tags />
+                    <Tags blogBoxData={blogBoxData} getBlogData={actions.getBlogData} />
                 </div>
             </div>
         )
@@ -96,11 +99,12 @@ export class BlogArticle extends React.Component {
 
 const mapStateToProps = state => ({
     loginBoxData:state.loginBoxData,
-    blogArticleBoxData:state.blogArticleBoxData
+    blogArticleBoxData:state.blogArticleBoxData,
+    blogBoxData:state.blogBoxData
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction}, dispatch)
+    actions: bindActionCreators({blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction,getBlogData}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogArticle);

@@ -5,15 +5,21 @@
     border:1px solid #ccc;
     padding: 20px;
     h3 {
+        padding-bottom: 6px;
         margin:0;
         color: #333;
     }
     .tag-item {
         line-height: 24px;
+        text-align: right;
     }
     .link {
+        float: left;
     }
     .link:hover {
         color: #07c;
+    }
+    .num {
+        color: #666;
     }
 }

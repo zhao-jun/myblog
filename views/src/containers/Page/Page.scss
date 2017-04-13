@@ -7,6 +7,16 @@
     -webkit-animation:appear 1s linear;
     -o-animation:appear 1s linear;
     animation:appear 1s linear;
+    .pubBtn {
+        display: inline;
+        padding: 10px 16px;
+        background-color: #57bae8;
+        float: left;
+        margin-top: 20px;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+    }
 }
 @media screen and (max-width:600px) {
     .page {

@@ -21,6 +21,7 @@
         line-height: 50px;
         transition: all .3s linear;
         transform-origin: 50%;
+        user-select:none;
     }
     .title {
         display: block;

@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
     var p = req.query.p-0;
     p = p?p:1;
     var num;
+    var hash={};
 /*    //统计总数
     blogModel.count(function (err, count) {
         if (err) return console.log(err);
@@ -26,16 +27,28 @@ router.get('/', function(req, res, next) {
     });
     return;*/
     Promise.all([
-        blogModel.countTotal(category)// 统计总数
+        blogModel.getPage()// 统计总数
     ])
         .then(function (result) {
-            var num = result[0];
+            var blog = result[0];
             // var category = result[1];
-            blogModel.getPage(p,category,function (err, blog) {
-                // if (err) return console.log(err);
-                var limitNum = Math.ceil(num/5);
-                res.json({blog: blog,num:num,limitNum:limitNum,p:p});
-            });
+
+            for (var i= 0;i<blog.length;i++){
+                if(hash[blog[i].category]) {
+                    hash[blog[i].category]++;
+                    continue;
+                }
+                hash[blog[i].category] = 1;
+            }
+/*            if (!category) {
+                res.json({blog: blog,num:num,tags:hash,p:p});
+            } else {*/
+                blogModel.getPage(p,category,function (err, blog) {
+                    // if (err) return console.log(err);
+                    // var limitNum = Math.ceil(num/5);
+                    res.json({blog: blog,num:num,tags:hash,p:p});
+                });
+            // }
         })
 });
 

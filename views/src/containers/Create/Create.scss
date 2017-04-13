@@ -36,6 +36,7 @@
         resize: none;
         width: 100%;
         height: 450px;
+        font-size: 16px;
     }
     .myEditor {
         float: left;
@@ -54,24 +55,22 @@
         overflow: auto;
         word-wrap: break-word;
         word-break: break-all;
-/*        pre {
-            box-sizing: border-box;
-            line-height:1.3;
-            max-height:35em;
-            padding: 1em;
-            position: relative;
-            white-space: pre;
-            word-wrap: break-word;
-            word-break: break-all;
-        }*/
-/*        code {
-            box-sizing: border-box;
-            background-color: rgb(217, 237, 247);
-            font-size:1em;
-            position: absolute;
-            word-wrap: break-word;
-            word-break: break-all;
-        }*/
+        font-size: 16px;
+
+        pre {
+            font-family: monospace, monospace;
+            font-size: 1em;
+        }
+        p {
+            display: block;
+            margin:1em 0;
+        }
+        ul, menu, dir {
+            display: block;
+            list-style-type: disc;
+            margin:1em 0;
+            padding-left: 40px;
+        }
     }
     
     
