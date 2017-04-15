@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { browserHistory,hashHistory , Router, Route, IndexRoute } from 'react-router';
 
 import Index from './containers/Index/Index';
-import Home from './components/Home/Home';
+import Home from './containers/Home/Home';
 import Blog from './containers/Blog/Blog';
 import BlogArticle from './containers/BlogArticle/BlogArticle';
 import BlogEdit from './containers/BlogEdit/BlogEdit';

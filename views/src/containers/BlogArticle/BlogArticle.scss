@@ -164,6 +164,27 @@
         .input-text {
             margin:0 20px;
         }
-
     }
 }
+
+.blogArticleBanner {
+    background: url("imgs/Article1Large.png") center center no-repeat;
+    @media screen and (max-width: 1080px) {
+        & {
+            background: url("imgs/Article1Middle.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 750px) {
+        & {
+            background: url("imgs/Article1Small.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        & {
+            background: url("imgs/Article1App.png") center center no-repeat;
+        }
+    }
+}
+
+
+

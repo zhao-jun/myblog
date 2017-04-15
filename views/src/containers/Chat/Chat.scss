@@ -3,7 +3,7 @@
     .chatwrap {
         background: url("./background.jpg");
         background-size:cover;
-        min-height: calc(100vh - 150px);
+        min-height: calc(100vh - 110px);
         display: flex;
         justify-content: center;
         align-items:center;
@@ -11,7 +11,7 @@
 
     .chat {
         display: flex;
-        width: 800px;
+        width: 840px;
         padding: 50px 0;
 
 
@@ -30,7 +30,7 @@
             cursor: pointer;
             width: 50%;
             position: relative;
-            /*        img {
+            /*        imgs {
                         position: absolute;
                         top:50%;
                         left:50%;

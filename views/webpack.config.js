@@ -25,13 +25,13 @@ module.exports = (options = {}) => {
                 // 'babel-polyfill',
                 path.resolve(__dirname, 'src/index.js')
                 ],
-            vendor: ['react',"react-dom","react-redux","react-router","redux","immutable","socket.io-client","highlight.js","marked","fetch-polyfill"]
+            // vendor: ['react',"react-dom","react-redux","react-router","redux","immutable","socket.io-client","highlight.js","marked","fetch-polyfill"]
         },
         output: {
             path: path.resolve(__dirname, 'build'),
             filename: '[name][hash].js',
-            publicPath: options.dev ? '/' : 'http://www.zandooy.com/',
-            chunkFilename: '[name].js' //注意这里，用[name]可以自动生成路由名称对应的js文件
+            publicPath: options.dev ? '/' : './',
+            // chunkFilename: '[name].js' //注意这里，用[name]可以自动生成路由名称对应的js文件
         },
         module: {
             rules: [
@@ -53,13 +53,13 @@ module.exports = (options = {}) => {
                             options: {
                                 /*
                                  html-loader接受attrs参数, 表示什么标签的什么属性需要调用webpack的loader进行打包.
-                                 比如<img>标签的src属性, webpack会把<img>引用的图片打包, 然后src的属性值替换为打包后的路径.
+                                 比如<imgs>标签的src属性, webpack会把<imgs>引用的图片打包, 然后src的属性值替换为打包后的路径.
                                  使用什么loader代码, 同样是在module.rules定义中使用匹配的规则.
 
-                                 如果html-loader不指定attrs参数, 默认值是img:src, 意味着会默认打包<img>标签的图片.
+                                 如果html-loader不指定attrs参数, 默认值是img:src, 意味着会默认打包<imgs>标签的图片.
                                  这里我们加上<link>标签的href属性, 用来打包入口index.html引入的favicon.png文件.
                                  */
-                                attrs: ['img:src', 'link:href']
+                                attrs: ['imgs:src', 'link:href']
                             }
                         }
                     ]
@@ -88,7 +88,7 @@ module.exports = (options = {}) => {
                 // { test: /\.(png|jpg)$/, use: 'file-loader'},
                 {test: /\.(png|jpg)$/, exclude: /favicon\.png$/,use: [{loader: 'url-loader', options: {limit: 15000,name:'./[name].[ext]?[hash]'}}]}
                 //可以使/开头的文件相对于root目录解析
-                // {test: /\.html$/, use: [{loader: 'html-loader', options: {root: path.resolve(__dirname, 'src'), attrs: ['img:src', 'link:href']}}]}
+                // {test: /\.html$/, use: [{loader: 'html-loader', options: {root: path.resolve(__dirname, 'src'), attrs: ['imgs:src', 'link:href']}}]}
             ]
         },
         plugins: [
@@ -97,7 +97,7 @@ module.exports = (options = {}) => {
             new webpack.HotModuleReplacementPlugin(),
             new ExtractTextPlugin('style.css'),
             //必须配置，react的公共模块
-            new webpack.optimize.CommonsChunkPlugin({
+/*            new webpack.optimize.CommonsChunkPlugin({
                 names: ['vendor'],
                 filename: 'vendor.js'
             }),
@@ -107,7 +107,7 @@ module.exports = (options = {}) => {
                 compress: {
                     warnings: false    //忽略警告
                 }
-            })
+            })*/
         ],
         resolve: {
             alias: {

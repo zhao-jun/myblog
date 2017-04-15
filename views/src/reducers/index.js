@@ -13,6 +13,7 @@ import blogPreviewData from './blogPreviewData';
 import chatBoxData from './chatBoxData';
 import chatListData from './chatListData';
 import loadingBarData from './loadingBarData';
+import explodeAniData from './explodeAniData';
 
 
 const rootReducer = combineReducers({
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
     blogPreviewData,
     chatBoxData,
     chatListData,
-    loadingBarData
+    loadingBarData,
+    explodeAniData
 });
 
 export default rootReducer;

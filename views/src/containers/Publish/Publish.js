@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import './Publish.scss';
+import Footer from '../../components/Footer/Footer';
 
 import {_alert,publishSubmit,preview } from '../../actions/index';
 
@@ -34,6 +35,7 @@ export class Publish extends React.Component{
     render(){
         const {previewData,actions} = this.props;
         return (
+            <div>
             <form className="publish" ref={el=>{this.form=el}} >
                 <div className="publishItem">
                     <label htmlFor="title">文章标题</label>
@@ -51,6 +53,8 @@ export class Publish extends React.Component{
                 </div>
                 <input type="button" className="publishBtn" value="发布文章" onClick={()=>{this.handleSubmit()}} />
             </form>
+            <Footer />
+            </div>
         )
     }
 }

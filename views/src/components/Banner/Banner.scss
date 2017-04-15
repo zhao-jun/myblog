@@ -7,7 +7,7 @@
     //color: #fff;
     word-spacing:10px;
     text-align: center;
-    background: url("banner.jpg") center center no-repeat;
+    background: url("bannerLarge.png") center center no-repeat;
     //filter: blur(3px);
     background-size: cover;
 /*    transition: all 1s linear;
@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     p{
-        color: #000;
+        color: #fff;
         width: 200px;
         line-height: 50px;
         transition: all .3s linear;
@@ -32,15 +32,31 @@
         line-height: 30px;
     }
     @media screen and (max-width:600px){
+
         .title {
-            color: #333;
+            color: #fff;
             font-size: 36px;
             line-height: 50px;
         }
         .subtitle {
-            color: #333;
+            color: #fff;
             font-size: 20px;
             line-height: 24px;
+        }
+    }
+    @media screen and (max-width: 1080px) {
+        & {
+            background: url("bannerMiddle.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 750px) {
+        & {
+            background: url("bannerSmall.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        & {
+            background: url("bannerApp.png") center center no-repeat;
         }
     }
 }

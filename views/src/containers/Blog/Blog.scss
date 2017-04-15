@@ -1,3 +1,68 @@
+.blogBanner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    //line-height: 300px;
+    font-size: 50px;
+    //color: #fff;
+    word-spacing:10px;
+    text-align: center;
+    background: url("BlogImgLarge.png") center center no-repeat;
+    //filter: blur(3px);
+    background-size: cover;
+    /*    transition: all 1s linear;
+        transform-origin: 50%;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        color: #fff;
+        width: 200px;
+        line-height: 50px;
+        transition: all .3s linear;
+        transform-origin: 50%;
+        user-select:none;
+    }
+    .title {
+        display: block;
+    }
+    .subtitle {
+        display: block;
+        font-size: 20px;
+        line-height: 30px;
+    }
+    @media screen and (max-width:600px){
+        .title {
+            color: #fff;
+            font-size: 36px;
+            line-height: 50px;
+        }
+        .subtitle {
+            color: #fff;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        & {
+            background: url("BlogImgMiddle.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 750px) {
+        & {
+            background: url("BlogImgSmall.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        & {
+            background: url("BlogImgApp.png") center center no-repeat;
+        }
+    }
+}
+
+
+
 .blogWrap {
     display: flex;
     width: 90%;

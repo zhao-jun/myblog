@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import './Article.scss';
 import avatar from '../../styles/avatar.png';
 import Banner from '../../components/Banner/Banner';
+import Footer from '../../components/Footer/Footer';
 
 import {article,_alert,commentSubmit,commentDelete,edit,articleDelete,modBoxAction} from '../../actions/index';
 
@@ -93,6 +94,7 @@ export class Article extends React.Component {
                         </form>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

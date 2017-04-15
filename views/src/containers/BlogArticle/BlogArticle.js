@@ -8,6 +8,7 @@ import './BlogArticle.scss';
 import avatar from '../../styles/avatar.png';
 import Banner from '../../components/Banner/Banner';
 import Tags from '../../components/Tags/Tags';
+import Footer from '../../components/Footer/Footer';
 
 import {blogArticle,_alert,blogCommentSubmit,blogCommentDelete,blogEdit,blogArticleDelete,modBoxAction,getBlogData} from '../../actions/index';
 
@@ -42,7 +43,9 @@ export class BlogArticle extends React.Component {
         let article = blogArticleBoxData.article;
         return (
             <div>
-                <Banner title={article.title} subtitle={article.subtitle}/>
+                <div className="blogBanner blogArticleBanner">
+                    <p><span className="title">{article.title}</span><span className="subtitle">{article.subtitle}</span></p>
+                </div>
                 <div className="blogWrap">
                     <div className="blogArticle">
                         <article>
@@ -91,10 +94,23 @@ export class BlogArticle extends React.Component {
                     </div>
                     <Tags blogBoxData={blogBoxData} getBlogData={actions.getBlogData} />
                 </div>
+                <Footer />
             </div>
         )
     }
 }
+
+//响应式图片，暂时放弃
+/*<div className="picture">
+    <picture>
+        <source media="(max-width:750px)"
+                srcSet="/BlogImgSmall.png 750w"/>
+        <source media="(max-width:1080px)"
+                srcSet="/BlogImgMiddle.png 1080w"/>
+        <source srcSet="/BlogImgLarge.png 1920w"/>
+        <imgs src="/BlogImgLarge.png" alt="这里是图片"/>
+    </picture>
+</div>*/
 
 
 const mapStateToProps = state => ({

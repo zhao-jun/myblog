@@ -16,6 +16,11 @@
         color: #fff;
         font-size: 18px;
         border-radius: 4px;
+        transition: all 1s ease;
+    }
+    .pubBtn:hover {
+        border-radius: 50%;
+        //color: #000;
     }
 }
 @media screen and (max-width:600px) {

@@ -1,7 +1,8 @@
 import React from  'react';
 import "./CanvasBg.scss";
 
-import one from './2.png';
+// import one from './2.png';
+// import one from './../Home/home.jpg';
 
 export class CanvasBg extends React.Component {
     constructor(props){
@@ -16,15 +17,15 @@ export class CanvasBg extends React.Component {
 
         var that = this;
 
-        var img=new Image();
-        img.src='./2.png';
+        var imgs=new Image();
+        imgs.src='./2.png';
 
         //设置宽高
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight - 150;
-        img.onload=function()
+        imgs.onload=function()
         {
-            ctx.drawImage(img,0,0);
+            ctx.drawImage(imgs,0,0);
         };
 
 
@@ -89,7 +90,7 @@ export class CanvasBg extends React.Component {
         }
 
         function drawDots() {
-            ctx.drawImage(img,0,0);
+            ctx.drawImage(imgs,0,0);
             for(var i=0;i<dots.num;i++){
                 dots.arr[i].draw();
             }
@@ -187,7 +188,7 @@ export class CanvasBg extends React.Component {
         requestAnimationFrame(animateDots);
     }*/
     updateCanvas(){
-
+        const {one,explodeAni,explodeAniData} = this.props;
         window.requestAnimationFrame = ( function() {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
@@ -201,7 +202,7 @@ export class CanvasBg extends React.Component {
         var that = this;
         var image = {
             'back': { 'url':one, 'img':null }
-            // 'front': { 'url':two, 'img':null }
+            // 'front': { 'url':two, 'imgs':null }
         };
 
         var canvas = {
@@ -276,14 +277,17 @@ export class CanvasBg extends React.Component {
             mainctx = main.getContext('2d');
 
             tempctx.drawImage(canvas.draw , 0, 0);
-            tempctx.save();
+            // tempctx.save();
             tempctx.globalCompositeOperation = 'source-atop';
-            tempctx.drawImage(image.back.img, 0, 0,window.innerWidth,image.back.img.height/image.back.img.height*window.innerWidth);
-            tempctx.restore();
+            canvas.temp.width >  canvas.temp.height?
+            tempctx.drawImage(image.back.img, 0, 0,canvas.temp.width,image.back.img.height/image.back.img.width*canvas.temp.width)
+                :
+            tempctx.drawImage(image.back.img, 0, 0,image.back.img.width/image.back.img.height*canvas.temp.height,canvas.temp.height);
+            // tempctx.restore();
 
             //默认source-over
             var canvasWidth = window.innerWidth,
-                canvasHeight = window.innerHeight - 150;
+                canvasHeight = window.innerHeight - 110;
             //参数
             var dots = {
                 num:parseInt(window.innerWidth/6), //粒子数
@@ -397,11 +401,11 @@ export class CanvasBg extends React.Component {
             function animateDots(){
                 //切换路由判断
                 if(that.canvas){
-                    if(that.canvas.width != window.innerWidth || that.canvas.height != window.innerHeight - 150){
+                    if(that.canvas.width != window.innerWidth || that.canvas.height != window.innerHeight - 110){
                         that.canvas.width = window.innerWidth;
-                        that.canvas.height = window.innerHeight - 150;
+                        that.canvas.height = window.innerHeight - 110;
                         canvasWidth = window.innerWidth;
-                        canvasHeight = window.innerHeight - 150;
+                        canvasHeight = window.innerHeight - 110;
                     }
                 }
 
@@ -413,6 +417,7 @@ export class CanvasBg extends React.Component {
                 drawDots();
                 drawCircle();
                 requestAnimationFrame(animateDots);
+
             }
 
             main.addEventListener('mousemove',function(e){
@@ -447,13 +452,21 @@ export class CanvasBg extends React.Component {
             tempctx.drawImage(canvas.draw , 0, 0);
             // tempctx.save();
             tempctx.globalCompositeOperation = 'source-atop';
-            tempctx.drawImage(image.back.img, 0, 0,window.innerWidth,image.back.img.height/image.back.img.height*window.innerWidth);
+            // tempctx.drawImage(image.back.imgs, 0, 0,window.innerWidth,image.back.imgs.height/image.back.imgs.height*window.innerWidth);
+            canvas.temp.width >  canvas.temp.height?
+                tempctx.drawImage(image.back.img, 0, 0,canvas.temp.width,image.back.img.height/image.back.img.width*canvas.temp.width)
+                :
+                tempctx.drawImage(image.back.img, 0, 0,image.back.img.width/image.back.img.height*canvas.temp.height,canvas.temp.height);
+
             // tempctx.restore();
             mainctx.drawImage(canvas.temp, 0, 0);
             // num =fullAmount(tempctx,canvas.temp,2000) * 100|0;
             // requestAnimationFrame(recompositeRepeat);
 
         }
+
+
+
 
 
         function scratchLine(can, x, y,fresh) {
@@ -483,7 +496,7 @@ export class CanvasBg extends React.Component {
             ctx.onOff = true;
 
             ctx.width = window.innerWidth;
-            ctx.height = window.innerHeight - 150;
+            ctx.height = window.innerHeight - 110;
 
             canvas.temp = document.createElement('canvas');
             canvas.draw = document.createElement('canvas');
@@ -532,10 +545,19 @@ export class CanvasBg extends React.Component {
             function mouseup_handler(e) {
                 // num =fullAmount(tempctx,canvas.temp,64) * 100|0;
 
+                if(num>80){
+                    //清空画布
+                    // canvas.draw.height=canvas.draw.height;
+                    var ctx=canvas.draw.getContext("2d");
+                    ctx.clearRect(0,0,window.innerWidth,window.innerHeight-110);
+                    explodeAni("explodeReset",true);
+                }
+
                 if (mouseDown) {
                     mouseDown = false;
                     return false;
                 }
+
 
                 return true;
             }

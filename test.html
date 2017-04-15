@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <title>Document</title>
 <style>
-    div {
-        position: absolute;
-        left:50px;
-        bottom: 50px;
-        border: 1px solid #666;
-        width: 100px;
+    .content {
+        height: 100px;
+        overflow: hidden;
+        width: 100%;
+    }
+    img {
+        width: 100%;
+        /*transform: translateX(-50%);*/
     }
 </style>
 </head>
 <body>
-
-<!--<div contenteditable="true"></div>-->
-<ul>
-    <li>123213</li>
-</ul>
-<script>
- function Foo() {
-     var i=0;
-     return function () {
-         console.log(i++);
-     }
- }
-    var f1=Foo(),f2 = Foo();
-    console.log(f1());
- console.log(f1());
- console.log(f2());
-</script>
+<div class="content">
+    <picture>
+        <source media="(max-width:1080px)"
+                srcSet="http://www.fansimg.com/uploads2011/05/userid280713time20110508081514.jpg"/>
+        <source srcSet="http://www.fansimg.com/uploads2011/05/userid280713time20110508081514.jpg"/>
+        <img src="http://www.fansimg.com/uploads2011/05/userid280713time20110508081514.jpg" alt="这里是图片"/>
+    </picture>
+</div>
 </body>
 </html>

@@ -1,7 +1,10 @@
 .index {
     .mainContent {
-        margin-top: 50px;
-        min-height: calc(100vh - 150px);
+        margin: 50px 0 60px;
+        min-height: calc(100vh - 110px);
+        position: relative;
+        /*        width: 100%;
+                overflow: hidden;*/
     }
 
 /*    @media screen and (max-width:600px) {
@@ -10,4 +13,47 @@
         }
     }*/
 }
+
+.transitionWrapper-enter {
+    animation: enter-animation .8s ease;
+}
+.transitionWrapper-leave {
+    animation:leave-animation .8s ease-in ;
+    opacity: 0;
+}
+@keyframes leave-animation {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        transform: translate3d(20%,0,0);
+        opacity: 0;
+        display: none;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+.transitionWrapper {
+    position: relative;
+}
+
+
+@keyframes enter-animation {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+    60% {
+        display: block;
+        transform: translate3d(-10%,0,0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 

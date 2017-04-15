@@ -6,13 +6,15 @@ import { browserHistory,Link } from 'react-router'
 import ChatUserList from '../../components/ChatUserList/ChatUserList';
 import ChatMessage from './../../components/ChatMessage/ChatMessage';
 import ChatInfo from './../../components/ChatInfo/ChatInfo';
+import Footer from '../../components/Footer/Footer';
+
 
 import {_alert,chatBox,chatList} from '../../actions/index';
 
 import clearImg from './clear.png';
 
 import io from 'socket.io-client'
-export let socket = io.connect('http://blog.zandooy.com');
+export let socket = io.connect('http://localhost:3000');
 
 import './Chat.scss';
 
@@ -27,6 +29,7 @@ export class Chat extends React.Component{
         if(!loginBoxData.name) {
             browserHistory.push('/');
             actions._alert('请先登录');
+            return false;
         }
 
         //防止切换路由重复注册
@@ -61,6 +64,12 @@ export class Chat extends React.Component{
         this.resetScroll();
     }
     componentDidUpdate(){
+/*        const {loginBoxData,actions} = this.props;
+        if(!loginBoxData.name) {
+            browserHistory.push('/');
+            actions._alert('请先登录');
+            return false;
+        }*/
         this.resetScroll();
     }
 
@@ -113,6 +122,7 @@ export class Chat extends React.Component{
     render(){
         const {chatBoxData,loginBoxData,chatListData} = this.props;
         return(
+            <div>
             <div className='chatwrap'>
                 <div className="chat">
                 <div className="chatList">
@@ -152,6 +162,8 @@ export class Chat extends React.Component{
                 </div>
             </div>
             </div>
+            <Footer />
+            </div>
         )
     }
 }
@@ -172,6 +184,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Chat);
 /*
 <div className="userInfo"  ref={ref=>{this.userInfo=ref}}>
     <p className="userInfoTitle">详细信息</p>
-    <img className="avatar" src={avatar} />
+    <imgs className="avatar" src={avatar} />
     <button className="sendMsg">发送消息</button>
 </div>*/

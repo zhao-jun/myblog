@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import Banner from '../../components/Banner/Banner';
 import PageItem from '../../components/PageItem/PageItem';
 import Pagenation from '../../components/Pagination/Pagination';
+import Footer from '../../components/Footer/Footer';
 
 import './Page.scss';
 
@@ -24,7 +25,7 @@ export class Page extends React.Component {
         const {pageBoxData,loginBoxData,actions} = this.props;
         return (
             <div>
-                <Banner title={'随便写写'} />
+                <Banner title={'coding'} />
                 <div className="page">
                     <ul className="pageList">
                         {
@@ -36,6 +37,7 @@ export class Page extends React.Component {
                     <Link to="/publish" className="pubBtn link">发表</Link>
                     <Pagenation getPageData={actions.getPageData} _alert={actions._alert} pageBoxData={pageBoxData} getPageData={actions.getPageData} />
                 </div>
+                <Footer />
                 </div>
         )
     }

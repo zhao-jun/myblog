@@ -6,6 +6,7 @@ import './Blog.scss';
 
 import BlogItem from './../../components/BlogItem/BlogItem';
 import Tags from './../../components/Tags/Tags';
+import Footer from '../../components/Footer/Footer';
 
 import {getBlogData,_alert,article} from '../../actions/index';
 
@@ -21,8 +22,11 @@ export class Blog extends React.Component {
         const {blogBoxData,actions} = this.props;
         return (
             <div>
-                <Banner title={'BLOG'} />
+                <div className="blogBanner">
+                    <p><span className="title">BLOG</span><span className="subtitle"></span></p>
+                </div>
                 <div className="blogWrap">
+
                     <ul className="blog">
                         {
                             blogBoxData.blog.map((blog,index)=>(
@@ -32,6 +36,7 @@ export class Blog extends React.Component {
                     </ul>
                     <Tags getBlogData={actions.getBlogData} blogBoxData={blogBoxData} />
                 </div>
+                <Footer />
             </div>
         )
     }
