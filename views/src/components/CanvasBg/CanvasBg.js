@@ -2,7 +2,7 @@ import React from  'react';
 import "./CanvasBg.scss";
 
 // import one from './2.png';
-// import one from './../Home/home.jpg';
+import Footer from '../Footer/Footer';
 
 export class CanvasBg extends React.Component {
     constructor(props){
@@ -188,7 +188,6 @@ export class CanvasBg extends React.Component {
         requestAnimationFrame(animateDots);
     }*/
     updateCanvas(){
-        const {one,explodeAni,explodeAniData} = this.props;
         window.requestAnimationFrame = ( function() {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
@@ -201,7 +200,7 @@ export class CanvasBg extends React.Component {
 
         var that = this;
         var image = {
-            'back': { 'url':one, 'img':null }
+            'back': { 'url':"http://blogimg-1253575000.cossh.myqcloud.com/home.jpg?sign=X17Z7hbrtjkinOOkikDRa7BvPD5hPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMzUyJnQ9MTQ5MjM0MDM1MiZyPTM5OTU0MCZmPS9ob21lLmpwZyZiPWJsb2dpbWc=", 'img':null }
             // 'front': { 'url':two, 'imgs':null }
         };
 
@@ -545,13 +544,12 @@ export class CanvasBg extends React.Component {
             function mouseup_handler(e) {
                 // num =fullAmount(tempctx,canvas.temp,64) * 100|0;
 
-                if(num>80){
+/*                if(num>10){
                     //清空画布
                     // canvas.draw.height=canvas.draw.height;
                     var ctx=canvas.draw.getContext("2d");
                     ctx.clearRect(0,0,window.innerWidth,window.innerHeight-110);
-                    explodeAni("explodeReset",true);
-                }
+                }*/
 
                 if (mouseDown) {
                     mouseDown = false;
@@ -602,8 +600,11 @@ export class CanvasBg extends React.Component {
 
     render(){
         return (
-            <div className="canvas">
-                <canvas ref={ref=>{this.canvas=ref}} />
+            <div>
+                <div className="canvas">
+                    <canvas ref={ref=>{this.canvas=ref}} />
+                </div>
+                <Footer />
             </div>
         )
     }

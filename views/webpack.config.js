@@ -25,13 +25,13 @@ module.exports = (options = {}) => {
                 // 'babel-polyfill',
                 path.resolve(__dirname, 'src/index.js')
                 ],
-            // vendor: ['react',"react-dom","react-redux","react-router","redux","immutable","socket.io-client","highlight.js","marked","fetch-polyfill"]
+            vendor: ['react',"react-dom","react-redux","react-router","redux","immutable","socket.io-client","highlight.js","marked","fetch-polyfill"]
         },
         output: {
             path: path.resolve(__dirname, 'build'),
             filename: '[name][hash].js',
-            publicPath: options.dev ? '/' : './',
-            // chunkFilename: '[name].js' //注意这里，用[name]可以自动生成路由名称对应的js文件
+            publicPath: options.dev ? '/' : 'http://www.zandooy.com/',
+            chunkFilename: '[name].js' //注意这里，用[name]可以自动生成路由名称对应的js文件
         },
         module: {
             rules: [
@@ -97,7 +97,7 @@ module.exports = (options = {}) => {
             new webpack.HotModuleReplacementPlugin(),
             new ExtractTextPlugin('style.css'),
             //必须配置，react的公共模块
-/*            new webpack.optimize.CommonsChunkPlugin({
+            new webpack.optimize.CommonsChunkPlugin({
                 names: ['vendor'],
                 filename: 'vendor.js'
             }),
@@ -107,7 +107,7 @@ module.exports = (options = {}) => {
                 compress: {
                     warnings: false    //忽略警告
                 }
-            })*/
+            })
         ],
         resolve: {
             alias: {

@@ -1,13 +1,13 @@
 .banner {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 600px;
     //line-height: 300px;
     font-size: 50px;
     //color: #fff;
     word-spacing:10px;
     text-align: center;
-    background: url("bannerLarge.png") center center no-repeat;
+    background: url("http://blogimg-1253575000.cossh.myqcloud.com/BannerLarge.png?sign=kn1uBpNECWWYYaYWuzLLIG6aj8lhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMjQzJnQ9MTQ5MjM0MDI0MyZyPTkyMTcxOTc5NSZmPS9CYW5uZXJMYXJnZS5wbmcmYj1ibG9naW1n") center center no-repeat;
     //filter: blur(3px);
     background-size: cover;
 /*    transition: all 1s linear;
@@ -46,17 +46,20 @@
     }
     @media screen and (max-width: 1080px) {
         & {
-            background: url("bannerMiddle.png") center center no-repeat;
+            height: 500px;
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/BannerMiddle.png?sign=MCkT9KrA1usnAHb5/BO7IVHpWCRhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMjQzJnQ9MTQ5MjM0MDI0MyZyPTEyOTM0NTI4NyZmPS9CYW5uZXJNaWRkbGUucG5nJmI9YmxvZ2ltZw==") center center no-repeat;
         }
     }
     @media screen and (max-width: 750px) {
         & {
-            background: url("bannerSmall.png") center center no-repeat;
+            height: 400px;
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/BannerSmall.png?sign=JXpMI/0lFHB/nQJywAqvUyuR6dRhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMjQzJnQ9MTQ5MjM0MDI0MyZyPTE0NDYwOTE4MzAmZj0vQmFubmVyU21hbGwucG5nJmI9YmxvZ2ltZw==") center center no-repeat;
         }
     }
     @media screen and (max-width: 450px) {
         & {
-            background: url("bannerApp.png") center center no-repeat;
+            height: 300px;
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/bannerApp.png?sign=Y3aGGT7H91EQVL/gxPkPkm4+pflhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTE1OTcyMzU1MDAmZj0vYmFubmVyQXBwLnBuZyZiPWJsb2dpbWc=") center center no-repeat;
         }
     }
 }

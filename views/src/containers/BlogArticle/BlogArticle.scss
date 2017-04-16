@@ -168,20 +168,23 @@
 }
 
 .blogArticleBanner {
-    background: url("imgs/Article1Large.png") center center no-repeat;
+    background: url("http://blogimg-1253575000.cossh.myqcloud.com/Article1Large.png?sign=C3lJVPiw5iM6fLQbknIiEmWMNnphPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMTI3JnQ9MTQ5MjM0MDEyNyZyPTYwNTM2NDg2MiZmPS9BcnRpY2xlMUxhcmdlLnBuZyZiPWJsb2dpbWc=") center center no-repeat;
     @media screen and (max-width: 1080px) {
         & {
-            background: url("imgs/Article1Middle.png") center center no-repeat;
+            height: 500px;
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/Article1Middle.png?sign=T4+hZKXm2nKAb8OJ0+ugQ6jhj2xhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMTU0JnQ9MTQ5MjM0MDE1NCZyPTIxMDk1ODI4MDMmZj0vQXJ0aWNsZTFNaWRkbGUucG5nJmI9YmxvZ2ltZw==") center center no-repeat;
         }
     }
     @media screen and (max-width: 750px) {
         & {
-            background: url("imgs/Article1Small.png") center center no-repeat;
+            height: 400px;
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/Article1Small.png?sign=EUSy3x1o8WuvgBt4YSnctL5eQ0BhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMTU0JnQ9MTQ5MjM0MDE1NCZyPTIwNDc2NTE2NTUmZj0vQXJ0aWNsZTFTbWFsbC5wbmcmYj1ibG9naW1n") center center no-repeat;
         }
     }
     @media screen and (max-width: 450px) {
         & {
-            background: url("imgs/Article1App.png") center center no-repeat;
+            height: 300px;
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/Article1App.png?sign=dlPlXDw19qRYixzzDilzj3pJFF1hPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTIwNTc2OTY3NDYmZj0vQXJ0aWNsZTFBcHAucG5nJmI9YmxvZ2ltZw==") center center no-repeat;
         }
     }
 }

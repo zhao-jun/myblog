@@ -2,15 +2,17 @@
     position: relative;
 
     .home {
-        position: absolute;
-        left:0;
-        top:0;
-        background: url("home.jpg") center center no-repeat;
+        position: relative;
+/*        left:0;
+        top:0;*/
+        background: url("http://blogimg-1253575000.cossh.myqcloud.com/home.jpg?sign=0J1XQ1m+ILL0pyiujYgjiCQCrMhhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY1Njc0JnQ9MTQ5MjI3MzY3NCZyPTE1MDQ2NTMxMzUmZj0vaG9tZS5qcGcmYj1ibG9naW1n") center center no-repeat;
         width: 100%;
         height: calc(100vh - 110px);
         background-size:cover;
         perspective: 2000px;
         cursor: pointer;
+        transition: transform .3s ease;
+        transform-origin: 50% 50%;
         &:hover .describe {
             opacity:1;
             transform: translate3d(0,0,0);
@@ -23,6 +25,7 @@
         align-items: center;
         flex-direction: column;
         .describe {
+            text-align: center;
             font-size: 30px;
             color: #fff;
             opacity:0;
@@ -70,7 +73,7 @@
         height: 100px;
         left:100px;
         top:100px;
-        background: url("home.jpg") 0 0 no-repeat;
+        background: url("http://blogimg-1253575000.cossh.myqcloud.com/home.jpg?sign=0J1XQ1m+ILL0pyiujYgjiCQCrMhhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY1Njc0JnQ9MTQ5MjI3MzY3NCZyPTE1MDQ2NTMxMzUmZj0vaG9tZS5qcGcmYj1ibG9naW1n") 0 0 no-repeat;
         //transition: transform .5s ease;
         //transform: translate3d(5px, 0px, 59.653px) rotateX(1rad) rotateY(-1rad)
         &:hover {
@@ -81,6 +84,23 @@
         animation: explodeShow 1s linear;
         animation-fill-mode:forwards;
     }
+/*    @media screen and (max-width: 1080px) {
+        .home {
+            background: url("./../../imgs/HomeMiddle.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 750px) {
+        .home {
+            background: url("./../../imgs/HomeSmall.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        .home {
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/bannerApp.png?sign=Y3aGGT7H91EQVL/gxPkPkm4+pflhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTE1OTcyMzU1MDAmZj0vYmFubmVyQXBwLnBuZyZiPWJsb2dpbWc=") center center no-repeat;
+        }
+    }*/
+
+
 
 }
 
@@ -93,3 +113,5 @@
         opacity: 0;
     }
 }
+
+

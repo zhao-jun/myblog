@@ -14,7 +14,7 @@ import {_alert,chatBox,chatList} from '../../actions/index';
 import clearImg from './clear.png';
 
 import io from 'socket.io-client'
-export let socket = io.connect('http://localhost:3000');
+export let socket;
 
 import './Chat.scss';
 
@@ -25,12 +25,15 @@ export class Chat extends React.Component{
 
     componentWillMount(){
         // console.log(socket);
+        socket = io.connect('http://www.zandooy.com');
+
         const {loginBoxData,actions} = this.props;
         if(!loginBoxData.name) {
             browserHistory.push('/');
             actions._alert('请先登录');
             return false;
         }
+
 
         //防止切换路由重复注册
         socket.removeListener('message');

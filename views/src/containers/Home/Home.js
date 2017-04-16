@@ -6,9 +6,6 @@ import './Home.scss';
 
 import {explodeAni } from '../../actions/index';
 
-import one from './home.jpg';
-
-import CanvasBg from '../../components/CanvasBg/CanvasBg';
 import Footer from '../../components/Footer/Footer';
 
 
@@ -20,7 +17,9 @@ export class Home extends React.Component {
     explode(){
         var that = this;
         const {actions} = this.props;
-        this.home.style.width = 0;
+        this.home.style.opacity = 0;
+        this.home.style.transform="scale(0)";
+
         actions.explodeAni('explodeShow',true);
 
         let divWidth,divHeight,column;
@@ -72,14 +71,15 @@ export class Home extends React.Component {
         let onOff = setInterval(()=>updateAll(),50);
         setTimeout(function () {
             // that.home.style.display = 'none';
-            actions.explodeAni('explodeReset',false);
-            that.home.style.width = "100%";
+            actions.explodeAni('explodeReset',true);
+            that.home.style.opacity = 1;
+            that.home.style.transform="scale(1)";
             clearInterval(onOff);
         },1000)
     }
 
     render() {
-        const {explodeAniData,actions} = this.props;
+        const {explodeAniData} = this.props;
 
         let explodeDiv=[],divWidth,divHeight,column;
         if(window.innerWidth>window.innerHeight){
@@ -99,14 +99,20 @@ export class Home extends React.Component {
                 <div className="home" style={{display:explodeAniData.reset?"flex":"none"}} ref={ref=>{this.home=ref}} onClick={()=>this.explode()}>
                     {
                         explodeAniData.show ?
-                            explodeDiv
-                            :
                             null
+                            :
+                            <div>
+                                <h2>Welcome</h2>
+                                <p className="describe">My Friend</p>
+                            </div>
                     }
-                    <h2>Welcome</h2>
-                    <p className="describe">My Friend</p>
                 </div>
-                <CanvasBg one={one} explodeAni={actions.explodeAni} explodeAniData={explodeAniData} />
+                {
+                    explodeAniData.show ?
+                        explodeDiv
+                        :
+                        null
+                }
                 <Footer />
             </div>
         )

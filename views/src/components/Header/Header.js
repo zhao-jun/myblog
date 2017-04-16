@@ -27,7 +27,7 @@ export class Header extends React.Component {
             navBtnTwo:this.state.userHide ?'nav-Btn-line':"nav-Btn-line nav-Btn-two",
             navBtnThree:this.state.userHide ?'nav-Btn-line':"nav-Btn-line nav-Btn-three"
         })
-        this.nav.style.height = this.nav.style.height =='360px'? '0':'360px';
+        this.nav.style.height = this.nav.style.height =='410px'? '0':'410px';
         this.cover.style.display=this.cover.style.display=='block'?'none':'block';
     }
     isHide(){
@@ -80,7 +80,8 @@ export class Header extends React.Component {
                                 }
 
 
-
+                                <li className="nav-item"><Link to="/other" activeClassName="active"
+                                                               className='link'>其他</Link></li>
                                 <li className="nav-item"><Link to="/about" activeClassName="active"
                                                                className='link'>关于</Link></li>
 

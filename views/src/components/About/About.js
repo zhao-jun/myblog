@@ -4,11 +4,6 @@ import './About.scss';
 import Banner from './../Banner/Banner';
 import Footer from './../Footer/Footer';
 
-import AboutBgLarge from './AboutBgLarge.png';
-import AboutBgMiddle from './AboutBgMiddle.png';
-import AboutBgSmall from './AboutBgSmall.png';
-import AboutBgApp from './AboutBgApp.png';
-
 
 export class About extends React.Component {
     constructor(props) {
@@ -21,13 +16,14 @@ export class About extends React.Component {
     render() {
         let AboutBg;
         if(window.innerWidth>1280){
-            AboutBg = AboutBgLarge;
+            AboutBg = "http://blogimg-1253575000.cossh.myqcloud.com/AboutBgLarge.png?sign=0ivA5tMFmRrZSaK6a/qhnZlbv65hPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTE0MTM1OTAxNiZmPS9BYm91dEJnTGFyZ2UucG5nJmI9YmxvZ2ltZw==";
         } else if (window.innerWidth>750) {
-            AboutBg = AboutBgMiddle;
+            // AboutBg = AboutBgMiddle;
+            AboutBg = "http://blogimg-1253575000.cossh.myqcloud.com/AboutBgMiddle.png?sign=mm0k7e3Hi13fkWjsCIMCFgT9IA9hPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTE5MDAyODEyNTQmZj0vQWJvdXRCZ01pZGRsZS5wbmcmYj1ibG9naW1n";
         } else if (window.innerWidth>450){
-            AboutBg = AboutBgSmall;
+            AboutBg = "http://blogimg-1253575000.cossh.myqcloud.com/AboutBgSmall.png?sign=jZHaK99+UE9n9ZdTAZl+JoAN0ylhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTg2MzA4MDczNiZmPS9BYm91dEJnU21hbGwucG5nJmI9YmxvZ2ltZw==";
         }else {
-            AboutBg = AboutBgApp;
+            AboutBg = "http://blogimg-1253575000.cossh.myqcloud.com/AboutBgApp.png?sign=t4q3MBVLZAGHe/rZgyGjx/1Q/tBhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTEyNTMwMDkxNTEmZj0vQWJvdXRCZ0FwcC5wbmcmYj1ibG9naW1n";
         }
         return (
             <div>
