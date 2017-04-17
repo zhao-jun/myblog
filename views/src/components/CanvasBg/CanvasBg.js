@@ -1,7 +1,7 @@
 import React from  'react';
 import "./CanvasBg.scss";
 
-// import one from './2.png';
+import imgOne from './../../imgs/HomeLarge.png';
 import Footer from '../Footer/Footer';
 
 export class CanvasBg extends React.Component {
@@ -200,7 +200,7 @@ export class CanvasBg extends React.Component {
 
         var that = this;
         var image = {
-            'back': { 'url':"http://blogimg-1253575000.cossh.myqcloud.com/home.jpg?sign=X17Z7hbrtjkinOOkikDRa7BvPD5hPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0OTMyMzUyJnQ9MTQ5MjM0MDM1MiZyPTM5OTU0MCZmPS9ob21lLmpwZyZiPWJsb2dpbWc=", 'img':null }
+            'back': { 'url':imgOne, 'img':null }
             // 'front': { 'url':two, 'imgs':null }
         };
 
@@ -278,10 +278,10 @@ export class CanvasBg extends React.Component {
             tempctx.drawImage(canvas.draw , 0, 0);
             // tempctx.save();
             tempctx.globalCompositeOperation = 'source-atop';
-            canvas.temp.width >  canvas.temp.height?
-            tempctx.drawImage(image.back.img, 0, 0,canvas.temp.width,image.back.img.height/image.back.img.width*canvas.temp.width)
+            canvas.temp.width >  canvas.temp.height ?
+            tempctx.drawImage(image.back.img, 0, 0,canvas.temp.width,image.back.img.height/image.back.img.width*canvas.temp.height)
                 :
-            tempctx.drawImage(image.back.img, 0, 0,image.back.img.width/image.back.img.height*canvas.temp.height,canvas.temp.height);
+            tempctx.drawImage(image.back.img, 0, 0,image.back.img.width/image.back.img.height*canvas.temp.width,canvas.temp.height);
             // tempctx.restore();
 
             //默认source-over
@@ -355,7 +355,7 @@ export class CanvasBg extends React.Component {
                 //开始绘制文字
                 num?
                 mainctx.fillText( num + '%', window.innerWidth/2 - 40, window.innerHeight/2 - 50):
-                mainctx.fillText( '欢迎', window.innerWidth/2 - 50, window.innerHeight/2 - 50);
+                mainctx.fillText( '欢迎涂一涂', window.innerWidth/2 - 120, window.innerHeight/2 - 50);
                 mainctx.drawImage(canvas.temp, 0, 0);
             }
 
@@ -449,15 +449,15 @@ export class CanvasBg extends React.Component {
             canvas.temp.width = canvas.temp.width;
 
             tempctx.drawImage(canvas.draw , 0, 0);
-            // tempctx.save();
+            tempctx.save();
             tempctx.globalCompositeOperation = 'source-atop';
             // tempctx.drawImage(image.back.imgs, 0, 0,window.innerWidth,image.back.imgs.height/image.back.imgs.height*window.innerWidth);
-            canvas.temp.width >  canvas.temp.height?
+            canvas.temp.width >  canvas.temp.height*1.5?
                 tempctx.drawImage(image.back.img, 0, 0,canvas.temp.width,image.back.img.height/image.back.img.width*canvas.temp.width)
                 :
                 tempctx.drawImage(image.back.img, 0, 0,image.back.img.width/image.back.img.height*canvas.temp.height,canvas.temp.height);
 
-            // tempctx.restore();
+            tempctx.restore();
             mainctx.drawImage(canvas.temp, 0, 0);
             // num =fullAmount(tempctx,canvas.temp,2000) * 100|0;
             // requestAnimationFrame(recompositeRepeat);
@@ -478,7 +478,7 @@ export class CanvasBg extends React.Component {
             ctx.lineWidth = 45;
             ctx.lineCap = ctx.lineJoin = 'round';
             //可以是任何不透明的颜色，这样让原图显示出来
-            ctx.strokeStyle = '#7daad6';
+            ctx.strokeStyle = '#f2f2f2';
 
             if (fresh) {
                 ctx.beginPath();

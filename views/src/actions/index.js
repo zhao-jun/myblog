@@ -284,7 +284,7 @@ export const article = function (params) {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
+            // console.log(data);
             return dispatch(articleBox("article", data))
         })
         .catch(function(e) {

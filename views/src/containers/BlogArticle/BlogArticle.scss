@@ -1,12 +1,17 @@
 .blogArticle {
     flex:1;
     margin:50px 30px;
+
+    @media screen and (max-width: 600px ) {
+        & {
+            margin:50px 10px;
+        }
+    }
     article {
         margin-bottom: 30px;
         background-color: #fff;
         border: 1px solid #ccc;
-        word-break: break-all;
-
+        //word-break: break-all;
     }
     .main {
         flex: 1;
