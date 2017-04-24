@@ -1,0 +1,117 @@
+.homeWrap {
+    position: relative;
+
+    .home {
+        position: relative;
+/*        left:0;
+        top:0;*/
+        background: url("http://oondrp596.bkt.clouddn.com/home.png") center center no-repeat;
+        width: 100%;
+        height: calc(100vh - 110px);
+        background-size:cover;
+        perspective: 2000px;
+        cursor: pointer;
+        transition: transform .3s ease;
+        transform-origin: 50% 50%;
+        &:hover .describe {
+            opacity:1;
+            transform: translate3d(0,0,0);
+        }
+        &:hover h2 {
+            transform: translate3d(0,-30px,0);
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .describe {
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+            opacity:0;
+            transition: all .3s ease;
+            transform: translate3d(0,20px,0);
+        }
+        &:before,&:after {
+            content: '';
+            position: absolute;
+            left:30px;
+            right:30px;
+            top:30px;
+            bottom: 30px;
+            transition: all .3s;
+            transform:scale(0,1);
+            opacity: 0;
+        }
+        &:before {
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+        &:after {
+            border-left: 1px solid #fff;
+            border-right: 1px solid #fff;
+        }
+        &:hover:after {
+            transform:scale(1);
+            opacity: 1;
+        }
+        &:hover:before {
+            transform:scale(1);
+            opacity: 1;
+        }
+    }
+    h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 50px;
+        transform: translate3d(0,-60px,0);
+        transition: all .3s ease;
+    }
+    .explode {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        left:100px;
+        top:100px;
+        background: url("http://oondrp596.bkt.clouddn.com/home.png") 0 0 no-repeat;
+        //transition: transform .5s ease;
+        //transform: translate3d(5px, 0px, 59.653px) rotateX(1rad) rotateY(-1rad)
+        &:hover {
+            //transform: perspective(500px) translate3d(50px, 0, 56px)
+        }
+    }
+    .explode{
+        animation: explodeShow 1s linear;
+        animation-fill-mode:forwards;
+    }
+/*    @media screen and (max-width: 1080px) {
+        .home {
+            background: url("./../../imgs/HomeMiddle.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 750px) {
+        .home {
+            background: url("./../../imgs/HomeSmall.png") center center no-repeat;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        .home {
+            background: url("http://blogimg-1253575000.cossh.myqcloud.com/bannerApp.png?sign=Y3aGGT7H91EQVL/gxPkPkm4+pflhPTEyNTM1NzUwMDAmaz1BS0lEVHZBQnpaajF0WHc2MGV2QTFjeTR2V3UydVdzeXNEemEmZT0xNDk0ODY4MzQzJnQ9MTQ5MjI3NjM0MyZyPTE1OTcyMzU1MDAmZj0vYmFubmVyQXBwLnBuZyZiPWJsb2dpbWc=") center center no-repeat;
+        }
+    }*/
+
+
+
+}
+
+@keyframes explodeShow {
+
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
